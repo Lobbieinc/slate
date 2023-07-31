@@ -64,31 +64,49 @@ If `success` is `true`, the `data` key will be filled with information relevant 
 
 # Terminology / Vocabulary
 
--   **Form Template** - What Lobbie uses to create a Form for a Patient.
+### Form Template
+What Lobbie uses to create a Form for a Patient.
 
--   **Form Template Group** - A collection of Form Templates. A link is assigned to the collection and can be used to provide Patients an "anonymous" method of completing each Form that is generated from each Form Template in the Form Template Group.
+### Form Template Group
+A collection of Form Templates. A link is assigned to the collection and can be used to provide Patients an "anonymous" method of completing each Form that is generated from each Form Template in the Form Template Group.
 
--   **Form Template Section** - A page of a Form Template. If a Form Template has multiple Form Template Sections a button at the bottom of the page will be enabled when a Patient has completed all required fields in the current section.
+### Form Template Section
+A page of a Form Template. If a Form Template has multiple Form Template Sections a button at the bottom of the page will be enabled when a Patient has completed all required fields in the current section.
 
--   **Form Element** - A single field in a Form Template Section.
+### Form Element
+A single field in a Form Template Section.
 
--   **Lobbie Form Attribute** - A metadata tag added to a Form Element which can be used to give structure to unstructured data.
+### Lobbie Form Attribute
+A metadata tag added to a Form Element which can be used to give structure to unstructured data.
 
--   **Form** - What a Patient completes. Created from a Form Template.
+Lobbie Form Attributes have "lifecycles" of which there are two: either the "Form Group" or "Patient" lifecycle.
 
--   **Form Group** - A collection of Forms assigned to a Patient to be completed together with a shared due date.
+A Lobbie Form Attribute with a lifecycle of "Form Group" (default) will only [autofill](#autofill) fields in other Forms when the Form that owns the Lobbie Form Attribute is completed.
 
--   **Form Packet** - Same as a "Form Group". An alias.
+A Lobbie Form Attribute with a lifecycle of "Patient" will [prefill](#prefill) Forms in future Form Group/Packets assigned to the same Patient when that Form Group/Packet is created.
 
--   **Form Answer** - A single answer to a single Form Element in a Form.
+### Form
+What a Patient completes. Created from a Form Template.
 
--   **Prefill** - Using either Lobbie Form Attributes with the Lifecycle value of "Patient" or data from the Patient record in Lobbie to complete fields in a Form BEFORE the Patient begins the Form. Uses Lobbie Form Attributes to map data to Form Answers in a Form. Runs when a Form is created.
+### Form Group
+A collection of Forms assigned to a Patient to be completed together with a shared due date.
 
-    -   Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute "Patient" lifecycles and Patient data.
+### Form Packet
+Same as a "Form Group". An alias.
 
--   **Autofill** - Saving answers from one Form to other Forms in a Form Group. Happens when a Form is completed. Uses Lobbie Form Attributes to map data between Forms in a Form Group.
+### Form Answer
+A single answer to a single Form Element in a Form.
 
--   **Fillable PDF** - When printing a Form, Lobbie maps Form Answers to PDF file that has been submitted to Lobbie. Instead of Lobbie Form Attributes we use Mapped PDF Fields.
+### Prefill
+Using either Lobbie Form Attributes with the Lifecycle value of "Patient" or data from the Patient record in Lobbie to complete fields in a Form BEFORE the Patient begins the Form. Uses Lobbie Form Attributes to map data to Form Answers in a Form. Runs when a Form is created.
+
+  * Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute "Patient" lifecycles and Patient data.
+
+### Autofill
+Saving answers from one Form to other Forms in a Form Group. Happens when a Form is completed. Uses Lobbie Form Attributes to map data between Forms in a Form Group.
+
+### Fillable PDF
+When printing a Form, Lobbie maps Form Answers to PDF file that has been submitted to Lobbie. Instead of Lobbie Form Attributes we use Mapped PDF Fields.
 
 # Authentication
 
@@ -400,7 +418,7 @@ This endpoint updates a Location in Lobbie.
 
 ```shell
 curl -X GET \
-    https://localhost:8443/lobbie/api/developer/v1/patients \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -520,13 +538,78 @@ This endpoint retrieves a specific patient.
 | --------- | --------------------------------- |
 | ID        | The ID of the Patient to retrieve |
 
-## Create a Patient
+## Search for Patients
 
-## Update a Patient
+Find patient(s) using different query parameters.
+
+<aside class="notice">
+    This endpoint can return more than 1 patient.
+</aside>
+
+```shell
+curl -G GET \
+    "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/search" \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data-urlencode "firstName=Donny" \
+    --data-urlencode "lastName=DemoPatient" \
+    --data-urlencode "email=patient@lobbie.com" \
+    --data-urlencode "dateOfBirth=08/10/2003"
+```
+
+> The above command returns JSON structured like this:
+
+```javascript
+{
+  "success": true,
+  "message": "Patient search results",
+  "data": [
+    {
+      "active": true,
+      "email": "patient@lobbie.com",
+      "firstName": "Donny",
+      "lastName": "DemoPatient",
+      "mobilePhone": "4108675309",
+      "dateOfBirth": "8/10/2003",
+      "id": 1,
+      "createdOn": "2023-07-28T15:38:26.000Z",
+      "lastUpdatedOn": "2023-07-28T15:38:26.000Z",
+      "isEmailConfirmed": false,
+      "isPhoneConfirmed": false,
+      "receiveEmail": true,
+      "receiveSms": true,
+      "name": "Donny DemoPatient",
+      "isMinimumAgeConfirmedAccount": true,
+      "sexAssignedAtBirth": 2,
+      "legalSex": 0,
+      "intakeMethod": "UNKNOWN",
+      "gender": "non-binary"
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/search`
+
+### Query Parameters
+
+* `firstName` - The first/given name of the Patient.
+
+* `lastName` - The last/family name of the Patient.
+
+* `name` - The first/give and last/family name of the Patient. If this is not empty it will be used instead of the first/last name query parameters.
+
+* `email` - The email of the Patient to search for.
+
+* `mobilePhone` - The phone number of the Patient to search for.
+
+* `dateOfBirth` - The birth date of the Patient in MM/DD/YYYY format.
+
 
 # Form Templates
 
-Form Templates are what Lobbie uses to create Forms for
+[Form Templates](#form-template) are what Lobbie uses to create Forms for
 
 ## Get All Form Templates
 
@@ -793,7 +876,7 @@ curl -X GET \
 }
 ```
 
-This endpoint retrieves a specific Form Template.
+This endpoint retrieves a specific [Form Template](#form-template).
 
 ### HTTP Request
 
@@ -803,7 +886,7 @@ This endpoint retrieves a specific Form Template.
 
 | Parameter | Description                             |
 | --------- | --------------------------------------- |
-| ID        | The ID of the Form Template to retrieve |
+| ID        | The ID of the [Form Template](#form-template) to retrieve |
 
 # Form Template Groups
 
@@ -837,7 +920,7 @@ curl -X GET \
 }
 ```
 
-This endpoint retrieves all Form Template Groups associated with your organization's Lobbie account.
+This endpoint retrieves all [Form Template Groups](#form-template-group) associated with your organization's Lobbie account.
 
 ### HTTP Request
 
@@ -884,7 +967,7 @@ curl -X GET \
 }
 ```
 
-This endpoint retrieves a specific Form Template Group.
+This endpoint retrieves a specific [Form Template Group](#form-template-group).
 
 ### HTTP Request
 
@@ -894,7 +977,7 @@ This endpoint retrieves a specific Form Template Group.
 
 | Parameter | Description                                   |
 | --------- | --------------------------------------------- |
-| ID        | The ID of the Form Template Group to retrieve |
+| ID        | The ID of the [Form Template Group](#form-template-group) to retrieve |
 
 ## Create a Form Template Group
 
@@ -1023,13 +1106,13 @@ curl -X DELETE \
 ```
 
 <aside class="notice">
-This operation flips the `active` field to `false` from `true` and the Form Template Group will be:
-<div>
-1. Hidden from the Lobbie UI.
-</div>
-<div>
-2. Inaccessible at its `staticLink`.
-</div>
+    This operation flips the `active` field to `false` from `true` and the Form Template Group will be:
+    <div>
+        1. Hidden from the Lobbie UI.
+    </div>
+    <div>
+        2. Inaccessible at its `staticLink`.
+    </div>
 </aside>
 
 ```json
@@ -1092,7 +1175,7 @@ curl -X GET \
 }
 ```
 
-This endpoint retrieves all Form Template Groups associated with a Practitioner in your organization.
+This endpoint retrieves all [Form Template Groups](#form-template-group) associated with a Practitioner in your organization.
 
 ### HTTP Request
 
@@ -1106,7 +1189,7 @@ None
 
 ## Get All Form Groups/Packets
 
-When retrieving a FormGroup/Packet you can choose to call either the /groups or /packets endpoint. Both return the same response.
+When retrieving a [Form Group/Packet](#form-group) you can choose to call either the /groups or /packets endpoint. Both return the same response.
 
 ```shell
 curl -X GET \
@@ -1151,35 +1234,35 @@ curl -X GET \
 
 ### Query Parameters
 
--   `locationId` - number - Get FormGroups/Packets in this Location. Optional. Default all Locations.
+-   `locationId` - number - Get [Form Groups/Packets](#form-group) in this Location. Optional. Default all Locations.
 
--   `patientId` - number - Get FormGroups/Packets assigned to this Patient. Optional.
+-   `patientId` - number - Get [Form Groups/Packets](#form-group) assigned to this Patient. Optional.
 
--   `practitionerId` - number - Get all FormGroups/Packets for Patients assigned to this Practitioner. Optional.
+-   `practitionerId` - number - Get all [Form Groups/Packets](#form-group) for Patients assigned to this Practitioner. Optional.
 
--   `formTemplateIds` - string, comma-separated - Get all FormGroups/Packets which include Forms with these FormTemplates. Optional.
+-   `formTemplateIds` - string, comma-separated - Get all [Form Groups/Packets](#form-group) which include Forms with these [Form Templates](#form-template). Optional.
 
--   `formTemplateNames` - string, comma-separated - Get all FormGroups/Packets which include Forms with these FormTemplates. Optional.
+-   `formTemplateNames` - string, comma-separated - Get all [Form Groups/Packets](#form-group) which include Forms with these [Form Templates](#form-template). Optional.
 
--   `startDateTime` - number - Get all FormGroups/Packets with a dueDate of this unix epoch time or greater. Optional. Default `now - 3 years`.
+-   `startDateTime` - number - Get all [Form Groups/Packets](#form-group) with a dueDate of this unix epoch time or greater. Optional. Default `now - 3 years`.
 
--   `endDateTime` - number - Get all FormGroups/Packets with a dueDate less than this unix epoch time. Optional. Default `now + 1 year`.
+-   `endDateTime` - number - Get all [Form Groups/Packets](#form-group) with a dueDate less than this unix epoch time. Optional. Default `now + 1 year`.
 
--   `limit` - number - Return at most this number of FormGroups/Packets. Optional. Default 10.
+-   `limit` - number - Return at most this number of [Form TemplatesGroups/Packetsform-template)group Optional. Default 10.
 
--   `page` - number - Offset the returned list of FormGroups/Packets by this number * `limit`. Optional. Default 0.
+-   `page` - number - Offset the returned list of [Form Groups/Packets](#form-group) by this number * `limit`. Optional. Default 0.
 
--   `isArchived` - boolean - If true, returns only archived FormGroups/Packets. Optional. Default false.
+-   `isArchived` - boolean - If true, returns only archived [Form TemplatesGroups/Packetsform-template)group Optional. Default false.
 
--   `isActive` - boolean - If true, returns only active FormGroups/Packets. Optional. Default true.
+-   `isActive` - boolean - If true, returns only active [Form TemplatesGroups/Packetsform-template)group Optional. Default true.
 
--   `status` - number / FormStatusEnum - Return only FormGroups/Packets with this status. Optional. Default FormStatusEnum.STATUS_COMPLETE_NOT_COMPLETE.
+-   `status` - number / FormStatusEnum - Return only [Form Groups/Packets](#form-group) with this status. Optional. Default FormStatusEnum.STATUS_COMPLETE_NOT_COMPLETE.
 
 ## Get a Specific Form Group/Packet
 
 ```shell
 curl -X GET \
-    https://localhost:8443/lobbie/api/developer/v1/forms/groups/8 \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/8 \
     -H "Authorization: Bearer $ACCESS_TOKEN" | jq .
 ```
 
@@ -1245,7 +1328,7 @@ curl -X GET \
 
 > This creates a new Patient in Lobbie since there is no "id" passed in the "patient" object.
 
-> When prefilling Forms, Lobbie will give precdence to key/value pairs in the "prefill" object passed with the request in lieu of data from the Patient record. For example here, the Form(s) created in this Form Group/Packet will be prefilled with "Taco" and "Nacho" for any Form Elements that hold the "first_name" and "last_name" Lobbie Form Attributes.
+> When [prefilling](#prefill) Forms, Lobbie will give precdence to key/value pairs in the "prefill" object passed with the request in lieu of data from the Patient record. For example here, the [Form(s)](#form) created in this [Form Group/Packet](#form-group) will be prefilled with "Taco" and "Nacho" for any [Form Elements](#form-element) that hold the "first_name" and "last_name" Lobbie Form Attributes.
 
 ```shell
 curl -X POST \
@@ -1268,9 +1351,9 @@ curl -X POST \
     }"
 ```
 
-> This request will assign the created Form Group/Packet to the Patient with an `id` of 1.
+> This request will assign the created [Form Group/Packet](#form-group) to the Patient with an `id` of 1.
 
-> Because no `prefill` object is passed, Lobbie will first use any past Forms that hold Lobbie Form Attributes of the "Patient" lifecycle and then data from the Patient record to prefill the new Forms that will be created.
+> Because no `prefill` object is passed, Lobbie will first use any [Form Answers](#form-answer) from past [Forms](#form) that hold [Lobbie Form Attributes](#lobbie-form-attribute) of the "Patient" lifecycle and then data from the Patient record to prefill the new Forms that will be created.
 
 ```shell
 curl -X POST \
@@ -1290,29 +1373,29 @@ curl -X POST \
 Sending the same request again will result in a duplicate Form Group/Packet being created. Lobbie does not check if a Form Group/Packet already exists for the given Patient with a given due date.
 </aside>
 
-There are many ways to structure a request to create a new Form Group/Packet. However, they all rely on the presence of several things:
+There are many ways to structure a request to create a new [Form Group/Packet](#form-group). However, they all rely on the presence of several things:
 
-1. A `formTemplateGroupId` or a list of `formTemplateIds` so that Lobbie knows which Form Templates to use.
+1. A `formTemplateGroupId` or a list of `formTemplateIds` so that Lobbie knows which [Form Templates](#form-template) to use.
 
-2. A `locationId` so that Lobbie can assign the Form Group/Packet to the correct location.
+2. A `locationId` so that Lobbie can assign the [Form Group/Packet](#form-group) to the correct location.
 
-3. A `dueDateUnix`, which Lobbie uses to set the due date of the Form Group/Packet.
+3. A `dueDateUnix`, which Lobbie uses to set the due date of the [Form Group/Packet](#form-group).
 
     a. Lobbie uses the time zone associated with the `location` to adjust this unix-epoch time to the correct due date.
 
-    b. Due dates are adjusted to end-of-day, meaning that the times for all due dates will be 11:59:59 PM on the day the Form Group/Packet is due.
+    b. Due dates are adjusted to end-of-day, meaning that the times for all due dates will be 11:59:59 PM on the day the [Form Group/Packet](#form-group) is due.
 
     c. Patients will not be able to access Form Groups/Packets once the due date is passed.
 
-4. A `patient` object which must contain an `id` key to assign the Form Group/Packet to an existing Patient. Otherwise, Lobbie will try to create a new Patient before proceeding.
+4. A `patient` object which must contain an `id` key to assign the [Form Group/Packet](#form-group) to an existing Patient. Otherwise, Lobbie will try to create a new Patient before proceeding.
 
-5. Finally, optionally, you may pass a `prefill` object which is an object of LobbieFormAttribute/FormAnswer key/value pairs.
+5. Finally, optionally, you may pass a `prefill` object which is an object of [LobbieFormAttribute](#lobbie-form-attribute)/[FormAnswer](#form-answer) key/value pairs.
 
-    a. Lobbie uses the key attributes to find Form Elements in the Form Templates you pass to prefill Form Answers with the values in the object.
+    a. Lobbie uses the key attributes to find [Form Elements](#form-element) in the [Form Templates](#form-template) you pass to prefill Form Answers with the values in the object.
 
-    b. For example if you were to pass, `{ prefill: { first_name: "Taco" } }`, Lobbie would find all Form Elements with the Lobbie Form Attribute of "first_name" and set the answer to that Form Element as "Taco".
+    b. For example if you were to pass, `{ prefill: { first_name: "Taco" } }`, Lobbie would find all Form Elements with the [Lobbie Form Attribute](#lobbie-form-attribute) of "first_name" and set the answer to that Form Element as "Taco".
 
-    c. Lobbie prefills Forms from two other sources, past Forms that have Lobbie Form Attributes with the "Patient" lifecycle and data from the Patient records directly. However, any key/values you pass here take precedence over the other two methods.
+    c. Lobbie [prefills](#prefill) [Forms](#form) from two other sources, past Forms that have [Lobbie Form Attributes](#lobbie-form-attribute) with the "Patient" lifecycle and data from the Patient records directly. However, any key/values you pass here take precedence over the other two methods.
 
 > The above command returns JSON structured like this:
 
@@ -1339,7 +1422,7 @@ There are many ways to structure a request to create a new Form Group/Packet. Ho
 
 ## Update a Form Group/Packet
 
-Add or remove Forms from a Form Group/Packet by passing Form Templates, and/or change the due date.
+Add or remove Forms from a [Form Group/Packet](#form-group) by passing Form Templates, and/or change the due date.
 
 > This command will update the Form Group/Packet with `id` of 1 to have Forms created from Form Templates 1 and 4.
 
@@ -1437,13 +1520,13 @@ curl -X PUT \
 
 # Forms
 
-The structure of a Form returned from Lobbie includes Form Answers.
+The structure of a [Form](#form) returned from Lobbie includes [Form Answers](#form-answer).
 
-Form Answers can be found under the key `data.answers`. Answers that are mapped to structured fields using Lobbie Form Attributes can be found at the `data.answers.mapped` key.
+Form Answers can be found under the key `data.answers`. Answers that are mapped to structured fields using [Lobbie Form Attribute](#lobbie-form-attribute) can be found at the `data.answers.mapped` key.
 
-The structure of a key for a Form Answer is as follows: `fe:{form_id}:{form_element_id}`. The key tells us that the Form Answer belongs on the Form associated with `{form_id}`, which itself is associated with a Patient, and that the "question" the Patient answered is represented by the Form Element retrived from `{form_element_id}`.
+The structure of a key for a Form Answer is as follows: `fe:{form_id}:{form_element_id}`. The key tells us that the Form Answer belongs on the Form associated with `{form_id}`, which itself is associated with a Patient, and that the "question" the Patient answered is represented by the [Form Element](#form-element) retrived from `{form_element_id}`.
 
-For example, looking at the response on the right side, the key `fe:8:1` means that the Patient has answered "Taco" on their Form with an ID of 8 to the Form Element of ID 1.
+For example, looking at the response to the [Get a Specific Form request](#get-a-specific-form) below, the key `fe:8:1` means that the Patient has answered "Taco" on their Form with an ID of 8 to the Form Element of ID 1.
 
 ## Get a Specific Form
 
@@ -1502,15 +1585,17 @@ curl -X GET \
 
 ## Creating a PDF
 
-When creating a PDF of a Form, Form Group, Form Template or Form Template Group you can choose to call either the /print or /pdf endpoint. Both return the same response.
+When creating a PDF of a [Form](#form), [Form Group/Packet](#form-group), [Form Template](#form-template) or [Form Template Group](#form-template-group) you can choose to call either the /print or /pdf endpoint. Both return the same response.
 
 One of these endpoints must be called before a PDF can be retrieved.
 
-> Settings "isPatient" in the request body to "false" will generate a PDF with Staff-only fields displayed. Defaults to "true".
+<aside class="notice">
+    Setting <code>isPatient</code> in the request body to <code>false</code> will generate a PDF with Staff-only fields displayed. Defaults to <code>true</code>.
+</aside>
 
 ```shell
 curl -X POST \
-    https://localhost:8443/lobbie/api/developer/v1/forms/print/create \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formTemplateId: 1, \
@@ -1521,7 +1606,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-    https://localhost:8443/lobbie/api/developer/v1/forms/pdf/create \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formTemplateId: 1, \
@@ -1558,14 +1643,18 @@ Call this endpoint after sending a POST request to either the /print or /pdf end
 curl -X POST \
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data '{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'
+    --data "{
+        s3ObjectPath: \"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a\" 
+    }"
 ```
 
 ```shell
 curl -X POST \
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data '{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'
+    --data "{
+        s3ObjectPath: \"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a\"
+    }"
 ```
 
 > The above command returns JSON structured like this:
