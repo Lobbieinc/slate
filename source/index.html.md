@@ -40,6 +40,28 @@ api.lobbie.com - for create/read/update/delete operations within Lobbie.
 
 All the following examples will use the `sandbox` environment to make sure that if you copy + paste an example your production environment is not affected.
 
+# Response Structure
+
+Every response from Lobbie should result in a 200 with a JSON structure as shown on the right:
+
+<pre>
+<code>
+{
+  "success": boolean,
+  "message: string,
+  data: {
+    ...
+  }
+}
+</code>
+</pre>
+
+If `success` is `false`, the `message` key will provide an explanation and the `data` key will be empty.
+
+If `success` is `true`, the `data` key will be filled with information relevant to the request that was sent.
+
+. However, if the request was ***not*** successful, 
+
 # Terminology / Vocabulary
 
 -   **Form Template** - What Lobbie uses to create a Form for a Patient.
