@@ -26,6 +26,20 @@ Welcome to the Lobbie Developer API! You can use our API to access Lobbie Develo
 
 You can view code examples in the dark area to the right to see how to send requests to the Lobbie Developer API.
 
+# Endpoints
+
+Lobbie provides API access for both the Sandbox and Production/My environments. Each environment has its own domain as follows:
+
+Sandbox:
+auth-sandbox.lobbie.com - for retrieving access tokens using a client id and client secret.
+api-sandbox.lobbie.com - for create/read/update/delete operations within Lobbie.
+
+Prod:
+auth.lobbie.com - for retrieving access tokens using a client id and client secret.
+api.lobbie.com - for create/read/update/delete operations within Lobbie.
+
+All the following examples will use the `sandbox` environment to make sure that if you copy + paste an example your production environment is not affected.
+
 # Terminology / Vocabulary
 
 -   **Form Template** - What Lobbie uses to create a Form for a Patient.
@@ -60,7 +74,7 @@ You can view code examples in the dark area to the right to see how to send requ
 
 ```shell
 curl -X POST \
-    https://auth.lobbie.com/oauth2/token \
+    https://auth-sandbox.lobbie.com/oauth2/token \
     -H "authorization: Basic \"$(echo -n '<client_id>:<client_secret>' | base64)\"" \
     -H 'content-type: application/x-www-form-urlencoded' \
     -d 'grant_type=client_credentials'
@@ -70,14 +84,14 @@ curl -X POST \
 
 Lobbie uses the OAuth2 client_credentials flow to allow access to the Developer API.
 
-To get a Client ID and Client Secret, log into your Lobbie account as a user with the Developer role and navigate to the [Developer Settings Page](https://api.lobbie.com/home/settings/developer)
+To get a Client ID and Client Secret, log into your Lobbie account as a user with the Developer role and navigate to the [Developer Settings Page](https://sandbox.lobbie.com/home/settings/developer)
 
 Lobbie expects an Access Token be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: Bearer $LOBBIE_ACCESS_TOKEN`
 
 <aside class="notice">
-You must replace <code>access_token</code> with the token returned from calling https://auth.lobbie.com/oauth2/token with your Client ID and Client Secret.
+You must replace <code>access_token</code> with the token returned from calling https://auth-sandbox.lobbie.com/oauth2/token with your Client ID and Client Secret.
 </aside>
 
 # Locations
@@ -86,7 +100,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/locations \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -113,7 +127,7 @@ This endpoint retrieves all locations.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/locations`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations`
 
 ### Query Parameters
 
@@ -123,7 +137,7 @@ None
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/locations/<location_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/<location_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -181,7 +195,7 @@ This endpoint retrieves a specific location.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/locations/<location_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/<location_id>`
 
 ### URL Parameters
 
@@ -192,7 +206,7 @@ This endpoint retrieves a specific location.
 ## Create a Location
 
 ```shell
-curl "https://api.lobbie.com/lobbie/api/developer/v1/locations/create" \
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/create" \
   -X POST \
   -H "Authorization: $LOBBIE_ACCESS_TOKEN"
   -H "Content-Type: application/json"
@@ -203,7 +217,7 @@ curl "https://api.lobbie.com/lobbie/api/developer/v1/locations/create" \
       "city": "Baltimore",
       "postalCode: "21202",
       "stateProvince": {
-        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api-sandbox.lobbie.com/lobbie/api/developer/v1/state_provinces
         "name": "Maryland",
         "shortName": "MD"
       }
@@ -271,12 +285,12 @@ This endpoint creates a Location in Lobbie.
 
 ### HTTP Request
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/locations/create`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/create`
 
 ## Update a Location
 
 ```shell
-curl "https://api.lobbie.com/lobbie/api/developer/v1/locations/update" \
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update" \
   -X POST \
   -H "Authorization: $LOBBIE_ACCESS_TOKEN"
   -H "Content-Type: application/json"
@@ -288,7 +302,7 @@ curl "https://api.lobbie.com/lobbie/api/developer/v1/locations/update" \
       "city": "Baltimore",
       "postalCode: "21202",
       "stateProvince": {
-        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api-sandbox.lobbie.com/lobbie/api/developer/v1/state_provinces
         "name": "Maryland",
         "shortName": "MD"
       }
@@ -356,7 +370,7 @@ This endpoint updates a Location in Lobbie.
 
 ### HTTP Request
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/locations/update`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update`
 
 # Patients
 
@@ -404,7 +418,7 @@ This endpoint retrieves all patients.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/patients`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients`
 
 ### Query Parameters
 
@@ -414,7 +428,7 @@ None
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/patients/<patient_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/<patient_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -476,7 +490,7 @@ This endpoint retrieves a specific patient.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/patients/<patient_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/<patient_id>`
 
 ### URL Parameters
 
@@ -496,7 +510,7 @@ Form Templates are what Lobbie uses to create Forms for
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -529,7 +543,7 @@ This endpoint retrieves all form templates associated with your organization's L
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates`
 
 ### Query Parameters
 
@@ -539,7 +553,7 @@ None
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/<form_template_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/<form_template_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -761,7 +775,7 @@ This endpoint retrieves a specific Form Template.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/<form_template_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/<form_template_id>`
 
 ### URL Parameters
 
@@ -775,7 +789,7 @@ This endpoint retrieves a specific Form Template.
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -805,7 +819,7 @@ This endpoint retrieves all Form Template Groups associated with your organizati
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
 
 ### Query Parameters
 
@@ -815,7 +829,7 @@ None
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/<form_template_group_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/<form_template_group_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -852,7 +866,7 @@ This endpoint retrieves a specific Form Template Group.
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/<form_template_group_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/<form_template_group_id>`
 
 ### URL Parameters
 
@@ -864,7 +878,7 @@ This endpoint retrieves a specific Form Template Group.
 
 ```shell
 curl -X POST \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
       locationId: 1,
@@ -915,13 +929,13 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
 
 ## Update a Form Template Group
 
 ```shell
 curl -X PUT \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
       id: 1,
@@ -975,13 +989,13 @@ curl -X PUT \
 
 ### HTTP Request
 
-`PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
 
 ## Delete a Form Template Group
 
 ```shell
 curl -X DELETE \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data '{ "id": 1 }'
 ```
@@ -1028,13 +1042,13 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
 
 ### HTTP Request
 
-`PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups`
 
 ## Get All Form Template Groups Assigned to a Practitioner
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/<practitioner_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/<practitioner_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -1060,7 +1074,7 @@ This endpoint retrieves all Form Template Groups associated with a Practitioner 
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/<practitioner_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/<practitioner_id>`
 
 ### Query Parameters
 
@@ -1074,13 +1088,13 @@ When retrieving a FormGroup/Packet you can choose to call either the /groups or 
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/packets \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -1109,9 +1123,9 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups`
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets`
 
 ### Query Parameters
 
@@ -1131,7 +1145,7 @@ curl -X GET \
 
 -   `limit` - number - Return at most this number of FormGroups/Packets. Optional. Default 10.
 
--   `page` - number - Offset the returned list of FormGroups/Packets by this number \* `limit`. Optional. Default 0.
+-   `page` - number - Offset the returned list of FormGroups/Packets by this number * `limit`. Optional. Default 0.
 
 -   `isArchived` - boolean - If true, returns only archived FormGroups/Packets. Optional. Default false.
 
@@ -1201,9 +1215,9 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups/<form_group_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/<form_group_id>`
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets/<form_packet_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/<form_packet_id>`
 
 ## Create a Form Group/Packet
 
@@ -1213,15 +1227,15 @@ curl -X GET \
 
 ```shell
 curl -X POST \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
         formTemplateGroupId: 1,
         locationId: 1,
         dueDateUnix: 1690811324454,
         patient: {
-          first_name: \"Neato\",
-          last_name: \"Burrito\",
+          firstName: \"Neato\",
+          lastName: \"Burrito\",
           email: \"burrito@lobbie.com\",
           dateOfBirth: \"01/01/2000\"
         },
@@ -1238,7 +1252,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
       formTemplateIds: [1],
@@ -1299,7 +1313,7 @@ There are many ways to structure a request to create a new Form Group/Packet. Ho
 
 ### HTTP Request
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/forms/groups`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups`
 
 ## Update a Form Group/Packet
 
@@ -1309,7 +1323,7 @@ Add or remove Forms from a Form Group/Packet by passing Form Templates, and/or c
 
 ```shell
 curl -X PUT \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
       id: 1,
@@ -1351,7 +1365,7 @@ curl -X PUT \
 
 ```shell
 curl -X PUT \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
       id: 1,
@@ -1397,7 +1411,7 @@ curl -X PUT \
 
 ### HTTP Request
 
-`PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/groups`
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups`
 
 # Forms
 
@@ -1413,7 +1427,7 @@ For example, looking at the response on the right side, the key `fe:8:1` means t
 
 ```shell
 curl -X GET \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/<form_id> \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/<form_id> \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
@@ -1460,7 +1474,7 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/<form_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/<form_id>`
 
 # Printing / PDF Generation
 
@@ -1476,10 +1490,10 @@ One of these endpoints must be called before a PDF can be retrieved.
 curl -X POST \
     https://localhost:8443/lobbie/api/developer/v1/forms/print/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{
-      formTemplateId: 1,
-      locationId: 1,
-      isPatient: tr
+    --data "{ \
+      formTemplateId: 1, \
+      locationId: 1, \
+      isPatient: true
     }"
 ```
 
@@ -1487,10 +1501,10 @@ curl -X POST \
 curl -X POST \
     https://localhost:8443/lobbie/api/developer/v1/forms/pdf/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{
-      formTemplateId: 1,
-      locationId: 1,
-      isPatient: tr
+    --data "{ \
+      formTemplateId: 1, \
+      locationId: 1, \
+      isPatient: true
     }"
 ```
 
@@ -1508,26 +1522,28 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/forms/print/create`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create`
 
-`POST https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/create`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create`
 
 ## Retrieving a PDF
 
 Call this endpoint after sending a POST request to either the /print or /pdf endpoints, passing the `s3ObjectPath` returned from the respective API call.
 
+> Both API calls here use the `s3ObjectPath` returned from the above [/create](#creating-a-pdf) call.
+
 ```shell
 curl -X POST \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data '{ s3ObjectPath: <s3_object_path_from_POST_above> }'
+    --data '{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'
 ```
 
 ```shell
 curl -X POST \
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data '{ s3ObjectPath: <s3_object_path_from_POST_above> }'
+    --data '{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'
 ```
 
 > The above command returns JSON structured like this:
@@ -1537,7 +1553,7 @@ curl -X POST \
     "success": true,
     "message": "",
     "data": {
-        "s3ObjectPath": "<s3_object_path_equal_to_s3_object_path_in_request>",
+        "s3ObjectPath": "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a",
         "signedURL": "https://signed_url_from_aws"
     }
 }
@@ -1545,9 +1561,9 @@ curl -X POST \
 
 ### HTTP Request
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve`
 
-`GET https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve`
 
 # Enums
 
