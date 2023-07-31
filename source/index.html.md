@@ -866,11 +866,11 @@ This endpoint retrieves a specific Form Template Group.
 curl -X POST \
     https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{ \
-      locationId: 1, \
-      formTemplateIds: [1, 2, 3], \
-      name: \"Taco Templates\", \
-      practitionerId: null \
+    --data "{
+      locationId: 1,
+      formTemplateIds: [1, 2, 3],
+      name: \"Taco Templates\",
+      practitionerId: null
     }"
 ```
 
@@ -923,11 +923,11 @@ curl -X POST \
 curl -X PUT \
     https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{ \
-      id: 1, \
-      formTemplateIds: [1, 2], \
-      name: \"Taco Templates Remix\", \
-      practitionerId: 1 \
+    --data "{
+      id: 1,
+      formTemplateIds: [1, 2],
+      name: \"Taco Templates Remix\",
+      practitionerId: 1
     }"
 ```
 
@@ -1476,10 +1476,10 @@ One of these endpoints must be called before a PDF can be retrieved.
 curl -X POST \
     https://localhost:8443/lobbie/api/developer/v1/forms/print/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{ \
-      formTemplateId: 1, \
-      locationId: 1, \
-      isPatient: true
+    --data "{
+      formTemplateId: 1,
+      locationId: 1,
+      isPatient: tr
     }"
 ```
 
@@ -1487,10 +1487,10 @@ curl -X POST \
 curl -X POST \
     https://localhost:8443/lobbie/api/developer/v1/forms/pdf/create \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
-    --data "{ \
-      formTemplateId: 1, \
-      locationId: 1, \
-      isPatient: true
+    --data "{
+      formTemplateId: 1,
+      locationId: 1,
+      isPatient: tr
     }"
 ```
 

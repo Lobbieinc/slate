@@ -2,6 +2,9 @@
 set -o errexit #abort if any command fails
 me=$(basename "$0")
 
+cp $LOBBIE_PROJECT_DIR/lobbie/docker/volumes/slate/source/index.html.md ./source/index.html.md
+cp $LOBBIE_PROJECT_DIR/lobbie/docker/volumes/slate/source/images/logo.png ./source/images/logo.png
+
 help_message="\
 Usage: $me [-c FILE] [<options>]
 Deploy generated files to a git branch.
