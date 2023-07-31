@@ -319,6 +319,9 @@
             <a href="#endpoints" class="toc-h1 toc-link" data-title="Endpoints">Endpoints</a>
           </li>
           <li>
+            <a href="#response-structure" class="toc-h1 toc-link" data-title="Response Structure">Response Structure</a>
+          </li>
+          <li>
             <a href="#terminology-vocabulary" class="toc-h1 toc-link" data-title="Terminology / Vocabulary">Terminology / Vocabulary</a>
           </li>
           <li>
@@ -467,6 +470,26 @@ auth.lobbie.com - for retrieving access tokens using a client id and client secr
 api.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
 
 <p>All the following examples will use the <code>sandbox</code> environment to make sure that if you copy + paste an example your production environment is not affected.</p>
+<h1 id='response-structure'>Response Structure</h1>
+<p>Every response from Lobbie should result in a 200 with a JSON structure as shown on the right:</p>
+
+<pre>
+<code>
+{
+  "success": boolean,
+  "message: string,
+  data: {
+    ...
+  }
+}
+</code>
+</pre>
+
+<p>If <code>success</code> is <code>false</code>, the <code>message</code> key will provide an explanation and the <code>data</code> key will be empty.</p>
+
+<p>If <code>success</code> is <code>true</code>, the <code>data</code> key will be filled with information relevant to the request that was sent.</p>
+
+<p>. However, if the request was <strong><em>not</em></strong> successful, </p>
 <h1 id='terminology-vocabulary'>Terminology / Vocabulary</h1>
 <ul>
 <li><p><strong>Form Template</strong> - What Lobbie uses to create a Form for a Patient.</p></li>
