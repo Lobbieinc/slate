@@ -316,6 +316,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#endpoints" class="toc-h1 toc-link" data-title="Endpoints">Endpoints</a>
+          </li>
+          <li>
             <a href="#terminology-vocabulary" class="toc-h1 toc-link" data-title="Terminology / Vocabulary">Terminology / Vocabulary</a>
           </li>
           <li>
@@ -452,6 +455,18 @@
 <p>Welcome to the Lobbie Developer API! You can use our API to access Lobbie Developer API endpoints, which can be used to create, read, update and delete information about Locations, Patients and Forms within Lobbie.</p>
 
 <p>You can view code examples in the dark area to the right to see how to send requests to the Lobbie Developer API.</p>
+<h1 id='endpoints'>Endpoints</h1>
+<p>Lobbie provides API access for both the Sandbox and Production/My environments. Each environment has its own domain as follows:</p>
+
+<p>Sandbox:
+auth-sandbox.lobbie.com - for retrieving access tokens using a client id and client secret.
+api-sandbox.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
+
+<p>Prod:
+auth.lobbie.com - for retrieving access tokens using a client id and client secret.
+api.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
+
+<p>All the following examples will use the <code>sandbox</code> environment to make sure that if you copy + paste an example your production environment is not affected.</p>
 <h1 id='terminology-vocabulary'>Terminology / Vocabulary</h1>
 <ul>
 <li><p><strong>Form Template</strong> - What Lobbie uses to create a Form for a Patient.</p></li>
@@ -476,7 +491,7 @@
 <p>Request an Access Token:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://auth.lobbie.com/oauth2/token <span class="se">\</span>
+    https://auth-sandbox.lobbie.com/oauth2/token <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"authorization: Basic </span><span class="se">\"</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s1">'&lt;client_id&gt;:&lt;client_secret&gt;'</span> | <span class="nb">base64</span><span class="si">)</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'grant_type=client_credentials'</span>
@@ -487,17 +502,17 @@
 
 <p>Lobbie uses the OAuth2 client_credentials flow to allow access to the Developer API.</p>
 
-<p>To get a Client ID and Client Secret, log into your Lobbie account as a user with the Developer role and navigate to the <a href="https://api.lobbie.com/home/settings/developer">Developer Settings Page</a></p>
+<p>To get a Client ID and Client Secret, log into your Lobbie account as a user with the Developer role and navigate to the <a href="https://sandbox.lobbie.com/home/settings/developer">Developer Settings Page</a></p>
 
 <p>Lobbie expects an Access Token be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code>Authorization: Bearer $LOBBIE_ACCESS_TOKEN</code></p>
 
 <aside class="notice">
-You must replace <code>access_token</code> with the token returned from calling https://auth.lobbie.com/oauth2/token with your Client ID and Client Secret.
+You must replace <code>access_token</code> with the token returned from calling https://auth-sandbox.lobbie.com/oauth2/token with your Client ID and Client Secret.
 </aside>
 <h1 id='locations'>Locations</h1><h2 id='get-all-locations'>Get All Locations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/locations <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -520,11 +535,11 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves all locations.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/locations</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <p>None</p>
 <h2 id='get-a-specific-location'>Get a Specific Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -578,7 +593,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves a specific location.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -591,7 +606,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 <td>The ID of the Location to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-location'>Create a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.lobbie.com/lobbie/api/developer/v1/locations/create"</span> <span class="se">\</span>
+<h2 id='create-a-location'>Create a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/create"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
@@ -602,7 +617,7 @@ You must replace <code>access_token</code> with the token returned from calling 
       "city": "Baltimore",
       "postalCode: "21202",
       "stateProvince": {
-        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api-sandbox.lobbie.com/lobbie/api/developer/v1/state_provinces
         "name": "Maryland",
         "shortName": "MD"
       }
@@ -666,8 +681,8 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint creates a Location in Lobbie.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/locations/create</code></p>
-<h2 id='update-a-location'>Update a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.lobbie.com/lobbie/api/developer/v1/locations/update"</span> <span class="se">\</span>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/create</code></p>
+<h2 id='update-a-location'>Update a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
@@ -679,7 +694,7 @@ You must replace <code>access_token</code> with the token returned from calling 
       "city": "Baltimore",
       "postalCode: "21202",
       "stateProvince": {
-        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api-sandbox.lobbie.com/lobbie/api/developer/v1/state_provinces
         "name": "Maryland",
         "shortName": "MD"
       }
@@ -743,7 +758,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint updates a Location in Lobbie.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/locations/update</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update</code></p>
 <h1 id='patients'>Patients</h1><h2 id='get-all-patients'>Get All Patients</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
     https://localhost:8443/lobbie/api/developer/v1/patients <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
@@ -781,11 +796,11 @@ You must replace <code>access_token</code> with the token returned from calling 
 </code></pre></div>
 <p>This endpoint retrieves all patients.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/patients</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <p>None</p>
 <h2 id='get-a-specific-patient'>Get a Specific Patient</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -843,7 +858,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </code></pre></div>
 <p>This endpoint retrieves a specific patient.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -859,7 +874,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 <h2 id='create-a-patient'>Create a Patient</h2><h2 id='update-a-patient'>Update a Patient</h2><h1 id='form-templates'>Form Templates</h1>
 <p>Form Templates are what Lobbie uses to create Forms for</p>
 <h2 id='get-all-form-templates'>Get All Form Templates</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -888,11 +903,11 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves all form templates associated with your organization&#39;s Lobbie account.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
 <p>None</p>
 <h2 id='get-a-specific-form-template'>Get a Specific Form Template</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1110,7 +1125,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves a specific Form Template.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt;</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1124,7 +1139,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </tr>
 </tbody></table>
 <h1 id='form-template-groups'>Form Template Groups</h1><h2 id='get-all-form-template-groups'>Get All Form Template Groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1150,11 +1165,11 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves all Form Template Groups associated with your organization&#39;s Lobbie account.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <p>None</p>
 <h2 id='get-a-specific-form-template-group'>Get a Specific Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1187,7 +1202,7 @@ You must replace <code>access_token</code> with the token returned from calling 
 </span></code></pre></div>
 <p>This endpoint retrieves a specific Form Template Group.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt;</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1201,13 +1216,13 @@ You must replace <code>access_token</code> with the token returned from calling 
 </tr>
 </tbody></table>
 <h2 id='create-a-form-template-group'>Create a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
-      formTemplateIds: [1, 2, 3], </span><span class="se">\</span><span class="s2">
-      name: </span><span class="se">\"</span><span class="s2">Taco Templates</span><span class="se">\"</span><span class="s2">, </span><span class="se">\</span><span class="s2">
-      practitionerId: null </span><span class="se">\</span><span class="s2">
+    <span class="nt">--data</span> <span class="s2">"{
+      locationId: 1,
+      formTemplateIds: [1, 2, 3],
+      name: </span><span class="se">\"</span><span class="s2">Taco Templates</span><span class="se">\"</span><span class="s2">,
+      practitionerId: null
     }"</span>
 </code></pre></div>
 <blockquote>
@@ -1248,15 +1263,15 @@ You must replace <code>access_token</code> with the token returned from calling 
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-11'>HTTP Request</h3>
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
 <h2 id='update-a-form-template-group'>Update a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
-      id: 1, </span><span class="se">\</span><span class="s2">
-      formTemplateIds: [1, 2], </span><span class="se">\</span><span class="s2">
-      name: </span><span class="se">\"</span><span class="s2">Taco Templates Remix</span><span class="se">\"</span><span class="s2">, </span><span class="se">\</span><span class="s2">
-      practitionerId: 1 </span><span class="se">\</span><span class="s2">
+    <span class="nt">--data</span> <span class="s2">"{
+      id: 1,
+      formTemplateIds: [1, 2],
+      name: </span><span class="se">\"</span><span class="s2">Taco Templates Remix</span><span class="se">\"</span><span class="s2">,
+      practitionerId: 1
     }"</span>
 </code></pre></div>
 <aside class="warning">
@@ -1300,9 +1315,9 @@ You must replace <code>access_token</code> with the token returned from calling 
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-12'>HTTP Request</h3>
-<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
 <h2 id='delete-a-form-template-group'>Delete a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s1">'{ "id": 1 }'</span>
 </code></pre></div>
@@ -1343,9 +1358,9 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-13'>HTTP Request</h3>
-<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
 <h2 id='get-all-form-template-groups-assigned-to-a-practitioner'>Get All Form Template Groups Assigned to a Practitioner</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1367,16 +1382,16 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
 </span></code></pre></div>
 <p>This endpoint retrieves all Form Template Groups associated with a Practitioner in your organization.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt;</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <p>None</p>
 <h1 id='form-groups-form-packets'>Form Groups / Form Packets</h1><h2 id='get-all-form-groups-packets'>Get All Form Groups/Packets</h2>
 <p>When retrieving a FormGroup/Packet you can choose to call either the /groups or /packets endpoint. Both return the same response.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/packets <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1401,9 +1416,9 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets</code></p>
 <h3 id='query-parameters-6'>Query Parameters</h3>
 <ul>
 <li><p><code>locationId</code> - number - Get FormGroups/Packets in this Location. Optional. Default all Locations.</p></li>
@@ -1474,9 +1489,9 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-16'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
 
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
 <h2 id='create-a-form-group-packet'>Create a Form Group/Packet</h2>
 <blockquote>
 <p>This creates a new Patient in Lobbie since there is no &quot;id&quot; passed in the &quot;patient&quot; object.</p>
@@ -1484,15 +1499,15 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
 <p>When prefilling Forms, Lobbie will give precdence to key/value pairs in the &quot;prefill&quot; object passed with the request in lieu of data from the Patient record. For example here, the Form(s) created in this Form Group/Packet will be prefilled with &quot;Taco&quot; and &quot;Nacho&quot; for any Form Elements that hold the &quot;first_name&quot; and &quot;last_name&quot; Lobbie Form Attributes.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{
         formTemplateGroupId: 1,
         locationId: 1,
         dueDateUnix: 1690811324454,
         patient: {
-          first_name: </span><span class="se">\"</span><span class="s2">Neato</span><span class="se">\"</span><span class="s2">,
-          last_name: </span><span class="se">\"</span><span class="s2">Burrito</span><span class="se">\"</span><span class="s2">,
+          firstName: </span><span class="se">\"</span><span class="s2">Neato</span><span class="se">\"</span><span class="s2">,
+          lastName: </span><span class="se">\"</span><span class="s2">Burrito</span><span class="se">\"</span><span class="s2">,
           email: </span><span class="se">\"</span><span class="s2">burrito@lobbie.com</span><span class="se">\"</span><span class="s2">,
           dateOfBirth: </span><span class="se">\"</span><span class="s2">01/01/2000</span><span class="se">\"</span><span class="s2">
         },
@@ -1508,7 +1523,7 @@ This operation flips the `active` field to `false` from `true` and the Form Temp
 <p>Because no <code>prefill</code> object is passed, Lobbie will first use any past Forms that hold Lobbie Form Attributes of the &quot;Patient&quot; lifecycle and then data from the Patient record to prefill the new Forms that will be created.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{
       formTemplateIds: [1],
@@ -1563,7 +1578,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-17'>HTTP Request</h3>
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h2 id='update-a-form-group-packet'>Update a Form Group/Packet</h2>
 <p>Add or remove Forms from a Form Group/Packet by passing Form Templates, and/or change the due date.</p>
 
@@ -1571,7 +1586,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>This command will update the Form Group/Packet with <code>id</code> of 1 to have Forms created from Form Templates 1 and 4.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{
       id: 1,
@@ -1611,7 +1626,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>This command will update the Form Group/Packet with <code>id</code> of 1 to have only have Forms from Form Template 1.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{
       id: 1,
@@ -1652,7 +1667,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
   </div>
 </aside>
 <h3 id='http-request-18'>HTTP Request</h3>
-<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h1 id='forms'>Forms</h1>
 <p>The structure of a Form returned from Lobbie includes Form Answers.</p>
 
@@ -1662,7 +1677,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 
 <p>For example, looking at the response on the right side, the key <code>fe:8:1</code> means that the Patient has answered &quot;Taco&quot; on their Form with an ID of 8 to the Form Element of ID 1.</p>
 <h2 id='get-a-specific-form'>Get a Specific Form</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt; <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt; <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <blockquote>
@@ -1705,7 +1720,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a Form, Form Group, Form Template or Form Template Group you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
 
@@ -1742,19 +1757,23 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
-<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
 <h2 id='retrieving-a-pdf'>Retrieving a PDF</h2>
 <p>Call this endpoint after sending a POST request to either the /print or /pdf endpoints, passing the <code>s3ObjectPath</code> returned from the respective API call.</p>
+
+<blockquote>
+<p>Both API calls here use the <code>s3ObjectPath</code> returned from the above <a href="#creating-a-pdf">/create</a> call.</p>
+</blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: &lt;s3_object_path_from_POST_above&gt; }'</span>
+    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: &lt;s3_object_path_from_POST_above&gt; }'</span>
+    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: "fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a" }'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1763,14 +1782,14 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;s3_object_path_equal_to_s3_object_path_in_request&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
-<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
 <h1 id='enums'>Enums</h1><h2 id='formstatusenum'>FormStatusEnum</h2>
 <p>Used in:</p>
 
