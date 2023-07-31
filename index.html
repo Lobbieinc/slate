@@ -1,0 +1,1815 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta
+            name="description"
+            content="Documentation for the Lobbie Developer API"
+        >
+    <title>Lobbie API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-9c19b03a.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-b577cda9.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#terminology-vocabulary" class="toc-h1 toc-link" data-title="Terminology / Vocabulary">Terminology / Vocabulary</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#locations" class="toc-h1 toc-link" data-title="Locations">Locations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-locations" class="toc-h2 toc-link" data-title="Get All Locations">Get All Locations</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-location" class="toc-h2 toc-link" data-title="Get a Specific Location">Get a Specific Location</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-location" class="toc-h2 toc-link" data-title="Create a Location">Create a Location</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-location" class="toc-h2 toc-link" data-title="Update a Location">Update a Location</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#patients" class="toc-h1 toc-link" data-title="Patients">Patients</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-patients" class="toc-h2 toc-link" data-title="Get All Patients">Get All Patients</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-patient" class="toc-h2 toc-link" data-title="Get a Specific Patient">Get a Specific Patient</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-patient" class="toc-h2 toc-link" data-title="Create a Patient">Create a Patient</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-patient" class="toc-h2 toc-link" data-title="Update a Patient">Update a Patient</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#form-templates" class="toc-h1 toc-link" data-title="Form Templates">Form Templates</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-form-templates" class="toc-h2 toc-link" data-title="Get All Form Templates">Get All Form Templates</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-form-template" class="toc-h2 toc-link" data-title="Get a Specific Form Template">Get a Specific Form Template</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#form-template-groups" class="toc-h1 toc-link" data-title="Form Template Groups">Form Template Groups</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-form-template-groups" class="toc-h2 toc-link" data-title="Get All Form Template Groups">Get All Form Template Groups</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-form-template-group" class="toc-h2 toc-link" data-title="Get a Specific Form Template Group">Get a Specific Form Template Group</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-form-template-group" class="toc-h2 toc-link" data-title="Create a Form Template Group">Create a Form Template Group</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-form-template-group" class="toc-h2 toc-link" data-title="Update a Form Template Group">Update a Form Template Group</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-form-template-group" class="toc-h2 toc-link" data-title="Delete a Form Template Group">Delete a Form Template Group</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-form-template-groups-assigned-to-a-practitioner" class="toc-h2 toc-link" data-title="Get All Form Template Groups Assigned to a Practitioner">Get All Form Template Groups Assigned to a Practitioner</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#form-groups-form-packets" class="toc-h1 toc-link" data-title="Form Groups / Form Packets">Form Groups / Form Packets</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-form-groups-packets" class="toc-h2 toc-link" data-title="Get All Form Groups/Packets">Get All Form Groups/Packets</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-form-group-packet" class="toc-h2 toc-link" data-title="Get a Specific Form Group/Packet">Get a Specific Form Group/Packet</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-form-group-packet" class="toc-h2 toc-link" data-title="Create a Form Group/Packet">Create a Form Group/Packet</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-form-group-packet" class="toc-h2 toc-link" data-title="Update a Form Group/Packet">Update a Form Group/Packet</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#forms" class="toc-h1 toc-link" data-title="Forms">Forms</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-specific-form" class="toc-h2 toc-link" data-title="Get a Specific Form">Get a Specific Form</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#printing-pdf-generation" class="toc-h1 toc-link" data-title="Printing / PDF Generation">Printing / PDF Generation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#creating-a-pdf" class="toc-h2 toc-link" data-title="Creating a PDF">Creating a PDF</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-a-pdf" class="toc-h2 toc-link" data-title="Retrieving a PDF">Retrieving a PDF</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#enums" class="toc-h1 toc-link" data-title="Enums">Enums</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#formstatusenum" class="toc-h2 toc-link" data-title="FormStatusEnum">FormStatusEnum</a>
+                  </li>
+                  <li>
+                    <a href="#legalsexenum" class="toc-h2 toc-link" data-title="LegalSexEnum">LegalSexEnum</a>
+                  </li>
+                  <li>
+                    <a href="#sexassignedatbirthenum" class="toc-h2 toc-link" data-title="SexAssignedAtBirthEnum">SexAssignedAtBirthEnum</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://lobbie.com'>Join Lobbie</a></li>
+            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Lobbie Developer API! You can use our API to access Lobbie Developer API endpoints, which can be used to create, read, update and delete information about Locations, Patients and Forms within Lobbie.</p>
+
+<p>You can view code examples in the dark area to the right to see how to send requests to the Lobbie Developer API.</p>
+<h1 id='terminology-vocabulary'>Terminology / Vocabulary</h1>
+<ul>
+<li><p><strong>Form Template</strong> - What Lobbie uses to create a Form for a Patient.</p></li>
+<li><p><strong>Form Template Group</strong> - A collection of Form Templates. A link is assigned to the collection and can be used to provide Patients an &quot;anonymous&quot; method of completing each Form that is generated from each Form Template in the Form Template Group.</p></li>
+<li><p><strong>Form Template Section</strong> - A page of a Form Template. If a Form Template has multiple Form Template Sections a button at the bottom of the page will be enabled when a Patient has completed all required fields in the current section.</p></li>
+<li><p><strong>Form Element</strong> - A single field in a Form Template Section.</p></li>
+<li><p><strong>Lobbie Form Attribute</strong> - A metadata tag added to a Form Element which can be used to give structure to unstructured data.</p></li>
+<li><p><strong>Form</strong> - What a Patient completes. Created from a Form Template.</p></li>
+<li><p><strong>Form Group</strong> - A collection of Forms assigned to a Patient to be completed together with a shared due date.</p></li>
+<li><p><strong>Form Packet</strong> - Same as a &quot;Form Group&quot;. An alias.</p></li>
+<li><p><strong>Form Answer</strong> - A single answer to a single Form Element in a Form.</p></li>
+<li><p><strong>Prefill</strong> - Using either Lobbie Form Attributes with the Lifecycle value of &quot;Patient&quot; or data from the Patient record in Lobbie to complete fields in a Form BEFORE the Patient begins the Form. Uses Lobbie Form Attributes to map data to Form Answers in a Form. Runs when a Form is created.</p>
+
+<ul>
+<li>  Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute &quot;Patient&quot; lifecycles and Patient data.</li>
+</ul></li>
+<li><p><strong>Autofill</strong> - Saving answers from one Form to other Forms in a Form Group. Happens when a Form is completed. Uses Lobbie Form Attributes to map data between Forms in a Form Group.</p></li>
+<li><p><strong>Fillable PDF</strong> - When printing a Form, Lobbie maps Form Answers to PDF file that has been submitted to Lobbie. Instead of Lobbie Form Attributes we use Mapped PDF Fields.</p></li>
+</ul>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>Request an Access Token:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://auth.lobbie.com/oauth2/token <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"authorization: Basic </span><span class="se">\"</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s1">'&lt;client_id&gt;:&lt;client_secret&gt;'</span> | <span class="nb">base64</span><span class="si">)</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'grant_type=client_credentials'</span>
+</code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>client_id</code> and <code>client_secret</code> with your Client ID and Client Secret.</p>
+</blockquote>
+
+<p>Lobbie uses the OAuth2 client_credentials flow to allow access to the Developer API.</p>
+
+<p>To get a Client ID and Client Secret, log into your Lobbie account as a user with the Developer role and navigate to the <a href="https://api.lobbie.com/home/settings/developer">Developer Settings Page</a></p>
+
+<p>Lobbie expects an Access Token be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>Authorization: Bearer $LOBBIE_ACCESS_TOKEN</code></p>
+
+<aside class="notice">
+You must replace <code>access_token</code> with the token returned from calling https://auth.lobbie.com/oauth2/token with your Client ID and Client Secret.
+</aside>
+<h1 id='locations'>Locations</h1><h2 id='get-all-locations'>Get All Locations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/locations <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All locations for &lt;account_name&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Pacific"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all locations.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/locations</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>None</p>
+<h2 id='get-a-specific-location'>Get a Specific Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Pacific"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6833 Caminito Sueno"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carlsbad"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92009"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6833 Caminito Sueno, Carlsbad, CA 92009"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.28962937068381</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-76.6148371308074</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"branding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"logoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Pro Paperless (LOCAL)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoLetterColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ffffff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoCircleColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#2b46ff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isUsingCustomLogoImage"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"replyToEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isLocationBrandingActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoS3Url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific location.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/locations/&lt;location_id&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the Location to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-location'>Create a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.lobbie.com/lobbie/api/developer/v1/locations/create"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "address": {
+      "address1": "1 East Baltimore St",
+      "address2": "Suite 100", # Optional
+      "city": "Baltimore",
+      "postalCode: "21202",
+      "stateProvince": {
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "name": "Maryland",
+        "shortName": "MD"
+      }
+    },
+    "name": "The Greatest City in America",
+    "timeZone": "America/New_York", # You can also use the deprecated US/Eastern style.
+    "active": true,                 # Inactive Locations are hidden from responses.
+    "phoneNumber": "4108675309",    # Optional. Not used for SMS.
+    "staffIds": [1, 2, 3]             # IDs of Staff members created in Lobbie who are assigned to this Location. Staff members only have UI access to Locations to which they are assigned.
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staffIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 East Baltimore St"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baltimore"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21202"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 East Baltimore St, Baltimore, MD 21202"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.10724999521315</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-117.22945198859631</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MD"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"branding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"logoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Pro Paperless (LOCAL)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoLetterColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ffffff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoCircleColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#2b46ff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isUsingCustomLogoImage"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"replyToEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isLocationBrandingActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoS3Url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates a Location in Lobbie.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/locations/create</code></p>
+<h2 id='update-a-location'>Update a Location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.lobbie.com/lobbie/api/developer/v1/locations/update"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "id": 2,                   # The ID of the Location to update.
+    "address": {
+      "address1": "2 East Baltimore St",
+      "address2": "Suite 200", # Optional
+      "city": "Baltimore",
+      "postalCode: "21202",
+      "stateProvince": {
+        "id": 1,               # Retrieve Lobbie IDs for StateProvince objects by sending a GET to https://api.lobbie.com/lobbie/api/developer/v1/state_provinces
+        "name": "Maryland",
+        "shortName": "MD"
+      }
+    },
+    "name": "The Greatest City in America",
+    "timeZone": "America/New_York", # You can also use the deprecated US/Eastern style.
+    "active": true,                 # Inactive Locations are hidden from responses.
+    "phoneNumber": "4108675309",    # Optional. Not used for SMS.
+    "staffIds": [4, 5, 6]             # IDs of Staff members created in Lobbie who are assigned to this Location. Staff members only have UI access to Locations to which they are assigned.
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staffIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 East Baltimore St"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baltimore"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21202"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 East Baltimore St, Baltimore, MD 21202"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.10724999521315</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-117.22945198859631</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MD"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:48:37.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"branding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"logoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Pro Paperless (LOCAL)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoLetterColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ffffff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoCircleColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#2b46ff"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isUsingCustomLogoImage"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fromEmailName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"replyToEmailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noreply@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-26T16:49:26.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isLocationBrandingActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"logoS3Url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint updates a Location in Lobbie.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/locations/update</code></p>
+<h1 id='patients'>Patients</h1><h2 id='get-all-patients'>Get All Patients</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/patients <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">patient@lobbie.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">firstName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Donny</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">lastName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DemoPatient</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">mobilePhone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4108675309</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">dateOfBirth</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2/2/2006</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">isEmailConfirmed</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">isPhoneConfirmed</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">receiveEmail</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">receiveSms</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Donny DemoPatient</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">isMinimumAgeConfirmedAccount</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">sexAssignedAtBirth</span><span class="dl">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// See Enums.SexAssignedAtBirthEnum for values.</span>
+      <span class="dl">"</span><span class="s2">legalSex</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>           <span class="c1">// See Enums.LegalSexEnum for values.</span>
+      <span class="dl">"</span><span class="s2">intakeMethod</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">UNKNOWN</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">gender</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">male</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This endpoint retrieves all patients.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/patients</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<p>None</p>
+<h2 id='get-a-specific-patient'>Get a Specific Patient</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">patient@lobbie.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">firstName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Donny</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">lastName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DemoPatient</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">mobilePhone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">4108675309</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">dateOfBirth</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2/2/2006</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">isEmailConfirmed</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">isPhoneConfirmed</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">receiveEmail</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">receiveSms</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Donny DemoPatient</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">isMinimumAgeConfirmedAccount</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// This may be false if "Minimum Age Required in Years" in your Account settings is not null and the Patient has yet to start their first set of forms.</span>
+    <span class="dl">"</span><span class="s2">sexAssignedAtBirth</span><span class="dl">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1">// See Enums.SexAssignedAtBirthEnum for values.</span>
+    <span class="dl">"</span><span class="s2">legalSex</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>            <span class="c1">// See Enums.LegalSexEnum for values.</span>
+    <span class="dl">"</span><span class="s2">intakeMethod</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">STAFF_SENT_FORMS</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">gender</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">male</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">patientPrimaryAddress</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">address1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 E Baltimore St.</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Baltimore</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">postalCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">21202</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">latitude</span><span class="dl">"</span><span class="p">:</span> <span class="mf">38.86293745172355</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">longitude</span><span class="dl">"</span><span class="p">:</span> <span class="o">-</span><span class="mf">77.05874058689015</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">addressNote</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tacos are delicious here.</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stateProvince</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">shortName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MD</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Maryland</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:37.000Z</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:37.000Z</span><span class="dl">"</span>
+      <span class="p">},</span>
+      <span class="dl">"</span><span class="s2">fullAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 E Baltimore St., Baltimore, MD 21202</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">isPrimary</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">parents</span><span class="dl">"</span><span class="p">:</span> <span class="p">[],</span>      <span class="c1">// A list of Patient objects that are parents of this Patient</span>
+    <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">:</span> <span class="p">[],</span>     <span class="c1">// A list of Patient objects that are children of this Patient</span>
+    <span class="dl">"</span><span class="s2">practitioners</span><span class="dl">"</span><span class="p">:</span> <span class="p">[]</span> <span class="c1">// A list of Practitioner objects that are assigned to this Patient</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This endpoint retrieves a specific patient.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/patients/&lt;patient_id&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the Patient to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-patient'>Create a Patient</h2><h2 id='update-a-patient'>Update a Patient</h2><h1 id='form-templates'>Form Templates</h1>
+<p>Form Templates are what Lobbie uses to create Forms for</p>
+<h2 id='get-all-form-templates'>Get All Form Templates</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All form templates for &lt;account_name&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local All Elements"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local Patient Information"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all form templates associated with your organization&#39;s Lobbie account.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<p>None</p>
+<h2 id='get-a-specific-form-template'>Get a Specific Form Template</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local Patient Information"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isFillablePDF"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"publicLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost:3000/public/form/fb924039-ed0f-4214-9196-a7fc33cd3619/3/d4d97da4-af28-4ef4-80b2-1bcc2b1e5129"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"formTemplateSections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient Section"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"formElements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first_name"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Middle Name"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"middle_name"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last_name"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Birth Date"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date_of_birth"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Phone"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile_phone"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insurance and other things a patient has to do (long section name test) Section"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"formElements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insurance Company Name"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID Number"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group/Program #"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical History Section"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"formElements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have a thing?"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anemia"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artificial heart valves"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asthma"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific Form Template.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/&lt;form_template_id&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the Form Template to retrieve</td>
+</tr>
+</tbody></table>
+<h1 id='form-template-groups'>Form Template Groups</h1><h2 id='get-all-form-template-groups'>Get All Form Template Groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All form template groups for &lt;account_name&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Short Form Template Group"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"publicUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50877aa3-2691-49d1-bb53-ac5c06d61d56"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-28T15:42:47.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-28T15:42:47.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/30Cf7UBSS-8L"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all Form Template Groups associated with your organization&#39;s Lobbie account.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<p>None</p>
+<h2 id='get-a-specific-form-template-group'>Get a Specific Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Short Form Template Group"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"publicUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50877aa3-2691-49d1-bb53-ac5c06d61d56"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-28T15:42:47.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-28T15:42:47.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/30Cf7UBSS-8L"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"formTemplates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local Short Form"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific Form Template Group.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/&lt;form_template_group_id&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the Form Template Group to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-form-template-group'>Create a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      formTemplateIds: [1, 2, 3], </span><span class="se">\</span><span class="s2">
+      name: </span><span class="se">\"</span><span class="s2">Taco Templates</span><span class="se">\"</span><span class="s2">, </span><span class="se">\</span><span class="s2">
+      practitionerId: null </span><span class="se">\</span><span class="s2">
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form Template Group - Taco Templates - created."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco Templates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/abc123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"formTemplates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<h2 id='update-a-form-template-group'>Update a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      id: 1, </span><span class="se">\</span><span class="s2">
+      formTemplateIds: [1, 2], </span><span class="se">\</span><span class="s2">
+      name: </span><span class="se">\"</span><span class="s2">Taco Templates Remix</span><span class="se">\"</span><span class="s2">, </span><span class="se">\</span><span class="s2">
+      practitionerId: 1 </span><span class="se">\</span><span class="s2">
+    }"</span>
+</code></pre></div>
+<aside class="warning">
+  You MUST pass the existing `formTemplateIds` on the Form Template Group to retain existing Form Templates.
+  <div style="margin-top: 10px; margin-bottom: 10px;">
+    Otherwise those Form Templates will be removed from the Form Template Group.
+  </div>
+  <div>
+    For example, if you were to pass an `formTemplateIds` as an empty list, Lobbie would remove all Form Templates from the Form Template Group.
+  </div>
+</aside>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form Template Group - Taco Templates Remix - updated."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco Templates Remix"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/abc123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"formTemplates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-12'>HTTP Request</h3>
+<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<h2 id='delete-a-form-template-group'>Delete a Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'{ "id": 1 }'</span>
+</code></pre></div>
+<aside class="notice">
+This operation flips the `active` field to `false` from `true` and the Form Template Group will be:
+<div>
+1. Hidden from the Lobbie UI.
+</div>
+<div>
+2. Inaccessible at its `staticLink`.
+</div>
+</aside>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form Template Group - Taco Templates Remix - updated."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco Templates Remix"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/abc123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"formTemplates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups</code></p>
+<h2 id='get-all-form-template-groups-assigned-to-a-practitioner'>Get All Form Template Groups Assigned to a Practitioner</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All form template groups for practitioner &lt;practitioner_name&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Short Form Template Group"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"staticLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/30Cf7UBSS-8L"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"practitionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all Form Template Groups associated with a Practitioner in your organization.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt;</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<p>None</p>
+<h1 id='form-groups-form-packets'>Form Groups / Form Packets</h1><h2 id='get-all-form-groups-packets'>Get All Form Groups/Packets</h2>
+<p>When retrieving a FormGroup/Packet you can choose to call either the /groups or /packets endpoint. Both return the same response.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/packets <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<ul>
+<li><p><code>locationId</code> - number - Get FormGroups/Packets in this Location. Optional. Default all Locations.</p></li>
+<li><p><code>patientId</code> - number - Get FormGroups/Packets assigned to this Patient. Optional.</p></li>
+<li><p><code>practitionerId</code> - number - Get all FormGroups/Packets for Patients assigned to this Practitioner. Optional.</p></li>
+<li><p><code>formTemplateIds</code> - string, comma-separated - Get all FormGroups/Packets which include Forms with these FormTemplates. Optional.</p></li>
+<li><p><code>formTemplateNames</code> - string, comma-separated - Get all FormGroups/Packets which include Forms with these FormTemplates. Optional.</p></li>
+<li><p><code>startDateTime</code> - number - Get all FormGroups/Packets with a dueDate of this unix epoch time or greater. Optional. Default <code>now - 3 years</code>.</p></li>
+<li><p><code>endDateTime</code> - number - Get all FormGroups/Packets with a dueDate less than this unix epoch time. Optional. Default <code>now + 1 year</code>.</p></li>
+<li><p><code>limit</code> - number - Return at most this number of FormGroups/Packets. Optional. Default 10.</p></li>
+<li><p><code>page</code> - number - Offset the returned list of FormGroups/Packets by this number * <code>limit</code>. Optional. Default 0.</p></li>
+<li><p><code>isArchived</code> - boolean - If true, returns only archived FormGroups/Packets. Optional. Default false.</p></li>
+<li><p><code>isActive</code> - boolean - If true, returns only active FormGroups/Packets. Optional. Default true.</p></li>
+<li><p><code>status</code> - number / FormStatusEnum - Return only FormGroups/Packets with this status. Optional. Default FormStatusEnum.STATUS_COMPLETE_NOT_COMPLETE.</p></li>
+</ul>
+<h2 id='get-a-specific-form-group-packet'>Get a Specific Form Group/Packet</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/forms/groups/8 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> | jq <span class="nb">.</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689349105000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"fe:8:1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
+
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
+<h2 id='create-a-form-group-packet'>Create a Form Group/Packet</h2>
+<blockquote>
+<p>This creates a new Patient in Lobbie since there is no &quot;id&quot; passed in the &quot;patient&quot; object.</p>
+
+<p>When prefilling Forms, Lobbie will give precdence to key/value pairs in the &quot;prefill&quot; object passed with the request in lieu of data from the Patient record. For example here, the Form(s) created in this Form Group/Packet will be prefilled with &quot;Taco&quot; and &quot;Nacho&quot; for any Form Elements that hold the &quot;first_name&quot; and &quot;last_name&quot; Lobbie Form Attributes.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+        formTemplateGroupId: 1,
+        locationId: 1,
+        dueDateUnix: 1690811324454,
+        patient: {
+          first_name: </span><span class="se">\"</span><span class="s2">Neato</span><span class="se">\"</span><span class="s2">,
+          last_name: </span><span class="se">\"</span><span class="s2">Burrito</span><span class="se">\"</span><span class="s2">,
+          email: </span><span class="se">\"</span><span class="s2">burrito@lobbie.com</span><span class="se">\"</span><span class="s2">,
+          dateOfBirth: </span><span class="se">\"</span><span class="s2">01/01/2000</span><span class="se">\"</span><span class="s2">
+        },
+        prefill: {
+          first_name: </span><span class="se">\"</span><span class="s2">Taco</span><span class="se">\"</span><span class="s2">,
+          last_name: </span><span class="se">\"</span><span class="s2">Nacho</span><span class="se">\"</span><span class="s2">
+        }
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>This request will assign the created Form Group/Packet to the Patient with an <code>id</code> of 1.</p>
+
+<p>Because no <code>prefill</code> object is passed, Lobbie will first use any past Forms that hold Lobbie Form Attributes of the &quot;Patient&quot; lifecycle and then data from the Patient record to prefill the new Forms that will be created.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      formTemplateIds: [1],
+      locationId: 1,
+      dueDateUnix: 1690811324454,
+      patient: {
+        id: 1
+      }
+    }"</span>
+</code></pre></div>
+<aside class="warning">
+Sending the same request again will result in a duplicate Form Group/Packet being created. Lobbie does not check if a Form Group/Packet already exists for the given Patient with a given due date.
+</aside>
+
+<p>There are many ways to structure a request to create a new Form Group/Packet. However, they all rely on the presence of several things:</p>
+
+<ol>
+<li><p>A <code>formTemplateGroupId</code> or a list of <code>formTemplateIds</code> so that Lobbie knows which Form Templates to use.</p></li>
+<li><p>A <code>locationId</code> so that Lobbie can assign the Form Group/Packet to the correct location.</p></li>
+<li><p>A <code>dueDateUnix</code>, which Lobbie uses to set the due date of the Form Group/Packet.</p>
+
+<p>a. Lobbie uses the time zone associated with the <code>location</code> to adjust this unix-epoch time to the correct due date.</p>
+
+<p>b. Due dates are adjusted to end-of-day, meaning that the times for all due dates will be 11:59:59 PM on the day the Form Group/Packet is due.</p>
+
+<p>c. Patients will not be able to access Form Groups/Packets once the due date is passed.</p></li>
+<li><p>A <code>patient</code> object which must contain an <code>id</code> key to assign the Form Group/Packet to an existing Patient. Otherwise, Lobbie will try to create a new Patient before proceeding.</p></li>
+<li><p>Finally, optionally, you may pass a <code>prefill</code> object which is an object of LobbieFormAttribute/FormAnswer key/value pairs.</p>
+
+<p>a. Lobbie uses the key attributes to find Form Elements in the Form Templates you pass to prefill Form Answers with the values in the object.</p>
+
+<p>b. For example if you were to pass, <code>{ prefill: { first_name: &quot;Taco&quot; } }</code>, Lobbie would find all Form Elements with the Lobbie Form Attribute of &quot;first_name&quot; and set the answer to that Form Element as &quot;Taco&quot;.</p>
+
+<p>c. Lobbie prefills Forms from two other sources, past Forms that have Lobbie Form Attributes with the &quot;Patient&quot; lifecycle and data from the Patient records directly. However, any key/values you pass here take precedence over the other two methods.</p></li>
+</ol>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Forms created."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"patient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost:3000/forms/patient?token=oso9NmuIqa2lqhTVNaaaBkadErMrzsXG"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"staff"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost:3000/home/patients/fb924039-ed0f-4214-9196-a7fc33cd3619/1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-17'>HTTP Request</h3>
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<h2 id='update-a-form-group-packet'>Update a Form Group/Packet</h2>
+<p>Add or remove Forms from a Form Group/Packet by passing Form Templates, and/or change the due date.</p>
+
+<blockquote>
+<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have Forms created from Form Templates 1 and 4.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      id: 1,
+      formTemplateIds: [1, 4],
+      dueDateUnix: 1690815877454
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The Form Group/Packet with <code>id</code> of 1 is updated to include Forms from Form Templates 1 and 4.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have only have Forms from Form Template 1.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      id: 1,
+      formTemplateIds: [1],
+      dueDateUnix: 1690815877454
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The Form with Form Template 4 is removed:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="warning">
+  You MUST pass the existing <code>formTemplateIds</code> on the Form Template Group to retain existing Form Templates.
+  <div style="margin-top: 10px; margin-bottom: 10px;">
+    Otherwise those Form Templates will be removed from the Form Template Group.
+  </div>
+  <div>
+    For example, if you were to pass an <code>formTemplateIds</code> as an empty list, Lobbie would remove all Form Templates from the Form Template Group.
+  </div>
+</aside>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>PUT https://api.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<h1 id='forms'>Forms</h1>
+<p>The structure of a Form returned from Lobbie includes Form Answers.</p>
+
+<p>Form Answers can be found under the key <code>data.answers</code>. Answers that are mapped to structured fields using Lobbie Form Attributes can be found at the <code>data.answers.mapped</code> key.</p>
+
+<p>The structure of a key for a Form Answer is as follows: <code>fe:{form_id}:{form_element_id}</code>. The key tells us that the Form Answer belongs on the Form associated with <code>{form_id}</code>, which itself is associated with a Patient, and that the &quot;question&quot; the Patient answered is represented by the Form Element retrived from <code>{form_element_id}</code>.</p>
+
+<p>For example, looking at the response on the right side, the key <code>fe:8:1</code> means that the Patient has answered &quot;Taco&quot; on their Form with an ID of 8 to the Form Element of ID 1.</p>
+<h2 id='get-a-specific-form'>Get a Specific Form</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689349105000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fe:8:1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4108675309"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fe:8:16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
+<h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
+<p>When creating a PDF of a Form, Form Group, Form Template or Form Template Group you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
+
+<p>One of these endpoints must be called before a PDF can be retrieved.</p>
+
+<blockquote>
+<p>Settings &quot;isPatient&quot; in the request body to &quot;false&quot; will generate a PDF with Staff-only fields displayed. Defaults to &quot;true&quot;.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/forms/print/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formTemplateId: 1, </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formTemplateId: 1, </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preparing PDF"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
+
+<p><code>POST https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
+<h2 id='retrieving-a-pdf'>Retrieving a PDF</h2>
+<p>Call this endpoint after sending a POST request to either the /print or /pdf endpoints, passing the <code>s3ObjectPath</code> returned from the respective API call.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: &lt;s3_object_path_from_POST_above&gt; }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'{ s3ObjectPath: &lt;s3_object_path_from_POST_above&gt; }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;s3_object_path_equal_to_s3_object_path_in_request&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
+
+<p><code>GET https://api.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
+<h1 id='enums'>Enums</h1><h2 id='formstatusenum'>FormStatusEnum</h2>
+<p>Used in:</p>
+
+<ul>
+<li>  <a href="#get-all-form-groups-packets">Get all Form Groups / Packets</a></li>
+</ul>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>STATUS_COMPLETE <span class="o">=</span>              0
+STATUS_NOT_COMPLETE <span class="o">=</span>          1
+STATUS_COMPLETE_NOT_COMPLETE <span class="o">=</span> 2
+STATUS_EXPIRED <span class="o">=</span>               3
+</code></pre></div><h2 id='legalsexenum'>LegalSexEnum</h2>
+<p>Used in:</p>
+
+<ul>
+<li><p><a href="#get-all-patients">Get all Patients</a></p></li>
+<li><p><a href="#get-a-specific-patient">Get a Specific Patient</a></p></li>
+</ul>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>UNKNOWN <span class="o">=</span> 0
+MALE    <span class="o">=</span> 1
+FEMALE  <span class="o">=</span> 2
+</code></pre></div><h2 id='sexassignedatbirthenum'>SexAssignedAtBirthEnum</h2>
+<p>Used in:</p>
+
+<ul>
+<li><p><a href="#get-all-patients">Get all Patients</a></p></li>
+<li><p><a href="#get-a-specific-patient">Get a Specific Patient</a></p></li>
+</ul>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>UNKNOWN <span class="o">=</span>       0
+MALE <span class="o">=</span>          1
+FEMALE <span class="o">=</span>        2
+OTHER <span class="o">=</span>         3
+NOT_SPECIFIED <span class="o">=</span> 4
+</code></pre></div>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
