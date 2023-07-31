@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://my.lobbie.com/Lobbie-Logo-Gradient.svg">
+  <img src="https://my.lobbie.com/Lobbie-Logo-Gradient.svg" height=100>
 </p>
 
 <h2>Lobbie API Documentation</h2>
