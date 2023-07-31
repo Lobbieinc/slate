@@ -4,6 +4,9 @@ me=$(basename "$0")
 
 cp $LOBBIE_PROJECT_DIR/docker/volumes/slate/source/index.html.md ./source/index.html.md
 cp $LOBBIE_PROJECT_DIR/docker/volumes/slate/source/images/logo.png ./source/images/logo.png
+git add -u
+git commit -n -m "retrived updated index.html.md"
+git push origin main
 
 help_message="\
 Usage: $me [-c FILE] [<options>]
