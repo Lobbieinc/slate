@@ -4,6 +4,7 @@ me=$(basename "$0")
 
 cp $LOBBIE_PROJECT_DIR/docker/volumes/slate/source/index.html.md ./source/index.html.md
 cp $LOBBIE_PROJECT_DIR/docker/volumes/slate/source/images/logo.png ./source/images/logo.png
+cp $LOBBIE_PROJECT_DIR/public/favicon.ico ./source/images/favicon.ico
 git add -u
 git commit -n -m "retrived updated index.html.md" | true
 git push origin main | true
