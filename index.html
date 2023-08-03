@@ -433,6 +433,25 @@
               </ul>
           </li>
           <li>
+            <a href="#form-attributes" class="toc-h1 toc-link" data-title="Form Attributes">Form Attributes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-lobbie-form-attributes-for-a-form-template-or-form-template-group" class="toc-h2 toc-link" data-title="Get all Lobbie Form Attributes for a Form Template or Form Template Group">Get all Lobbie Form Attributes for a Form Template or Form Template Group</a>
+                  </li>
+                  <li>
+                    <a href="#get-only-the-names-of-all-lobbie-form-attributes-for-a-form-template-or-form-template-group" class="toc-h2 toc-link" data-title="Get only the names of all Lobbie Form Attributes for a Form Template or Form Template Group">Get only the names of all Lobbie Form Attributes for a Form Template or Form Template Group</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#form-elements" class="toc-h1 toc-link" data-title="Form Elements">Form Elements</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-form-elements-for-a-form-template-or-form-template-group" class="toc-h2 toc-link" data-title="Get Form Elements for a Form Template or Form Template Group">Get Form Elements for a Form Template or Form Template Group</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#form-groups-form-packets" class="toc-h1 toc-link" data-title="Form Groups / Form Packets">Form Groups / Form Packets</a>
               <ul class="toc-list-h2">
                   <li>
@@ -526,7 +545,7 @@ api.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
 
 <p>If <code>success</code> is <code>true</code>, the <code>data</code> key will be filled with information relevant to the request that was sent.</p>
 
-<p>. However, if the request was <strong><em>not</em></strong> successful, </p>
+<p>. However, if the request was <strong><em>not</em></strong> successful,</p>
 <h1 id='terminology-vocabulary'>Terminology / Vocabulary</h1><h3 id='form-template'>Form Template</h3>
 <p>What Lobbie uses to create a Form for a Patient.</p>
 <h3 id='form-template-group'>Form Template Group</h3>
@@ -555,7 +574,7 @@ api.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
 <p>Using either Lobbie Form Attributes with the Lifecycle value of &quot;Patient&quot; or data from the Patient record in Lobbie to complete fields in a Form BEFORE the Patient begins the Form. Uses Lobbie Form Attributes to map data to Form Answers in a Form. Runs when a Form is created.</p>
 
 <ul>
-<li>Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute &quot;Patient&quot; lifecycles and Patient data.</li>
+<li>  Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute &quot;Patient&quot; lifecycles and Patient data.</li>
 </ul>
 <h3 id='autofill'>Autofill</h3>
 <p>Saving answers from one Form to other Forms in a Form Group. Happens when a Form is completed. Uses Lobbie Form Attributes to map data between Forms in a Form Group.</p>
@@ -1515,6 +1534,185 @@ You must replace <code>access_token</code> with the token returned from calling 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/groups/practitioner/&lt;practitioner_id&gt;</code></p>
 <h3 id='query-parameters-6'>Query Parameters</h3>
 <p>None</p>
+<h1 id='form-attributes'>Form Attributes</h1><h2 id='get-all-lobbie-form-attributes-for-a-form-template-or-form-template-group'>Get all Lobbie Form Attributes for a Form Template or Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes?formTemplateId<span class="o">=</span>1 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Form Attributes for Form Template - 7 / Lobbie Local All Elements"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"lifecycle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORM_GROUP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first_name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOBBIE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"lifecycle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORM_GROUP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last_name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOBBIE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"lifecycle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORM_GROUP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date_of_birth"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOBBIE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-08-02T20:09:48.000Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<p><strong>One of:</strong></p>
+
+<ul>
+<li><p><code>formTemplateId</code> - The ID of the <a href="#form-template">Form Template</a> to retrieve <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> from.</p></li>
+<li><p><code>formTemplateGroupId</code> - The ID of the <a href="#form-template-group">Form Template Group</a> to retrieve Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.</p></li>
+</ul>
+<h2 id='get-only-the-names-of-all-lobbie-form-attributes-for-a-form-template-or-form-template-group'>Get only the names of all Lobbie Form Attributes for a Form Template or Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes/names?formTemplateGroupId<span class="o">=</span>1 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Form Attribute Names for Form Template - 7 / Lobbie Local All Elements"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"first_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"last_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date_of_birth"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes/names</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<p><strong>One of:</strong></p>
+
+<ul>
+<li><p><code>formTemplateId</code> - The ID of the <a href="#form-template">Form Template</a> to retrieve the names of <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> from.</p></li>
+<li><p><code>formTemplateGroupId</code> - The ID of the <a href="#form-template-group">Form Template Group</a> to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.</p></li>
+</ul>
+<h1 id='form-elements'>Form Elements</h1><h2 id='get-form-elements-for-a-form-template-or-form-template-group'>Get Form Elements for a Form Template or Form Template Group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements?formTemplateGroupId<span class="o">=</span>1 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form Elements for Form Template - 3 / Lobbie Local Short Form"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first_name"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last_name"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Is this a short form?"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"formSelectOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Very short."</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not short enough."</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Conditional"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">116</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Child of Conditional"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"elementType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"colClass"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"displayLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"editGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"patientViewable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"formSelectOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Don't Show Child"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Show Child"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
+<p><strong>One of:</strong></p>
+
+<ul>
+<li><p><code>formTemplateId</code> - The ID of the <a href="#form-template">Form Template</a> to retrieve the names of <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> from.</p></li>
+<li><p><code>formTemplateGroupId</code> - The ID of the <a href="#form-template-group">Form Template Group</a> to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.</p></li>
+</ul>
 <h1 id='form-groups-form-packets'>Form Groups / Form Packets</h1><h2 id='get-all-form-groups-packets'>Get All Form Groups/Packets</h2>
 <p>When retrieving a <a href="#form-group">Form Group/Packet</a> you can choose to call either the /groups or /packets endpoint. Both return the same response.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
@@ -1545,11 +1743,11 @@ You must replace <code>access_token</code> with the token returned from calling 
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-16'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets</code></p>
-<h3 id='query-parameters-7'>Query Parameters</h3>
+<h3 id='query-parameters-10'>Query Parameters</h3>
 <ul>
 <li><p><code>locationId</code> - number - Get <a href="#form-group">Form Groups/Packets</a> in this Location. Optional. Default all Locations.</p></li>
 <li><p><code>patientId</code> - number - Get <a href="#form-group">Form Groups/Packets</a> assigned to this Patient. Optional.</p></li>
@@ -1618,7 +1816,7 @@ You must replace <code>access_token</code> with the token returned from calling 
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-17'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
@@ -1707,7 +1905,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-18'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h2 id='update-a-form-group-packet'>Update a Form Group/Packet</h2>
 <p>Add or remove Forms from a <a href="#form-group">Form Group/Packet</a> by passing Form Templates, and/or change the due date.</p>
@@ -1728,28 +1926,28 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>The Form Group/Packet with <code>id</code> of 1 is updated to include Forms from Form Templates 1 and 4.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1768,23 +1966,23 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>The Form with Form Template 4 is removed:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group updated."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690816734000</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="warning">
@@ -1796,7 +1994,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     For example, if you were to pass an <code>formTemplateIds</code> as an empty list, Lobbie would remove all Form Templates from the Form Template Group.
   </div>
 </aside>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h1 id='forms'>Forms</h1>
 <p>The structure of a <a href="#form">Form</a> returned from Lobbie includes <a href="#form-answer">Form Answers</a>.</p>
@@ -1849,7 +2047,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
@@ -1886,7 +2084,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-24'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
@@ -1900,7 +2098,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{
-        s3ObjectPath: </span><span class="se">\"</span><span class="s2">fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a</span><span class="se">\"</span><span class="s2"> 
+        s3ObjectPath: </span><span class="se">\"</span><span class="s2">fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a</span><span class="se">\"</span><span class="s2">
     }"</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve <span class="se">\</span>
@@ -1920,7 +2118,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
