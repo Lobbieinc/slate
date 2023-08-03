@@ -60,23 +60,28 @@ If `success` is `false`, the `message` key will provide an explanation and the `
 
 If `success` is `true`, the `data` key will be filled with information relevant to the request that was sent.
 
-. However, if the request was ***not*** successful, 
+. However, if the request was **_not_** successful,
 
 # Terminology / Vocabulary
 
 ### Form Template
+
 What Lobbie uses to create a Form for a Patient.
 
 ### Form Template Group
+
 A collection of Form Templates. A link is assigned to the collection and can be used to provide Patients an "anonymous" method of completing each Form that is generated from each Form Template in the Form Template Group.
 
 ### Form Template Section
+
 A page of a Form Template. If a Form Template has multiple Form Template Sections a button at the bottom of the page will be enabled when a Patient has completed all required fields in the current section.
 
 ### Form Element
+
 A single field in a Form Template Section.
 
 ### Lobbie Form Attribute
+
 A metadata tag added to a Form Element which can be used to give structure to unstructured data.
 
 Lobbie Form Attributes have "lifecycles" of which there are two: either the "Form Group" or "Patient" lifecycle.
@@ -86,26 +91,33 @@ A Lobbie Form Attribute with a lifecycle of "Form Group" (default) will only [au
 A Lobbie Form Attribute with a lifecycle of "Patient" will [prefill](#prefill) Forms in future Form Group/Packets assigned to the same Patient when that Form Group/Packet is created.
 
 ### Form
+
 What a Patient completes. Created from a Form Template.
 
 ### Form Group
+
 A collection of Forms assigned to a Patient to be completed together with a shared due date.
 
 ### Form Packet
+
 Same as a "Form Group". An alias.
 
 ### Form Answer
+
 A single answer to a single Form Element in a Form.
 
 ### Prefill
+
 Using either Lobbie Form Attributes with the Lifecycle value of "Patient" or data from the Patient record in Lobbie to complete fields in a Form BEFORE the Patient begins the Form. Uses Lobbie Form Attributes to map data to Form Answers in a Form. Runs when a Form is created.
 
-  * Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute "Patient" lifecycles and Patient data.
+-   Developers can pass a map of key/value pairs to prefill data in Forms when a Form Group/Packet is created. Passed values take precedence over Lobbie Form Attribute "Patient" lifecycles and Patient data.
 
 ### Autofill
+
 Saving answers from one Form to other Forms in a Form Group. Happens when a Form is completed. Uses Lobbie Form Attributes to map data between Forms in a Form Group.
 
 ### Fillable PDF
+
 When printing a Form, Lobbie maps Form Answers to PDF file that has been submitted to Lobbie. Instead of Lobbie Form Attributes we use Mapped PDF Fields.
 
 # Authentication
@@ -594,18 +606,17 @@ curl -G GET \
 
 ### Query Parameters
 
-* `firstName` - The first/given name of the Patient.
+-   `firstName` - The first/given name of the Patient.
 
-* `lastName` - The last/family name of the Patient.
+-   `lastName` - The last/family name of the Patient.
 
-* `name` - The first/give and last/family name of the Patient. If this is not empty it will be used instead of the first/last name query parameters.
+-   `name` - The first/give and last/family name of the Patient. If this is not empty it will be used instead of the first/last name query parameters.
 
-* `email` - The email of the Patient to search for.
+-   `email` - The email of the Patient to search for.
 
-* `mobilePhone` - The phone number of the Patient to search for.
+-   `mobilePhone` - The phone number of the Patient to search for.
 
-* `dateOfBirth` - The birth date of the Patient in MM/DD/YYYY format.
-
+-   `dateOfBirth` - The birth date of the Patient in MM/DD/YYYY format.
 
 # Form Templates
 
@@ -884,8 +895,8 @@ This endpoint retrieves a specific [Form Template](#form-template).
 
 ### URL Parameters
 
-| Parameter | Description                             |
-| --------- | --------------------------------------- |
+| Parameter | Description                                               |
+| --------- | --------------------------------------------------------- |
 | ID        | The ID of the [Form Template](#form-template) to retrieve |
 
 # Form Template Groups
@@ -975,8 +986,8 @@ This endpoint retrieves a specific [Form Template Group](#form-template-group).
 
 ### URL Parameters
 
-| Parameter | Description                                   |
-| --------- | --------------------------------------------- |
+| Parameter | Description                                                           |
+| --------- | --------------------------------------------------------------------- |
 | ID        | The ID of the [Form Template Group](#form-template-group) to retrieve |
 
 ## Create a Form Template Group
@@ -1185,6 +1196,216 @@ This endpoint retrieves all [Form Template Groups](#form-template-group) associa
 
 None
 
+# Form Attributes
+
+## Get all Lobbie Form Attributes for a Form Template or Form Template Group
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes?formTemplateId=1 \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "Lobbie Form Attributes for Form Template - 7 / Lobbie Local All Elements",
+    "data": [
+        {
+            "lifecycle": "FORM_GROUP",
+            "name": "first_name",
+            "active": true,
+            "type": "LOBBIE",
+            "id": 1,
+            "createdOn": "2023-08-02T20:09:48.000Z",
+            "lastUpdatedOn": "2023-08-02T20:09:48.000Z"
+        },
+        {
+            "lifecycle": "FORM_GROUP",
+            "name": "last_name",
+            "active": true,
+            "type": "LOBBIE",
+            "id": 3,
+            "createdOn": "2023-08-02T20:09:48.000Z",
+            "lastUpdatedOn": "2023-08-02T20:09:48.000Z"
+        },
+        {
+            "lifecycle": "FORM_GROUP",
+            "name": "date_of_birth",
+            "active": true,
+            "type": "LOBBIE",
+            "id": 4,
+            "createdOn": "2023-08-02T20:09:48.000Z",
+            "lastUpdatedOn": "2023-08-02T20:09:48.000Z"
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes`
+
+### Query Parameters
+
+**One of:**
+
+-   `formTemplateId` - The ID of the [Form Template](#form-template) to retrieve [Lobbie Form Attributes](#lobbie-form-attribute) from.
+
+-   `formTemplateGroupId` - The ID of the [Form Template Group](#form-template-group) to retrieve Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.
+
+## Get only the names of all Lobbie Form Attributes for a Form Template or Form Template Group
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes/names?formTemplateGroupId=1 \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "Lobbie Form Attribute Names for Form Template - 7 / Lobbie Local All Elements",
+    "data": ["first_name", "last_name", "date_of_birth"]
+}
+```
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/attributes/names`
+
+### Query Parameters
+
+**One of:**
+
+-   `formTemplateId` - The ID of the [Form Template](#form-template) to retrieve the names of [Lobbie Form Attributes](#lobbie-form-attribute) from.
+
+-   `formTemplateGroupId` - The ID of the [Form Template Group](#form-template-group) to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.
+
+# Form Elements
+
+## Get Form Elements for a Form Template or Form Template Group
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements?formTemplateGroupId=1 \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "Form Elements for Form Template - 3 / Lobbie Local Short Form",
+    "data": [
+        {
+            "label": "First Name",
+            "required": true,
+            "sortOrder": 0,
+            "elementType": 3,
+            "colClass": 3,
+            "displayLabel": true,
+            "editGroup": 0,
+            "patientViewable": true,
+            "parent": false,
+            "id": 1,
+            "children": [],
+            "attribute": "first_name"
+        },
+        {
+            "label": "Last Name",
+            "required": false,
+            "sortOrder": 1,
+            "elementType": 3,
+            "colClass": 3,
+            "displayLabel": true,
+            "editGroup": 0,
+            "patientViewable": true,
+            "parent": false,
+            "id": 2,
+            "children": [],
+            "attribute": "last_name"
+        },
+        {
+            "label": "Is this a short form?",
+            "required": true,
+            "sortOrder": 1,
+            "elementType": 5,
+            "colClass": 12,
+            "displayLabel": true,
+            "editGroup": 0,
+            "patientViewable": true,
+            "parent": false,
+            "id": 58,
+            "children": [],
+            "formSelectOptions": [
+                {
+                    "value": 1,
+                    "label": "Very short."
+                },
+                {
+                    "value": 2,
+                    "label": "Not short enough."
+                }
+            ]
+        },
+        {
+            "label": "Conditional",
+            "required": true,
+            "sortOrder": 29,
+            "elementType": 5,
+            "colClass": 8,
+            "displayLabel": true,
+            "editGroup": 0,
+            "patientViewable": true,
+            "parent": true,
+            "id": 116,
+            "children": [
+                {
+                    "label": "Child of Conditional",
+                    "required": true,
+                    "sortOrder": 30,
+                    "elementType": 3,
+                    "colClass": 4,
+                    "displayLabel": true,
+                    "editGroup": 0,
+                    "patientViewable": true,
+                    "parent": false,
+                    "id": 117
+                }
+            ],
+            "formSelectOptions": [
+                {
+                    "value": 34,
+                    "label": "Don't Show Child"
+                },
+                {
+                    "value": 35,
+                    "label": "Show Child"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements`
+
+### Query Parameters
+
+**One of:**
+
+-   `formTemplateId` - The ID of the [Form Template](#form-template) to retrieve the names of [Lobbie Form Attributes](#lobbie-form-attribute) from.
+
+-   `formTemplateGroupId` - The ID of the [Form Template Group](#form-template-group) to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.
+
 # Form Groups / Form Packets
 
 ## Get All Form Groups/Packets
@@ -1250,7 +1471,7 @@ curl -X GET \
 
 -   `limit` - number - Return at most this number of [Form TemplatesGroups/Packetsform-template)group Optional. Default 10.
 
--   `page` - number - Offset the returned list of [Form Groups/Packets](#form-group) by this number * `limit`. Optional. Default 0.
+-   `page` - number - Offset the returned list of [Form Groups/Packets](#form-group) by this number \* `limit`. Optional. Default 0.
 
 -   `isArchived` - boolean - If true, returns only archived [Form TemplatesGroups/Packetsform-template)group Optional. Default false.
 
@@ -1441,28 +1662,28 @@ curl -X PUT \
 
 ```json
 {
-  "success": true,
-  "message": "Form group updated.",
-  "data": {
-    "id": 1,
-    "locationId": 1,
-    "patientId": 3,
-    "dueDateUnix": 1690873199000,
-    "completedOnUnix": null,
-    "createdOnUnixUtc": 1690558706000,
-    "forms": [
-      {
-        "id": 53,
-        "isActive": true,
-        "createdOnUnix": 1690816734000
-      },
-      {
-        "id": 54,
-        "isActive": true,
-        "createdOnUnix": 1690816734000
-      }
-    ]
-  }
+    "success": true,
+    "message": "Form group updated.",
+    "data": {
+        "id": 1,
+        "locationId": 1,
+        "patientId": 3,
+        "dueDateUnix": 1690873199000,
+        "completedOnUnix": null,
+        "createdOnUnixUtc": 1690558706000,
+        "forms": [
+            {
+                "id": 53,
+                "isActive": true,
+                "createdOnUnix": 1690816734000
+            },
+            {
+                "id": 54,
+                "isActive": true,
+                "createdOnUnix": 1690816734000
+            }
+        ]
+    }
 }
 ```
 
@@ -1483,23 +1704,23 @@ curl -X PUT \
 
 ```json
 {
-  "success": true,
-  "message": "Form group updated.",
-  "data": {
-    "id": 1,
-    "locationId": 1,
-    "patientId": 3,
-    "dueDateUnix": 1690873199000,
-    "completedOnUnix": null,
-    "createdOnUnixUtc": 1690558706000,
-    "forms": [
-      {
-        "id": 53,
-        "isActive": true,
-        "createdOnUnix": 1690816734000
-      }
-    ]
-  }
+    "success": true,
+    "message": "Form group updated.",
+    "data": {
+        "id": 1,
+        "locationId": 1,
+        "patientId": 3,
+        "dueDateUnix": 1690873199000,
+        "completedOnUnix": null,
+        "createdOnUnixUtc": 1690558706000,
+        "forms": [
+            {
+                "id": 53,
+                "isActive": true,
+                "createdOnUnix": 1690816734000
+            }
+        ]
+    }
 }
 ```
 
@@ -1512,7 +1733,6 @@ curl -X PUT \
     For example, if you were to pass an <code>formTemplateIds</code> as an empty list, Lobbie would remove all Form Templates from the Form Template Group.
   </div>
 </aside>
-
 
 ### HTTP Request
 
@@ -1644,7 +1864,7 @@ curl -X POST \
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{
-        s3ObjectPath: \"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a\" 
+        s3ObjectPath: \"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a\"
     }"
 ```
 
