@@ -1500,7 +1500,7 @@ curl -X GET \
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
-        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
+        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
                 "locked": false,
@@ -1975,7 +1975,7 @@ Form Answers that belong to Staff-only Form Elements are <b>not</b> included in 
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
-        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
+        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
                 "locked": false,
@@ -2031,7 +2031,7 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
-        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
+        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
                 "locked": false,
