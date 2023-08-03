@@ -1940,3 +1940,131 @@ FEMALE =        2
 OTHER =         3
 NOT_SPECIFIED = 4
 ```
+
+# Webhooks
+
+When you set up your integration with Lobbie you have the option of also setting up Lobbie webhooks. Webhooks are HTTP requests that Lobbie will send to your application when something happens in Lobbie.
+
+Webhooks are fully configurable, meaning you choose the request method (GET, POST, PUT, PATCH) that Lobbie sends, how Lobbie authenticates with your application (OAuth2 or API Key), and where in the request Lobbie includes those authentication credentials (request body, request headers, query string, etc.).
+
+The settings for your webhooks are maintained on an Account level, meaning that the settings will be global to your organization's Lobbie Account, **not** your individual Lobbie account.
+
+If you choose to send a response to the webhook, Lobbie keeps basic logs of each webhook request and will store the response code + reason/message, in addition to the request method, url and body to help you with debugging.
+
+Lobbie currently offers 3 webhooks, all of which are optional:
+
+1. When a [Patient](#patients) completes a [Form Group/Packet](#form-group)
+
+2. When a Staff member completes a Form Group/Packet
+
+## A Patient completes Form Group/Packet
+
+If the request method you select for this endpoint is GET, Lobbie will include `formGroupId`, `patientId` and, if applicable, `appointmentId` as query parameters in the request.
+
+If the request method you select for this endpoint is **not** a GET, Lobbie will include the following in the request body to right:
+
+<aside class="notice">
+Form Answers that belong to Staff-only Form Elements are not included in this request.
+</aside>
+
+```json
+{
+        "id": 8,
+        "locationId": 1,
+        "patientId": 10,
+        "dueDateUnix": 1691823599000,
+        "completedOnUnix": 1690563654000,
+        "createdOnUnixUtc": 1690558709000,
+        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
+        "forms": [
+            {
+                "locked": false,
+                "id": 8,
+                "isActive": true,
+                "createdOnUnix": 1689349105000,
+                "completedOnUnix": 1690563654000,
+                "answers": {
+                    "fe:8:1": "Taco",
+                    "fe:8:2": "",
+                    "fe:8:3": "Nacho",
+                    "fe:8:4": "07/28/2023",
+                    "fe:8:5": "taco@lobbie.com",
+                    "fe:8:6": "3108675309",
+                    "fe:8:7": "Yes",
+                    "fe:8:8": "Lobbie",
+                    "fe:8:9": "1234567890",
+                    "fe:8:10": "123",
+                    "fe:8:11": "4108675309",
+                    "fe:8:12": "true",
+                    "fe:8:14": "false",
+                    "fe:8:19": "false",
+                    "fe:8:16": "true",
+                    "mapped": {
+                        "first_name": "Taco",
+                        "middle_name": "",
+                        "last_name": "Nacho",
+                        "date_of_birth": "07/28/2023",
+                        "email": "taco@lobbie.com",
+                        "mobile_phone": "3108675309"
+                    }
+                }
+            }
+        ]
+    }
+```
+
+## A Staff member completes Form Group/Packet
+
+If the request method you select for this endpoint is GET, Lobbie will include `formGroupId`, `patientId` and, if applicable, `appointmentId` as query parameters in the request.
+
+If the request method you select for this endpoint is **not** a GET, Lobbie will include the following in the request body to right:
+
+<aside class="notice">
+Form Answers that belong to Staff-only Form Elements will be included in this request.
+</aside>
+
+```json
+{
+        "id": 8,
+        "locationId": 1,
+        "patientId": 10,
+        "dueDateUnix": 1691823599000,
+        "completedOnUnix": 1690563654000,
+        "createdOnUnixUtc": 1690558709000,
+        "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
+        "forms": [
+            {
+                "locked": false,
+                "id": 8,
+                "isActive": true,
+                "createdOnUnix": 1689349105000,
+                "completedOnUnix": 1690563654000,
+                "answers": {
+                    "fe:8:1": "Taco",
+                    "fe:8:2": "",
+                    "fe:8:3": "Nacho",
+                    "fe:8:4": "07/28/2023",
+                    "fe:8:5": "taco@lobbie.com",
+                    "fe:8:6": "3108675309",
+                    "fe:8:7": "Yes",
+                    "fe:8:8": "Lobbie",
+                    "fe:8:9": "1234567890",
+                    "fe:8:10": "123",
+                    "fe:8:11": "4108675309",
+                    "fe:8:12": "true",
+                    "fe:8:14": "false",
+                    "fe:8:19": "false",
+                    "fe:8:16": "true",
+                    "mapped": {
+                        "first_name": "Taco",
+                        "middle_name": "",
+                        "last_name": "Nacho",
+                        "date_of_birth": "07/28/2023",
+                        "email": "taco@lobbie.com",
+                        "mobile_phone": "3108675309"
+                    }
+                }
+            }
+        ]
+    }
+```
