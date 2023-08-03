@@ -1951,7 +1951,7 @@ The settings for your webhooks are maintained on an Account level, meaning that 
 
 If you choose to send a response to the webhook, Lobbie keeps basic logs of each webhook request and will store the response code + reason/message, in addition to the request method, url and body to help you with debugging.
 
-Lobbie currently supports 2 webhooks, all of which are optional:
+Lobbie currently supports 2 webhooks, both of which are optional:
 
 1. When a [Patient](#patients) completes a [Form Group/Packet](#form-group)
 
