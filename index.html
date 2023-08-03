@@ -501,6 +501,17 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#a-patient-completes-form-group-packet" class="toc-h2 toc-link" data-title="A Patient completes Form Group/Packet">A Patient completes Form Group/Packet</a>
+                  </li>
+                  <li>
+                    <a href="#a-staff-member-completes-form-group-packet" class="toc-h2 toc-link" data-title="A Staff member completes Form Group/Packet">A Staff member completes Form Group/Packet</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://lobbie.com'>Join Lobbie</a></li>
@@ -2154,7 +2165,124 @@ MALE <span class="o">=</span>          1
 FEMALE <span class="o">=</span>        2
 OTHER <span class="o">=</span>         3
 NOT_SPECIFIED <span class="o">=</span> 4
-</code></pre></div>
+</code></pre></div><h1 id='webhooks'>Webhooks</h1>
+<p>When you set up your integration with Lobbie you have the option of also setting up Lobbie webhooks. Webhooks are HTTP requests that Lobbie will send to your application when something happens in Lobbie.</p>
+
+<p>Webhooks are fully configurable, meaning you choose the request method (GET, POST, PUT, PATCH) that Lobbie sends, how Lobbie authenticates with your application (OAuth2 or API Key), and where in the request Lobbie includes those authentication credentials (request body, request headers, query string, etc.).</p>
+
+<p>The settings for your webhooks are maintained on an Account level, meaning that the settings will be global to your organization&#39;s Lobbie Account, <strong>not</strong> your individual Lobbie account.</p>
+
+<p>If you choose to send a response to the webhook, Lobbie keeps basic logs of each webhook request and will store the response code + reason/message, in addition to the request method, url and body to help you with debugging.</p>
+
+<p>Lobbie currently offers 3 webhooks, all of which are optional:</p>
+
+<ol>
+<li><p>When a <a href="#patients">Patient</a> completes a <a href="#form-group">Form Group/Packet</a></p></li>
+<li><p>When a Staff member completes a Form Group/Packet</p></li>
+</ol>
+<h2 id='a-patient-completes-form-group-packet'>A Patient completes Form Group/Packet</h2>
+<p>If the request method you select for this endpoint is GET, Lobbie will include <code>formGroupId</code>, <code>patientId</code> and, if applicable, <code>appointmentId</code> as query parameters in the request.</p>
+
+<p>If the request method you select for this endpoint is <strong>not</strong> a GET, Lobbie will include the following in the request body to right:</p>
+
+<aside class="notice">
+Form Answers that belong to Staff-only Form Elements are not included in this request.
+</aside>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689349105000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"fe:8:1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='a-staff-member-completes-form-group-packet'>A Staff member completes Form Group/Packet</h2>
+<p>If the request method you select for this endpoint is GET, Lobbie will include <code>formGroupId</code>, <code>patientId</code> and, if applicable, <code>appointmentId</code> as query parameters in the request.</p>
+
+<p>If the request method you select for this endpoint is <strong>not</strong> a GET, Lobbie will include the following in the request body to right:</p>
+
+<aside class="notice">
+Form Answers that belong to Staff-only Form Elements will be included in this request.
+</aside>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=AKIA4VI4T6RK7JOTETBA%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689349105000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"fe:8:1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4108675309"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fe:8:16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nacho"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/28/2023"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taco@lobbie.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3108675309"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre></div>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
