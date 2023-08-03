@@ -1964,7 +1964,7 @@ If the request method you select for this endpoint is GET, Lobbie will include `
 If the request method you select for this endpoint is **not** a GET, Lobbie will include the following in the request body to right:
 
 <aside class="notice">
-Form Answers that belong to Staff-only Form Elements are not included in this request.
+Form Answers that belong to Staff-only Form Elements are <b>not</b> included in this request.
 </aside>
 
 ```json
