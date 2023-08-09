@@ -68,6 +68,10 @@ If `success` is `true`, the `data` key will be filled with information relevant 
 
 What Lobbie uses to create a Form for a Patient.
 
+When Lobbie updates a Form Template for your organization, the `version` number is increased by 1.
+
+Lobbie uses the latest `version` of a Form Template to create Forms for Patients.
+
 ### Form Template Group
 
 A collection of Form Templates. A link is assigned to the collection and can be used to provide Patients an "anonymous" method of completing each Form that is generated from each Form Template in the Form Template Group.
