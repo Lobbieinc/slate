@@ -1040,32 +1040,35 @@ You must replace <code>access_token</code> with the token returned from calling 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">All form templates for &lt;account_name&gt;.</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lobbie Local All Elements</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">isActive</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">isStaffOnly</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">sortOrder</span><span class="dl">"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
 
-            <span class="c1">// When Lobbie updates a Form Template for your organization, the version number is increased by 1.</span>
-            <span class="c1">// Lobbie uses the latest version of a Form Template to create Forms for Patients</span>
-            <span class="dl">"</span><span class="s2">version</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lobbie Local Patient Information</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">isActive</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">isStaffOnly</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">sortOrder</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">version</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><asside class="notice">
+When Lobbie updates a Form Template for your organization, the <code>version</code> number is increased by 1.</p>
+
+<p>Lobbie uses the latest <code>version</code> of a Form Template to create Forms for Patients
+</aside></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All form templates for &lt;account_name&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local All Elements"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="err">version:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Local Patient Information"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isStaffOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="err">version:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <p>This endpoint retrieves all form templates associated with your organization&#39;s Lobbie account.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates</code></p>
@@ -1089,7 +1092,6 @@ You must replace <code>access_token</code> with the token returned from calling 
         </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"isFillablePDF"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"publicLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost:3000/public/form/fb924039-ed0f-4214-9196-a7fc33cd3619/3/d4d97da4-af28-4ef4-80b2-1bcc2b1e5129"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"formTemplateSections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
