@@ -632,7 +632,13 @@ curl -X GET \
 
 > The above command returns JSON structured like this:
 
-```javascript
+<asside class="notice">
+When Lobbie updates a Form Template for your organization, the `version` number is increased by 1.
+
+Lobbie uses the latest `version` of a Form Template to create Forms for Patients
+</aside>
+
+```json
 {
     "success": true,
     "message": "All form templates for <account_name>.",
@@ -643,10 +649,7 @@ curl -X GET \
             "isActive": true,
             "isStaffOnly": false,
             "sortOrder": 6,
-
-            // When Lobbie updates a Form Template for your organization, the version number is increased by 1.
-            // Lobbie uses the latest version of a Form Template to create Forms for Patients
-            "version": 1,
+            version: 1,
         },
         {
             "id": 1,
@@ -654,7 +657,7 @@ curl -X GET \
             "isActive": true,
             "isStaffOnly": false,
             "sortOrder": 0,
-            "version": 1,
+            version: 1,
         }
     ]
 }
@@ -692,7 +695,6 @@ curl -X GET \
         "sortOrder": 0,
         "isFillablePDF": false,
         "publicLink": "https://localhost:3000/public/form/fb924039-ed0f-4214-9196-a7fc33cd3619/3/d4d97da4-af28-4ef4-80b2-1bcc2b1e5129",
-        "version": 1,
         "formTemplateSections": [
             {
                 "sortOrder": 0,
