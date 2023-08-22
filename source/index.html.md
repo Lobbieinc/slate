@@ -1011,7 +1011,7 @@ curl -X POST \
     --data "{
       locationId: 1,
       formTemplateIds: [1, 2, 3],
-      name: \"Taco Templates\",
+      name: Taco Templates,
       practitionerId: null
     }"
 ```
@@ -1418,6 +1418,125 @@ curl -X GET \
 
 -   `formTemplateGroupId` - The ID of the [Form Template Group](#form-template-group) to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.
 
+## Update Many Form Elements
+
+Similar to the [Update Single Form Element](#update-single-form-element) endpoint below, however, with this endpoint you pass a list of Form Element objects to update.
+
+Not all attributes of a Form Element can be updated as changing some attributes would require a new version of the [Form Template](#form-template) to be issued.
+
+For example, changing a Form Element from not-required to required is not permitted as this would impact Forms that have already been completed by Patients. 
+
+> These commands will update the Form Element with an id of `736` and of type `Select` to first and and then remove the options with labels `Developer Option` and `Taco Option`.
+
+> Additionally, the first request will change the `label` of the Form Element to `Taco Select` and the second request will change the label to `Developer Select`.
+
+```shell
+curl -X PUT \
+    https://localhost:8443/lobbie/api/developer/v1/forms/templates/elements/update \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data '[{ "id": 736, "label": "Taco Select", "options": { "add": ["Developer Option", "Taco Option"] }}]'
+```
+
+```shell
+curl -X PUT \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data '[{ "id": 736, "label": "Developer Select", "options": { "remove": ["Developer Option", "Taco Option" ] }}]'
+```
+
+### HTTP Request
+
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update`
+
+### Request Body Parameters
+
+-   `label` - String - The label of the Form Element that describes what the Form Element is.
+
+-   `displayLabel` - Boolean - Whether or not the label should be displayed on the Form Element.
+
+-   `sortOrder` - Number - Where the Form Element appears on the [Form](#form), lower numbers appear before higher numbers.
+
+-   `colClass` - Number from 1 to 12, inclusive - How much width the Form Element should take up on the Form.
+
+    - Lobbie uses the <a target="_blank" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap 5 Grid System</a> so this number must be between 1 and 12, with 1 being less width and 12 being the full width of the page.
+    
+    - Some Form Elements have fixed widths and changing this number will not affect them.
+
+-   `attribute` - String - A [Lobbie Form Attribute](#lobbie-form-attribute) to assign to this Form Element in order to structure its data for [prefilling](#prefill).
+
+    - If you send an Attribute that does not exist Lobbie will create a new one tied to your Lobbie account.
+
+    - Only 1 of the same Attribute can be present on a Form Template. If you try to add an Attribute to a 2nd Form Element, Lobbie will return an error.
+
+    - To remove an Attribute from a Form Element, send the magic string `<delete>`, including the `<>` and Lobbie will irrecoverably remove the Attribute from the Form Element (this will *not* delete the Attribute itself).
+
+
+-   `options` - Object - An object containing either or both of `add` and/or `remove` keys where:
+
+    - `add` - List<String> - A list of strings that correspond to the labels for options that Lobbie will add to the Select/Radio Buttons Form Element. The `value` will be the `id` of the option that Lobbie creates.
+
+    - `remove` - List<String> - A list of strings that correspond to the labels for options that Lobbie will remove from the Select/Radio Buttons Form Element. If there exists any [Form Answer](#form-answer) equal to the option that will be deleted, Lobbie will *not* remove the option.
+
+## Update Single Form Element
+
+Similar to the [Update Many Form Elements](#update-many-form-elements) endpoint above, however, with this endpoint you include the `id` of the Form Element to update in the endpoint route.
+
+Not all attributes of a Form Element can be updated as changing some attributes would require a new version of the [Form Template](#form-template) to be issued.
+
+For example, changing a Form Element from not-required to required is not permitted as this would impact Forms that have already been completed by Patients. 
+
+> These commands will update the Form Element with an id of `736` and of type `Select` to first and and then remove the options with labels `Developer Option` and `Taco Option`.
+
+> Additionally, the first request will change the `label` of the Form Element to `Taco Select` and the second request will change the label to `Developer Select`.
+
+```shell
+curl -X PUT \
+    https://localhost:8443/lobbie/api/developer/v1/forms/templates/elements/update/736 \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data '[{ "label": "Taco Select", "options": { "add": ["Developer Option", "Taco Option"] }}]'
+```
+
+```shell
+curl -X PUT \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update/736 \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data '[{ "label": "Developer Select", "options": { "remove": ["Developer Option", "Taco Option" ] }}]'
+```
+
+### HTTP Request
+
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update/<form_element_id>`
+
+### Request Body Parameters
+
+-   `label` - String - The label of the Form Element that describes what the Form Element is.
+
+-   `displayLabel` - Boolean - Whether or not the label should be displayed on the Form Element.
+
+-   `sortOrder` - Number - Where the Form Element appears on the [Form](#form), lower numbers appear before higher numbers.
+
+-   `colClass` - Number from 1 to 12, inclusive - How much width the Form Element should take up on the Form.
+
+    - Lobbie uses the <a target="_blank" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap 5 Grid System</a> so this number must be between 1 and 12, with 1 being less width and 12 being the full width of the page.
+    
+    - Some Form Elements have fixed widths and changing this number will not affect them.
+
+-   `attribute` - String - A [Lobbie Form Attribute](#lobbie-form-attribute) to assign to this Form Element in order to structure its data for [prefilling](#prefill).
+
+    - If you send an Attribute that does not exist Lobbie will create a new one tied to your Lobbie account.
+
+    - Only 1 of the same Attribute can be present on a Form Template. If you try to add an Attribute to a 2nd Form Element, Lobbie will return an error.
+
+    - To remove an Attribute from a Form Element, send the magic string `<delete>`, including the `<>` and Lobbie will irrecoverably remove the Attribute from the Form Element (this will *not* delete the Attribute itself).
+
+
+-   `options` - Object - An object containing either or both of `add` and/or `remove` keys where:
+
+    - `add` - List<String> - A list of strings that correspond to the labels for options that Lobbie will add to the Select/Radio Buttons Form Element. The `value` will be the `id` of the option that Lobbie creates.
+
+    - `remove` - List<String> - A list of strings that correspond to the labels for options that Lobbie will remove from the Select/Radio Buttons Form Element. If there exists any [Form Answer](#form-answer) equal to the option that will be deleted, Lobbie will *not* remove the option.
+
+
 # Form Groups / Form Packets
 
 ## Get All Form Groups/Packets
@@ -1608,7 +1727,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 
 There are many ways to structure a request to create a new [Form Group/Packet](#form-group). However, they all rely on the presence of several things:
 
-1. A `formTemplateGroupId` or a list of `formTemplateIds` so that Lobbie knows which [Form Templates](#form-template) to use.
+1. A `formTemplateGroupId` and/or a list of `formTemplateIds` so that Lobbie knows which [Form Templates](#form-template) to use.
 
 2. A `locationId` so that Lobbie can assign the [Form Group/Packet](#form-group) to the correct location.
 
@@ -1655,9 +1774,9 @@ There are many ways to structure a request to create a new [Form Group/Packet](#
 
 ## Update a Form Group/Packet
 
-Add or remove Forms from a [Form Group/Packet](#form-group) by passing Form Templates, and/or change the due date.
+Add or remove Forms from a [Form Group/Packet](#form-group) by passing [Form Template](#form-template) ids and/or a [Form Template Group](#form-template-group) id, change the due date and/or change the complete/incomplete status of the Form Group/Packet.
 
-> This command will update the Form Group/Packet with `id` of 1 to have Forms created from Form Templates 1 and 4.
+> This command will update the Form Group/Packet with `id` of 1 to have Forms created from Form Templates 1 and 4, to have a new due date and to be marked as complete.
 
 ```shell
 curl -X PUT \
@@ -1666,11 +1785,12 @@ curl -X PUT \
     --data "{
       id: 1,
       formTemplateIds: [1, 4],
-      dueDateUnix: 1690815877454
+      dueDateUnix: 1690815877454,
+      status: 0 # 0 => FormStatusEnum.COMPLETE
     }"
 ```
 
-> The Form Group/Packet with `id` of 1 is updated to include Forms from Form Templates 1 and 4.
+> The Form Group/Packet with `id` of 1 is updated to include Forms from Form Templates 1 and 4, to have a new due date and to be marked as complete.
 
 ```json
 {
@@ -1680,8 +1800,9 @@ curl -X PUT \
         "id": 1,
         "locationId": 1,
         "patientId": 3,
-        "dueDateUnix": 1690873199000,
-        "completedOnUnix": null,
+        "isComplete": true,
+        "dueDateUnix": 1690815877454,
+        "completedOnUnix": 1692028292189,
         "createdOnUnixUtc": 1690558706000,
         "forms": [
             {
@@ -1699,7 +1820,7 @@ curl -X PUT \
 }
 ```
 
-> This command will update the Form Group/Packet with `id` of 1 to have only have Forms from Form Template 1.
+> This command will update the Form Group/Packet with `id` of 1 to have only have Forms from Form Template 1, to have a new due date and to be marked as incomplete.
 
 ```shell
 curl -X PUT \
@@ -1708,11 +1829,12 @@ curl -X PUT \
     --data "{
       id: 1,
       formTemplateIds: [1],
-      dueDateUnix: 1690815877454
+      dueDateUnix: 1690558706000,
+      status: 1 # 1 => FormStatusEnum.INCOMPLETE
     }"
 ```
 
-> The Form with Form Template 4 is removed:
+> The Form with Form Template 4 is removed and the due date is changed:
 
 ```json
 {
@@ -1722,7 +1844,8 @@ curl -X PUT \
         "id": 1,
         "locationId": 1,
         "patientId": 3,
-        "dueDateUnix": 1690873199000,
+        "isComplete": false,
+        "dueDateUnix": 1690558706000,
         "completedOnUnix": null,
         "createdOnUnixUtc": 1690558706000,
         "forms": [
