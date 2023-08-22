@@ -449,6 +449,12 @@
                   <li>
                     <a href="#get-form-elements-for-a-form-template-or-form-template-group" class="toc-h2 toc-link" data-title="Get Form Elements for a Form Template or Form Template Group">Get Form Elements for a Form Template or Form Template Group</a>
                   </li>
+                  <li>
+                    <a href="#update-many-form-elements" class="toc-h2 toc-link" data-title="Update Many Form Elements">Update Many Form Elements</a>
+                  </li>
+                  <li>
+                    <a href="#update-single-form-element" class="toc-h2 toc-link" data-title="Update Single Form Element">Update Single Form Element</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1393,7 +1399,7 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
     <span class="nt">--data</span> <span class="s2">"{
       locationId: 1,
       formTemplateIds: [1, 2, 3],
-      name: </span><span class="se">\"</span><span class="s2">Taco Templates</span><span class="se">\"</span><span class="s2">,
+      name: Taco Templates,
       practitionerId: null
     }"</span>
 </code></pre></div>
@@ -1736,6 +1742,100 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
 <li><p><code>formTemplateId</code> - The ID of the <a href="#form-template">Form Template</a> to retrieve the names of <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> from.</p></li>
 <li><p><code>formTemplateGroupId</code> - The ID of the <a href="#form-template-group">Form Template Group</a> to retrieve the names of Lobbie Form Attributes from. Retrieves Lobbie Form Attributes from all Form Templates in the Form Template Group.</p></li>
 </ul>
+<h2 id='update-many-form-elements'>Update Many Form Elements</h2>
+<p>Similar to the <a href="#update-single-form-element">Update Single Form Element</a> endpoint below, however, with this endpoint you pass a list of Form Element objects to update.</p>
+
+<p>Not all attributes of a Form Element can be updated as changing some attributes would require a new version of the <a href="#form-template">Form Template</a> to be issued.</p>
+
+<p>For example, changing a Form Element from not-required to required is not permitted as this would impact Forms that have already been completed by Patients. </p>
+
+<blockquote>
+<p>These commands will update the Form Element with an id of <code>736</code> and of type <code>Select</code> to first and and then remove the options with labels <code>Developer Option</code> and <code>Taco Option</code>.</p>
+
+<p>Additionally, the first request will change the <code>label</code> of the Form Element to <code>Taco Select</code> and the second request will change the label to <code>Developer Select</code>.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/forms/templates/elements/update <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'[{ "id": 736, "label": "Taco Select", "options": { "add": ["Developer Option", "Taco Option"] }}]'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'[{ "id": 736, "label": "Developer Select", "options": { "remove": ["Developer Option", "Taco Option" ] }}]'</span>
+</code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update</code></p>
+<h3 id='request-body-parameters'>Request Body Parameters</h3>
+<ul>
+<li><p><code>label</code> - String - The label of the Form Element that describes what the Form Element is.</p></li>
+<li><p><code>displayLabel</code> - Boolean - Whether or not the label should be displayed on the Form Element.</p></li>
+<li><p><code>sortOrder</code> - Number - Where the Form Element appears on the <a href="#form">Form</a>, lower numbers appear before higher numbers.</p></li>
+<li><p><code>colClass</code> - Number from 1 to 12, inclusive - How much width the Form Element should take up on the Form.</p>
+
+<ul>
+<li>Lobbie uses the <a target="_blank" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap 5 Grid System</a> so this number must be between 1 and 12, with 1 being less width and 12 being the full width of the page.</li>
+<li>Some Form Elements have fixed widths and changing this number will not affect them.</li>
+</ul></li>
+<li><p><code>attribute</code> - String - A <a href="#lobbie-form-attribute">Lobbie Form Attribute</a> to assign to this Form Element in order to structure its data for <a href="#prefill">prefilling</a>.</p>
+
+<ul>
+<li>If you send an Attribute that does not exist Lobbie will create a new one tied to your Lobbie account.</li>
+<li>Only 1 of the same Attribute can be present on a Form Template. If you try to add an Attribute to a 2nd Form Element, Lobbie will return an error.</li>
+<li>To remove an Attribute from a Form Element, send the magic string <code>&lt;delete&gt;</code>, including the <code>&lt;&gt;</code> and Lobbie will irrecoverably remove the Attribute from the Form Element (this will <em>not</em> delete the Attribute itself).</li>
+</ul></li>
+<li><p><code>options</code> - Object - An object containing either or both of <code>add</code> and/or <code>remove</code> keys where:</p>
+
+<ul>
+<li><code>add</code> - List<String> - A list of strings that correspond to the labels for options that Lobbie will add to the Select/Radio Buttons Form Element. The <code>value</code> will be the <code>id</code> of the option that Lobbie creates.</li>
+<li><code>remove</code> - List<String> - A list of strings that correspond to the labels for options that Lobbie will remove from the Select/Radio Buttons Form Element. If there exists any <a href="#form-answer">Form Answer</a> equal to the option that will be deleted, Lobbie will <em>not</em> remove the option.</li>
+</ul></li>
+</ul>
+<h2 id='update-single-form-element'>Update Single Form Element</h2>
+<p>Similar to the <a href="#update-many-form-elements">Update Many Form Elements</a> endpoint above, however, with this endpoint you include the <code>id</code> of the Form Element to update in the endpoint route.</p>
+
+<p>Not all attributes of a Form Element can be updated as changing some attributes would require a new version of the <a href="#form-template">Form Template</a> to be issued.</p>
+
+<p>For example, changing a Form Element from not-required to required is not permitted as this would impact Forms that have already been completed by Patients. </p>
+
+<blockquote>
+<p>These commands will update the Form Element with an id of <code>736</code> and of type <code>Select</code> to first and and then remove the options with labels <code>Developer Option</code> and <code>Taco Option</code>.</p>
+
+<p>Additionally, the first request will change the <code>label</code> of the Form Element to <code>Taco Select</code> and the second request will change the label to <code>Developer Select</code>.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/forms/templates/elements/update/736 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'[{ "label": "Taco Select", "options": { "add": ["Developer Option", "Taco Option"] }}]'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update/736 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'[{ "label": "Developer Select", "options": { "remove": ["Developer Option", "Taco Option" ] }}]'</span>
+</code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/templates/elements/update/&lt;form_element_id&gt;</code></p>
+<h3 id='request-body-parameters-2'>Request Body Parameters</h3>
+<ul>
+<li><p><code>label</code> - String - The label of the Form Element that describes what the Form Element is.</p></li>
+<li><p><code>displayLabel</code> - Boolean - Whether or not the label should be displayed on the Form Element.</p></li>
+<li><p><code>sortOrder</code> - Number - Where the Form Element appears on the <a href="#form">Form</a>, lower numbers appear before higher numbers.</p></li>
+<li><p><code>colClass</code> - Number from 1 to 12, inclusive - How much width the Form Element should take up on the Form.</p>
+
+<ul>
+<li>Lobbie uses the <a target="_blank" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap 5 Grid System</a> so this number must be between 1 and 12, with 1 being less width and 12 being the full width of the page.</li>
+<li>Some Form Elements have fixed widths and changing this number will not affect them.</li>
+</ul></li>
+<li><p><code>attribute</code> - String - A <a href="#lobbie-form-attribute">Lobbie Form Attribute</a> to assign to this Form Element in order to structure its data for <a href="#prefill">prefilling</a>.</p>
+
+<ul>
+<li>If you send an Attribute that does not exist Lobbie will create a new one tied to your Lobbie account.</li>
+<li>Only 1 of the same Attribute can be present on a Form Template. If you try to add an Attribute to a 2nd Form Element, Lobbie will return an error.</li>
+<li>To remove an Attribute from a Form Element, send the magic string <code>&lt;delete&gt;</code>, including the <code>&lt;&gt;</code> and Lobbie will irrecoverably remove the Attribute from the Form Element (this will <em>not</em> delete the Attribute itself).</li>
+</ul></li>
+<li><p><code>options</code> - Object - An object containing either or both of <code>add</code> and/or <code>remove</code> keys where:</p>
+
+<ul>
+<li><code>add</code> - List<String> - A list of strings that correspond to the labels for options that Lobbie will add to the Select/Radio Buttons Form Element. The <code>value</code> will be the <code>id</code> of the option that Lobbie creates.</li>
+<li><code>remove</code> - List<String> - A list of strings that correspond to the labels for options that Lobbie will remove from the Select/Radio Buttons Form Element. If there exists any <a href="#form-answer">Form Answer</a> equal to the option that will be deleted, Lobbie will <em>not</em> remove the option.</li>
+</ul></li>
+</ul>
 <h1 id='form-groups-form-packets'>Form Groups / Form Packets</h1><h2 id='get-all-form-groups-packets'>Get All Form Groups/Packets</h2>
 <p>When retrieving a <a href="#form-group">Form Group/Packet</a> you can choose to call either the /groups or /packets endpoint. Both return the same response.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
@@ -1766,7 +1866,7 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets</code></p>
@@ -1839,7 +1939,7 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
@@ -1892,7 +1992,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>There are many ways to structure a request to create a new <a href="#form-group">Form Group/Packet</a>. However, they all rely on the presence of several things:</p>
 
 <ol>
-<li><p>A <code>formTemplateGroupId</code> or a list of <code>formTemplateIds</code> so that Lobbie knows which <a href="#form-template">Form Templates</a> to use.</p></li>
+<li><p>A <code>formTemplateGroupId</code> and/or a list of <code>formTemplateIds</code> so that Lobbie knows which <a href="#form-template">Form Templates</a> to use.</p></li>
 <li><p>A <code>locationId</code> so that Lobbie can assign the <a href="#form-group">Form Group/Packet</a> to the correct location.</p></li>
 <li><p>A <code>dueDateUnix</code>, which Lobbie uses to set the due date of the <a href="#form-group">Form Group/Packet</a>.</p>
 
@@ -1928,13 +2028,13 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h2 id='update-a-form-group-packet'>Update a Form Group/Packet</h2>
-<p>Add or remove Forms from a <a href="#form-group">Form Group/Packet</a> by passing Form Templates, and/or change the due date.</p>
+<p>Add or remove Forms from a <a href="#form-group">Form Group/Packet</a> by passing <a href="#form-template">Form Template</a> ids and/or a <a href="#form-template-group">Form Template Group</a> id, change the due date and/or change the complete/incomplete status of the Form Group/Packet.</p>
 
 <blockquote>
-<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have Forms created from Form Templates 1 and 4.</p>
+<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have Forms created from Form Templates 1 and 4, to have a new due date and to be marked as complete.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
@@ -1942,11 +2042,12 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     <span class="nt">--data</span> <span class="s2">"{
       id: 1,
       formTemplateIds: [1, 4],
-      dueDateUnix: 1690815877454
+      dueDateUnix: 1690815877454,
+      status: 0 # 0 =&gt; FormStatusEnum.COMPLETE
     }"</span>
 </code></pre></div>
 <blockquote>
-<p>The Form Group/Packet with <code>id</code> of 1 is updated to include Forms from Form Templates 1 and 4.</p>
+<p>The Form Group/Packet with <code>id</code> of 1 is updated to include Forms from Form Templates 1 and 4, to have a new due date and to be marked as complete.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -1955,8 +2056,9 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690815877454</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1692028292189</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -1974,7 +2076,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have only have Forms from Form Template 1.</p>
+<p>This command will update the Form Group/Packet with <code>id</code> of 1 to have only have Forms from Form Template 1, to have a new due date and to be marked as incomplete.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups <span class="se">\</span>
@@ -1982,11 +2084,12 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     <span class="nt">--data</span> <span class="s2">"{
       id: 1,
       formTemplateIds: [1],
-      dueDateUnix: 1690815877454
+      dueDateUnix: 1690558706000,
+      status: 1 # 1 =&gt; FormStatusEnum.INCOMPLETE
     }"</span>
 </code></pre></div>
 <blockquote>
-<p>The Form with Form Template 4 is removed:</p>
+<p>The Form with Form Template 4 is removed and the due date is changed:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -1995,7 +2098,8 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690873199000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2017,7 +2121,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
     For example, if you were to pass an <code>formTemplateIds</code> as an empty list, Lobbie would remove all Form Templates from the Form Template Group.
   </div>
 </aside>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
 <h1 id='forms'>Forms</h1>
 <p>The structure of a <a href="#form">Form</a> returned from Lobbie includes <a href="#form-answer">Form Answers</a>.</p>
@@ -2070,7 +2174,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-23'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
@@ -2107,7 +2211,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-24'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
@@ -2141,7 +2245,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
