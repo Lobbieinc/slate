@@ -1790,6 +1790,13 @@ curl -X PUT \
     }"
 ```
 
+<aside class="warning">
+  If you include a value of <b>status: 0</b> in the request body, Lobbie will <i>forcefully</i> complete the Form Group/Packet and all forms within it.
+  <div style="margin-top: 10px; margin-bottom: 10px;">
+  This will trigger a *staff-complete* webhook sent to the endpoint you define in the Lobbie Developer Settings.
+  </div>
+</aside>
+
 > The Form Group/Packet with `id` of 1 is updated to include Forms from Form Templates 1 and 4, to have a new due date and to be marked as complete.
 
 ```json
