@@ -1680,6 +1680,19 @@ curl -X GET \
 
 `GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/<form_packet_id>`
 
+### Query Parameters
+
+- `isIncludeForms` - boolean - Default true. Include details about the Forms in this Form Group/Packet.
+
+- `isIncludeFormTemplates` - boolean - Default true. Include details about the Form Templates associated with Forms in this Form Group/Packet. If this is true then `isIncludeForms` MUST be true or null.
+
+- `isIncludeFormAnswers` - boolean - Default true. Include details about mapped and un-mapped Form Answers associated with Forms in this Form Group/Packet. If this is true then `isIncludeForms` MUST be true or null.
+
+- `isIncludePatient` - boolean - Default true. Include details about the [patient](#get-a-specific-patient) to whom this Form Group/Packet is assigned.
+
+- `isIncludePDF` - boolean - Default true. Include a url to a PDF version of this Form Group/Packet. See [Printing / PDF Generation](#printing-pdf-generation) for more details.
+
+
 ## Create a Form Group/Packet
 
 > This creates a new Patient in Lobbie since there is no "id" passed in the "patient" object.
