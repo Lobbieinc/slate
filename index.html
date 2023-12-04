@@ -1947,6 +1947,14 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
 
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
+<h3 id='query-parameters-11'>Query Parameters</h3>
+<ul>
+<li><p><code>isIncludeForms</code> - boolean - Default true. Include details about the Forms in this Form Group/Packet.</p></li>
+<li><p><code>isIncludeFormTemplates</code> - boolean - Default true. Include details about the Form Templates associated with Forms in this Form Group/Packet. If this is true then <code>isIncludeForms</code> MUST be true or null.</p></li>
+<li><p><code>isIncludeFormAnswers</code> - boolean - Default true. Include details about mapped and un-mapped Form Answers associated with Forms in this Form Group/Packet. If this is true then <code>isIncludeForms</code> MUST be true or null.</p></li>
+<li><p><code>isIncludePatient</code> - boolean - Default true. Include details about the <a href="#get-a-specific-patient">patient</a> to whom this Form Group/Packet is assigned.</p></li>
+<li><p><code>isIncludePDF</code> - boolean - Default true. Include a url to a PDF version of this Form Group/Packet. See <a href="#printing-pdf-generation">Printing / PDF Generation</a> for more details.</p></li>
+</ul>
 <h2 id='create-a-form-group-packet'>Create a Form Group/Packet</h2>
 <blockquote>
 <p>This creates a new Patient in Lobbie since there is no &quot;id&quot; passed in the &quot;patient&quot; object.</p>
