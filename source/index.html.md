@@ -1942,7 +1942,7 @@ curl -X GET \
     "answers": {
       "1765": "vlad",
       "1766": "tester",
-      "1767": "testrull0000@gmail.com",
+      "1767": "taco@lobbie.com",
       "1769": "235123513",
       "1770": "1324641234",
       "1771": "1235612345",
@@ -2040,7 +2040,7 @@ curl -X GET \
       "mapped": {
         "first_name": "vlad",
         "last_name": "tester",
-        "email": "testrull0000@gmail.com",
+        "email": "taco@lobbie.com",
         "social_security_number": "235123513",
         "home_phone": "1324641234",
         "mobile_phone": "1235612345",
@@ -2129,7 +2129,7 @@ curl -X GET \
       "labeled": {
         "First Name": "vlad",
         "Last Name": "tester",
-        "Email": "testrull0000@gmail.com",
+        "Email": "taco@lobbie.com",
         "Social Security Number": "235123513",
         "Home Phone": "1324641234",
         "Mobile Phone": "1235612345",
