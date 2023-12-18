@@ -2485,17 +2485,60 @@ In the future, Lobbie is planning on adding parameters to optionally return mapp
       locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Same request as above, but the endpoint has changed.
+<code>shell
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H &quot;Authorization: Bearer $LOBBIE_ACCESS_TOKEN&quot; \
+    --data &quot;{ \
+      formTemplateId: 1, \
+      locationId: 1, \
+      isPatient: true
+    }&quot;
+</code></p>
+
+<p>The request body MUST include only one of formTemplateId, formTemplateGroupId, formId, formGroupId or formGroupIds. For example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
-      formTemplateId: 1, </span><span class="se">\</span><span class="s2">
+      formId: 1, </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
+
+curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formTemplateGroupId: 1, </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
+
+curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formGroupId: 1, </span><span class="se">\</span><span class="s2">
+      locationId: 1, </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
+
+curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formGroupIds: [1, 2], </span><span class="se">\</span><span class="s2">
       locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above commands returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2508,6 +2551,21 @@ In the future, Lobbie is planning on adding parameters to optionally return mapp
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
+<h3 id='request-body-parameters-3'>Request Body Parameters</h3>
+<ul>
+<li><p><code>locationId</code> - The ID of the <a href="#location">Location</a> that should store the PDF.</p></li>
+<li><p><code>isPatient</code> - If true, the PDF will not include Staff-only fields.</p></li>
+</ul>
+
+<p><strong>One of:</strong></p>
+
+<ul>
+<li><p><code>formId</code> </p></li>
+<li><p><code>formTemplateId</code> </p></li>
+<li><p><code>formTemplateGroupId</code> </p></li>
+<li><p><code>formGroupId</code> </p></li>
+<li><p><code>formGroupIds</code> </p></li>
+</ul>
 <h2 id='retrieving-a-pdf'>Retrieving a PDF</h2>
 <p>Call this endpoint after sending a POST request to either the /print or /pdf endpoints, passing the <code>s3ObjectPath</code> returned from the respective API call.</p>
 
@@ -2539,9 +2597,9 @@ In the future, Lobbie is planning on adding parameters to optionally return mapp
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
-<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
-<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
 <h1 id='enums'>Enums</h1><h2 id='formstatusenum'>FormStatusEnum</h2>
 <p>Used in:</p>
 
