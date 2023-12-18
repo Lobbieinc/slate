@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -eu
-
 set -o errexit #abort if any command fails
 me=$(basename "$0")
 
