@@ -2242,7 +2242,7 @@ When creating a PDF of a [Form](#form), [Form Group/Packet](#form-group), [Form 
 
 One of these endpoints must be called before a PDF can be retrieved.
 
-NOTE: Forms and Form Groups/Packets do NOT need to be completed in order to be printed.
+NOTE: Forms and Form Groups/Packets do NOT need to be completed in order to be printed. This endpoint can be called at any time.
 
 <aside class="notice">
     Setting <code>isPatient</code> in the request body to <code>false</code> will generate a PDF with Staff-only fields displayed. Defaults to <code>true</code>.
