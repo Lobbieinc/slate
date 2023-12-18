@@ -1901,11 +1901,23 @@ curl -X PUT \
 
 The structure of a [Form](#form) returned from Lobbie includes [Form Answers](#form-answer).
 
-Form Answers can be found under the key `data.answers`. Answers that are mapped to structured fields using [Lobbie Form Attribute](#lobbie-form-attribute) can be found at the `data.answers.mapped` key.
+Form Answers can be found under the key `data.answers` where each key/value pair is equal to `<form_answer_id>` / `<form_answer_value>`.
 
-The structure of a key for a Form Answer is as follows: `fe:{form_id}:{form_element_id}`. The key tells us that the Form Answer belongs on the Form associated with `{form_id}`, which itself is associated with a Patient, and that the "question" the Patient answered is represented by the [Form Element](#form-element) retrived from `{form_element_id}`.
+Answers that are mapped to structured fields using [Lobbie Form Attribute](#lobbie-form-attribute) can be found at the `data.answers.mapped` key.
+    
+    * If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **attribute**, it will not be included in these results.
+    
+    * If more than one Form Element exists with the same **attribute** mapping in the Form, then the attribute/key will be suffixed with an index.
 
-For example, looking at the response to the [Get a Specific Form request](#get-a-specific-form) below, the key 1 means that the Patient has answered "Taco" on their Form with an ID of 8 to the Form Element of ID 1.
+Answers that are mapped by the label of the [Form Element](#form-element) to the answer value can be found at the `data.answers.labeled` key.
+
+    * If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **label**, it will not be included in these results.
+    
+    * If more than one Form Element exists with the same **label** in the Form, then the label/key will be suffixed with an index.
+
+<aside class="notice">
+In the future, Lobbie is planning on adding parameters to optionally return mapped, labeled and the form answers by id that are currently included in the response data in order to decrease the overhead of json serialization/deserialization.
+</aside>
 
 ## Get a Specific Form
 
@@ -1919,44 +1931,302 @@ curl -X GET \
 
 ```json
 {
-    "success": true,
-    "message": "",
-    "data": {
-        "locked": false,
-        "id": 8,
-        "isActive": true,
-        "createdOnUnix": 1689349105000,
-        "completedOnUnix": 1690563654000,
-        "answers": {
-            1: "Taco",
-            2: "",
-            3: "Nacho",
-            4: "07/28/2023",
-            5: "taco@lobbie.com",
-            6: "3108675309",
-            7: "Yes",
-            8: "Lobbie",
-            9: "1234567890",
-            10: "123",
-            11: "4108675309",
-            12: "true",
-            14: "false",
-            19: "false",
-            16: "true",
-            20: {
-                label: "Option 1",
-                value: 20
-            },
-            "mapped": {
-                "first_name": "Taco",
-                "middle_name": "",
-                "last_name": "Nacho",
-                "date_of_birth": "07/28/2023",
-                "email": "taco@lobbie.com",
-                "mobile_phone": "3108675309"
-            }
-        }
+  "success": true,
+  "message": "Form with mapped and unmapped answers.",
+  "data": {
+    "id": 328,
+    "isActive": true,
+    "createdOnUnix": 1702656769000,
+    "formTemplateId": 15,
+    "version": 10,
+    "answers": {
+      "1765": "vlad",
+      "1766": "tester",
+      "1767": "testrull0000@gmail.com",
+      "1769": "235123513",
+      "1770": "1324641234",
+      "1771": "1235612345",
+      "1772": "3215132532",
+      "1773": {
+        "label": "Latino/a",
+        "value": "7514",
+        "weightedValue": 10
+      },
+      "1774": {
+        "label": "Black/African American",
+        "value": "7520",
+        "weightedValue": 10
+      },
+      "1775": "sdgadsg",
+      "1776": {
+        "label": "French",
+        "value": "7537",
+        "weightedValue": 20
+      },
+      "1777": {
+        "label": "Spanish",
+        "value": "7762",
+        "weightedValue": 10
+      },
+      "1778": {
+        "label": "Homeless",
+        "value": "7982",
+        "weightedValue": 10
+      },
+      "1779": {
+        "label": "Seasonal",
+        "value": "7992",
+        "weightedValue": 10
+      },
+      "1780": {
+        "label": "Female",
+        "value": "7994",
+        "weightedValue": 0
+      },
+      "1781": {
+        "label": "Female",
+        "value": "8003",
+        "weightedValue": 0
+      },
+      "1782": {
+        "label": "Male",
+        "value": "8008",
+        "weightedValue": 10
+      },
+      "1783": {
+        "label": "Bisexual",
+        "value": "8015",
+        "weightedValue": 10
+      },
+      "1784": {
+        "label": "Burn",
+        "value": "8024",
+        "weightedValue": 0
+      },
+      "1785": "dgasd",
+      "1786": "adsgads",
+      "1787": {
+        "label": "Grandparent",
+        "value": "8051",
+        "weightedValue": 20
+      },
+      "1788": "3426234634",
+      "1789": "234623462",
+      "1790": "3165234623",
+      "1791": "gadsgadsg",
+      "1792": "dbbafds",
+      "1793": {
+        "label": "Grandparent",
+        "value": "8098",
+        "weightedValue": 20
+      },
+      "1794": "25534",
+      "1795": "3462432346",
+      "1796": "2346234623",
+      "1797": "1 E Baltimore St",
+      "1799": "33",
+      "1800": "Baltimore",
+      "1801": "21202",
+      "1802": "no",
+      "1803": "dsgasdg",
+      "1804": "",
+      "1818": {
+        "label": "2",
+        "value": "8150",
+        "weightedValue": 2
+      },
+      "1819": "11/12/1999",
+      "1820": "12/15/2023",
+      "mapped": {
+        "first_name": "vlad",
+        "last_name": "tester",
+        "email": "testrull0000@gmail.com",
+        "social_security_number": "235123513",
+        "home_phone": "1324641234",
+        "mobile_phone": "1235612345",
+        "work_phone": "3215132532",
+        "ethnic_group": {
+          "label": "Latino/a",
+          "value": "7514",
+          "weightedValue": 10
+        },
+        "race": {
+          "label": "Black/African American",
+          "value": "7520",
+          "weightedValue": 10
+        },
+        "race_2": "sdgadsg",
+        "primary_language": {
+          "label": "French",
+          "value": "7537",
+          "weightedValue": 20
+        },
+        "secondary_language": {
+          "label": "Spanish",
+          "value": "7762",
+          "weightedValue": 10
+        },
+        "housing_status": {
+          "label": "Homeless",
+          "value": "7982",
+          "weightedValue": 10
+        },
+        "migrant_status": {
+          "label": "Seasonal",
+          "value": "7992",
+          "weightedValue": 10
+        },
+        "gender": {
+          "label": "Female",
+          "value": "7994",
+          "weightedValue": 0
+        },
+        "legal_sex": {
+          "label": "Female",
+          "value": "8003",
+          "weightedValue": 0
+        },
+        "sex_assigned_at_birth": {
+          "label": "Male",
+          "value": "8008",
+          "weightedValue": 10
+        },
+        "sexual_orientation": {
+          "label": "Bisexual",
+          "value": "8015",
+          "weightedValue": 10
+        },
+        "service_name": {
+          "label": "Burn",
+          "value": "8024",
+          "weightedValue": 0
+        },
+        "parent_legal_guardian_first_name": "dgasd",
+        "parent_legal_guardian_last_name": "adsgads",
+        "parent_legal_guardian_relationship": {
+          "label": "Grandparent",
+          "value": "8051",
+          "weightedValue": 20
+        },
+        "parent_legal_guardian_home_phone": "234623462",
+        "parent_legal_guardian_work_phone": "3165234623",
+        "parent_legal_guardian_first_name_2": "gadsgadsg",
+        "parent_legal_guardian_last_name_2": "dbbafds",
+        "parent_legal_guardian_relationship_2": {
+          "label": "Grandparent",
+          "value": "8098",
+          "weightedValue": 20
+        },
+        "parent_legal_guardian_home_phone_2": "3462432346",
+        "parent_legal_guardian_work_phone_2": "2346234623",
+        "address1": "1 E Baltimore St",
+        "state": "State",
+        "city": "Baltimore",
+        "postal_code": "21202",
+        "insurance_name": "dsgasdg",
+        "insurance_id": ""
+      },
+      "labeled": {
+        "First Name": "vlad",
+        "Last Name": "tester",
+        "Email": "testrull0000@gmail.com",
+        "Social Security Number": "235123513",
+        "Home Phone": "1324641234",
+        "Mobile Phone": "1235612345",
+        "Work Phone": "3215132532",
+        "Ethnic Group": {
+          "label": "Latino/a",
+          "value": "7514",
+          "weightedValue": 10
+        },
+        "Race": {
+          "label": "Black/African American",
+          "value": "7520",
+          "weightedValue": 10
+        },
+        "Other Race": "sdgadsg",
+        "Primary Language": {
+          "label": "French",
+          "value": "7537",
+          "weightedValue": 20
+        },
+        "Secondary Language": {
+          "label": "Spanish",
+          "value": "7762",
+          "weightedValue": 10
+        },
+        "Housing Status": {
+          "label": "Homeless",
+          "value": "7982",
+          "weightedValue": 10
+        },
+        "Migrant Status": {
+          "label": "Seasonal",
+          "value": "7992",
+          "weightedValue": 10
+        },
+        "Gender Identity": {
+          "label": "Female",
+          "value": "7994",
+          "weightedValue": 0
+        },
+        "Legal Sex": {
+          "label": "Female",
+          "value": "8003",
+          "weightedValue": 0
+        },
+        "Sex Assigned at Birth": {
+          "label": "Male",
+          "value": "8008",
+          "weightedValue": 10
+        },
+        "Sexual Orientation": {
+          "label": "Bisexual",
+          "value": "8015",
+          "weightedValue": 10
+        },
+        "Hospital Service": {
+          "label": "Burn",
+          "value": "8024",
+          "weightedValue": 0
+        },
+        "Parent 1 Parent/Legal Guardian First Name": "dgasd",
+        "Parent 1 Parent/Legal Guardian Last Name": "adsgads",
+        "Parent 1 Relationship to Patient": {
+          "label": "Grandparent",
+          "value": "8051",
+          "weightedValue": 20
+        },
+        "Parent 1 Home Phone Number": "3426234634",
+        "Parent 1 Mobile Phone Number": "234623462",
+        "Parent 1 Work Phone Number": "3165234623",
+        "Parent 2 Parent/Legal Guardian First Name 2": "gadsgadsg",
+        "Parent 2 Parent/Legal Guardian Last Name 2": "dbbafds",
+        "Parent 2 Relationship to Patient 2": {
+          "label": "Grandparent",
+          "value": "8098",
+          "weightedValue": 20
+        },
+        "Parent 2 Home Phone Number": "25534",
+        "Parent 2 Mobile Phone Number": "3462432346",
+        "Parent 2 Work Phone Number": "2346234623",
+        "Address 1": "1 E Baltimore St",
+        "State": "State",
+        "City": "Baltimore",
+        "Zip Code": "21202",
+        "Do you have insurance?": "no",
+        "Insurance 1 Insurance Name 1": "dsgasdg",
+        "Insurance 1 ID #": "",
+        "Hours": {
+          "label": "2",
+          "value": "8150",
+          "weightedValue": 2
+        },
+        "Dates Worked": "11/12/1999",
+        "Test test": "12/15/2023"
+      }
     }
+  }
 }
 ```
 
