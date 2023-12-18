@@ -2256,7 +2256,7 @@ curl -X POST \
       isPatient: true
     }"
 ```
-
+> Same request as above, but the endpoint has changed.
 ```shell
 curl -X POST \
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
@@ -2268,7 +2268,47 @@ curl -X POST \
     }"
 ```
 
-> The above command returns JSON structured like this:
+> The request body MUST include only one of formTemplateId, formTemplateGroupId, formId, formGroupId or formGroupIds. For example:
+
+```shell
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{ \
+      formId: 1, \
+      locationId: 1, \
+      isPatient: true
+    }"
+
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{ \
+      formTemplateGroupId: 1, \
+      locationId: 1, \
+      isPatient: true
+    }"
+
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{ \
+      formGroupId: 1, \
+      locationId: 1, \
+      isPatient: true
+    }"
+
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{ \
+      formGroupIds: [1, 2], \
+      locationId: 1, \
+      isPatient: true
+    }"
+```
+
+> The above commands returns JSON structured like this:
 
 ```json
 {
@@ -2285,6 +2325,24 @@ curl -X POST \
 `POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create`
 
 `POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create`
+
+### Request Body Parameters
+
+-   `locationId` - The ID of the [Location](#location) that should store the PDF.
+
+-   `isPatient` - If true, the PDF will not include Staff-only fields.
+
+**One of:**
+
+- `formId` 
+
+- `formTemplateId` 
+
+- `formTemplateGroupId` 
+
+- `formGroupId` 
+
+- `formGroupIds` 
 
 ## Retrieving a PDF
 
@@ -2325,9 +2383,9 @@ curl -X POST \
 
 ### HTTP Request
 
-`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve`
 
-`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve`
 
 # Enums
 
