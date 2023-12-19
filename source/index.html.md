@@ -1696,6 +1696,10 @@ curl -X GET \
 
 -   `isIncludeLabeledFormAnswers` - If true, the response data will include a key, `labeled` located at `data.answers.labeled` which is map of key/value pairs where they keys are the labels of [Form Elements](#form-element) mapped to values of [Form Answers](#form-answer). Defaults to `false`.
 
+<aside class="warning">
+Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
+</aside>
+
 
 ## Create a Form Group/Packet
 
@@ -2243,6 +2247,10 @@ curl -X GET \
 -   `isIncludeMappedFormAnswers` - If true, the response data will include a key, `mapped` located at `data.answers.mapped` which is map of key/value pairs where they keys are the [Lobbie Form Attributes](#lobbie-form-attribute) mapped to values of [Form Answers](#form-answer). Defaults to `true`.
 
 -   `isIncludeLabeledFormAnswers` - If true, the response data will include a key, `labeled` located at `data.answers.labeled` which is map of key/value pairs where they keys are the labels of [Form Elements](#form-element) mapped to values of [Form Answers](#form-answer). Defaults to `false`.
+
+<aside class="warning">
+Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
+</aside>
 
 
 # Printing / PDF Generation
