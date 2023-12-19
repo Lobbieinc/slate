@@ -1957,6 +1957,10 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
 <li><p><code>isIncludeMappedFormAnswers</code> - If true, the response data will include a key, <code>mapped</code> located at <code>data.answers.mapped</code> which is map of key/value pairs where they keys are the <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>true</code>.</p></li>
 <li><p><code>isIncludeLabeledFormAnswers</code> - If true, the response data will include a key, <code>labeled</code> located at <code>data.answers.labeled</code> which is map of key/value pairs where they keys are the labels of <a href="#form-element">Form Elements</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>false</code>.</p></li>
 </ul>
+
+<aside class="warning">
+Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
+</aside>
 <h2 id='create-a-form-group-packet'>Create a Form Group/Packet</h2>
 <blockquote>
 <p>This creates a new Patient in Lobbie since there is no &quot;id&quot; passed in the &quot;patient&quot; object.</p>
@@ -2476,6 +2480,10 @@ Check the query params section below for more information about retrieving mappe
 <li><p><code>isIncludeMappedFormAnswers</code> - If true, the response data will include a key, <code>mapped</code> located at <code>data.answers.mapped</code> which is map of key/value pairs where they keys are the <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>true</code>.</p></li>
 <li><p><code>isIncludeLabeledFormAnswers</code> - If true, the response data will include a key, <code>labeled</code> located at <code>data.answers.labeled</code> which is map of key/value pairs where they keys are the labels of <a href="#form-element">Form Elements</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>false</code>.</p></li>
 </ul>
+
+<aside class="warning">
+Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
+</aside>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
 
