@@ -1657,7 +1657,7 @@ curl -X GET \
                     19: "false",
                     20: {
                         "label": "Option 1",
-                        value: 20
+                        "value": 20
                     },
                     "mapped": {
                         "first_name": "Taco",
@@ -1676,9 +1676,9 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/<form_group_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/<form_group_id>?isIncludeForms=true&isIncludeFormTemplates=true&isIncludePatient=true&isIncludeFormAnswers=true&isIncludeMappedFormAnswers=true&isIncludePDF=true&isIncludeLabeledFormAnswers=false`
 
-`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/<form_packet_id>`
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/<form_packet_id>?isIncludeForms=true&isIncludeFormTemplates=true&isIncludePatient=true&isIncludeFormAnswers=true&isIncludeMappedFormAnswers=true&isIncludePDF=true&isIncludeLabeledFormAnswers=false`
 
 ### Query Parameters
 
@@ -1691,6 +1691,10 @@ curl -X GET \
 - `isIncludePatient` - boolean - Default true. Include details about the [patient](#get-a-specific-patient) to whom this Form Group/Packet is assigned.
 
 - `isIncludePDF` - boolean - Default true. Include a url to a PDF version of this Form Group/Packet. See [Printing / PDF Generation](#printing-pdf-generation) for more details.
+
+-   `isIncludeMappedFormAnswers` - If true, the response data will include a key, `mapped` located at `data.answers.mapped` which is map of key/value pairs where they keys are the [Lobbie Form Attributes](#lobbie-form-attribute) mapped to values of [Form Answers](#form-answer). Defaults to `true`.
+
+-   `isIncludeLabeledFormAnswers` - If true, the response data will include a key, `labeled` located at `data.answers.labeled` which is map of key/value pairs where they keys are the labels of [Form Elements](#form-element) mapped to values of [Form Answers](#form-answer). Defaults to `false`.
 
 
 ## Create a Form Group/Packet
@@ -1916,7 +1920,7 @@ Answers that are mapped by the label of the [Form Element](#form-element) to the
     * If more than one Form Element exists with the same **label** in the Form, then the label/key will be suffixed with an index.
 
 <aside class="notice">
-In the future, Lobbie is planning on adding parameters to optionally return mapped, labeled and the form answers by id that are currently included in the response data in order to decrease the overhead of json serialization/deserialization.
+Check the query params section below for more information about retrieving mapped and labeled form answers for a form.
 </aside>
 
 ## Get a Specific Form
@@ -2233,6 +2237,13 @@ curl -X GET \
 ### HTTP Request
 
 `GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/<form_id>`
+
+### Request Query String Parameters
+
+-   `isIncludeMappedFormAnswers` - If true, the response data will include a key, `mapped` located at `data.answers.mapped` which is map of key/value pairs where they keys are the [Lobbie Form Attributes](#lobbie-form-attribute) mapped to values of [Form Answers](#form-answer). Defaults to `true`.
+
+-   `isIncludeLabeledFormAnswers` - If true, the response data will include a key, `labeled` located at `data.answers.labeled` which is map of key/value pairs where they keys are the labels of [Form Elements](#form-element) mapped to values of [Form Answers](#form-answer). Defaults to `false`.
+
 
 # Printing / PDF Generation
 
