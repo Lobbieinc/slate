@@ -2155,15 +2155,17 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 
 <p>Answers that are mapped to structured fields using <a href="#lobbie-form-attribute">Lobbie Form Attribute</a> can be found at the <code>data.answers.mapped</code> key.</p>
 
-<p>* If the <a href="#form-element">Form Element</a> behind a <a href="#form-answer">Form Answer</a> has no <strong>attribute</strong>, it will not be included in these results.</p>
-
-<p>* If more than one Form Element exists with the same <strong>attribute</strong> mapping in the Form, then the attribute/key will be suffixed with an index.</p>
+<ul>
+<li><p>If the <a href="#form-element">Form Element</a> behind a <a href="#form-answer">Form Answer</a> has no <strong>attribute</strong>, it will not be included in these results.</p></li>
+<li><p>If more than one Form Element exists with the same <strong>attribute</strong> mapping in the Form, then the attribute/key will be suffixed with an index.</p></li>
+</ul>
 
 <p>Answers that are mapped by the label of the <a href="#form-element">Form Element</a> to the answer value can be found at the <code>data.answers.labeled</code> key.</p>
 
-<p>* If the <a href="#form-element">Form Element</a> behind a <a href="#form-answer">Form Answer</a> has no <strong>label</strong>, it will not be included in these results.</p>
-
-<p>* If more than one Form Element exists with the same <strong>label</strong> in the Form, then the label/key will be suffixed with an index.</p>
+<ul>
+<li><p>If the <a href="#form-element">Form Element</a> behind a <a href="#form-answer">Form Answer</a> has no <strong>label</strong>, it will not be included in these results.</p></li>
+<li><p>If more than one Form Element exists with the same <strong>label</strong> in the Form, then the label/key will be suffixed with an index.</p></li>
+</ul>
 
 <aside class="notice">
 Check the query params section below for more information about retrieving mapped and labeled form answers for a form.
