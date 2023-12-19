@@ -1928,7 +1928,7 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
                     </span><span class="mi">19</span><span class="err">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
                     </span><span class="mi">20</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                         </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w">
-                        </span><span class="err">value:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+                        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
                     </span><span class="p">},</span><span class="w">
                     </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                         </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
@@ -1944,9 +1944,9 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/&lt;form_group_id&gt;?isIncludeForms=true&amp;isIncludeFormTemplates=true&amp;isIncludePatient=true&amp;isIncludeFormAnswers=true&amp;isIncludeMappedFormAnswers=true&amp;isIncludePDF=true&amp;isIncludeLabeledFormAnswers=false</code></p>
 
-<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;</code></p>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/&lt;form_packet_id&gt;?isIncludeForms=true&amp;isIncludeFormTemplates=true&amp;isIncludePatient=true&amp;isIncludeFormAnswers=true&amp;isIncludeMappedFormAnswers=true&amp;isIncludePDF=true&amp;isIncludeLabeledFormAnswers=false</code></p>
 <h3 id='query-parameters-11'>Query Parameters</h3>
 <ul>
 <li><p><code>isIncludeForms</code> - boolean - Default true. Include details about the Forms in this Form Group/Packet.</p></li>
@@ -1954,6 +1954,8 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
 <li><p><code>isIncludeFormAnswers</code> - boolean - Default true. Include details about mapped and un-mapped Form Answers associated with Forms in this Form Group/Packet. If this is true then <code>isIncludeForms</code> MUST be true or null.</p></li>
 <li><p><code>isIncludePatient</code> - boolean - Default true. Include details about the <a href="#get-a-specific-patient">patient</a> to whom this Form Group/Packet is assigned.</p></li>
 <li><p><code>isIncludePDF</code> - boolean - Default true. Include a url to a PDF version of this Form Group/Packet. See <a href="#printing-pdf-generation">Printing / PDF Generation</a> for more details.</p></li>
+<li><p><code>isIncludeMappedFormAnswers</code> - If true, the response data will include a key, <code>mapped</code> located at <code>data.answers.mapped</code> which is map of key/value pairs where they keys are the <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>true</code>.</p></li>
+<li><p><code>isIncludeLabeledFormAnswers</code> - If true, the response data will include a key, <code>labeled</code> located at <code>data.answers.labeled</code> which is map of key/value pairs where they keys are the labels of <a href="#form-element">Form Elements</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>false</code>.</p></li>
 </ul>
 <h2 id='create-a-form-group-packet'>Create a Form Group/Packet</h2>
 <blockquote>
@@ -2160,7 +2162,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 <p>* If more than one Form Element exists with the same <strong>label</strong> in the Form, then the label/key will be suffixed with an index.</p>
 
 <aside class="notice">
-In the future, Lobbie is planning on adding parameters to optionally return mapped, labeled and the form answers by id that are currently included in the response data in order to decrease the overhead of json serialization/deserialization.
+Check the query params section below for more information about retrieving mapped and labeled form answers for a form.
 </aside>
 <h2 id='get-a-specific-form'>Get a Specific Form</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt; <span class="se">\</span>
@@ -2469,6 +2471,11 @@ In the future, Lobbie is planning on adding parameters to optionally return mapp
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
+<h3 id='request-query-string-parameters'>Request Query String Parameters</h3>
+<ul>
+<li><p><code>isIncludeMappedFormAnswers</code> - If true, the response data will include a key, <code>mapped</code> located at <code>data.answers.mapped</code> which is map of key/value pairs where they keys are the <a href="#lobbie-form-attribute">Lobbie Form Attributes</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>true</code>.</p></li>
+<li><p><code>isIncludeLabeledFormAnswers</code> - If true, the response data will include a key, <code>labeled</code> located at <code>data.answers.labeled</code> which is map of key/value pairs where they keys are the labels of <a href="#form-element">Form Elements</a> mapped to values of <a href="#form-answer">Form Answers</a>. Defaults to <code>false</code>.</p></li>
+</ul>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
 
