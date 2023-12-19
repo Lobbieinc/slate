@@ -2254,7 +2254,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formTemplateId: 1, \
-      locationId: 1, \
       isPatient: true
     }"
 ```
@@ -2265,7 +2264,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formTemplateId: 1, \
-      locationId: 1, \
       isPatient: true
     }"
 ```
@@ -2278,7 +2276,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formId: 1, \
-      locationId: 1, \
       isPatient: true
     }"
 
@@ -2287,7 +2284,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formTemplateGroupId: 1, \
-      locationId: 1, \
       isPatient: true
     }"
 
@@ -2296,7 +2292,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formGroupId: 1, \
-      locationId: 1, \
       isPatient: true
     }"
 
@@ -2305,7 +2300,6 @@ curl -X POST \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data "{ \
       formGroupIds: [1, 2], \
-      locationId: 1, \
       isPatient: true
     }"
 ```
@@ -2330,9 +2324,7 @@ curl -X POST \
 
 ### Request Body Parameters
 
--   `locationId` - The ID of the [Location](#location) that should store the PDF.
-
--   `isPatient` - If true, the PDF will not include Staff-only fields.
+-   `isPatient` - If true, the PDF will not include Staff-only fields. Defaults to `true`.
 
 **One of:**
 
