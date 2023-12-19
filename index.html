@@ -2484,7 +2484,6 @@ In the future, Lobbie is planning on adding parameters to optionally return mapp
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
       formTemplateId: 1, </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 </code></pre></div>
@@ -2496,7 +2495,6 @@ curl -X POST \
     -H &quot;Authorization: Bearer $LOBBIE_ACCESS_TOKEN&quot; \
     --data &quot;{ \
       formTemplateId: 1, \
-      locationId: 1, \
       isPatient: true
     }&quot;
 </code></p>
@@ -2508,7 +2506,6 @@ curl -X POST \
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
       formId: 1, </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 
@@ -2517,7 +2514,6 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
       formTemplateGroupId: 1, </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 
@@ -2526,7 +2522,6 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
       formGroupId: 1, </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 
@@ -2535,7 +2530,6 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
       formGroupIds: [1, 2], </span><span class="se">\</span><span class="s2">
-      locationId: 1, </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
 </code></pre></div>
@@ -2555,8 +2549,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
 <h3 id='request-body-parameters-3'>Request Body Parameters</h3>
 <ul>
-<li><p><code>locationId</code> - The ID of the <a href="#location">Location</a> that should store the PDF.</p></li>
-<li><p><code>isPatient</code> - If true, the PDF will not include Staff-only fields.</p></li>
+<li>  <code>isPatient</code> - If true, the PDF will not include Staff-only fields. Defaults to <code>true</code>.</li>
 </ul>
 
 <p><strong>One of:</strong></p>
