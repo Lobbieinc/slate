@@ -1913,15 +1913,15 @@ Form Answers can be found under the key `data.answers` where each key/value pair
 
 Answers that are mapped to structured fields using [Lobbie Form Attribute](#lobbie-form-attribute) can be found at the `data.answers.mapped` key.
     
-    * If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **attribute**, it will not be included in these results.
+* If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **attribute**, it will not be included in these results.
     
-    * If more than one Form Element exists with the same **attribute** mapping in the Form, then the attribute/key will be suffixed with an index.
+* If more than one Form Element exists with the same **attribute** mapping in the Form, then the attribute/key will be suffixed with an index.
 
 Answers that are mapped by the label of the [Form Element](#form-element) to the answer value can be found at the `data.answers.labeled` key.
 
-    * If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **label**, it will not be included in these results.
+* If the [Form Element](#form-element) behind a [Form Answer](#form-answer) has no **label**, it will not be included in these results.
     
-    * If more than one Form Element exists with the same **label** in the Form, then the label/key will be suffixed with an index.
+* If more than one Form Element exists with the same **label** in the Form, then the label/key will be suffixed with an index.
 
 <aside class="notice">
 Check the query params section below for more information about retrieving mapped and labeled form answers for a form.
