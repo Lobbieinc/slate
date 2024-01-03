@@ -2321,6 +2321,15 @@ curl -X POST \
       formGroupIds: [1, 2], \
       isPatient: true
     }"
+
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{ \
+      formGroupId: [1], \
+      formTemplateId: 1 \
+      isPatient: true
+    }"
 ```
 
 > The above commands returns JSON structured like this:
@@ -2355,7 +2364,9 @@ curl -X POST \
 
 - `formGroupId` 
 
-- `formGroupIds` 
+- `formGroupIds`
+
+- `formGroupId` AND `formTemplateId` -> This prints a [Form](#form)
 
 ## Retrieving a PDF
 
