@@ -2549,6 +2549,15 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
       formGroupIds: [1, 2], </span><span class="se">\</span><span class="s2">
       isPatient: true
     }"</span>
+
+curl <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{ </span><span class="se">\</span><span class="s2">
+      formGroupId: [1], </span><span class="se">\</span><span class="s2">
+      formTemplateId: 1 </span><span class="se">\</span><span class="s2">
+      isPatient: true
+    }"</span>
 </code></pre></div>
 <blockquote>
 <p>The above commands returns JSON structured like this:</p>
@@ -2576,7 +2585,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <li><p><code>formTemplateId</code> </p></li>
 <li><p><code>formTemplateGroupId</code> </p></li>
 <li><p><code>formGroupId</code> </p></li>
-<li><p><code>formGroupIds</code> </p></li>
+<li><p><code>formGroupIds</code></p></li>
+<li><p><code>formGroupId</code> AND <code>formTemplateId</code> -&gt; This prints a <a href="#form">Form</a></p></li>
 </ul>
 <h2 id='retrieving-a-pdf'>Retrieving a PDF</h2>
 <p>Call this endpoint after sending a POST request to either the /print or /pdf endpoints, passing the <code>s3ObjectPath</code> returned from the respective API call.</p>
