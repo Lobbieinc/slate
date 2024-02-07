@@ -497,13 +497,13 @@
             <a href="#deleting-destroying-data-in-lobbie" class="toc-h1 toc-link" data-title="Deleting/Destroying Data in Lobbie">Deleting/Destroying Data in Lobbie</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#deleting-destroying-a-patient" class="toc-h2 toc-link" data-title="Deleting/Destroying a Patient">Deleting/Destroying a <a href="#patients">Patient</a></a>
+                    <a href="#deleting-destroying-a-patient" class="toc-h2 toc-link" data-title="Deleting/Destroying a Patient">Deleting/Destroying a Patient</a>
                   </li>
                   <li>
-                    <a href="#deleting-destroying-a-form-group-packet" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form Group/Packet">Deleting/Destroying a <a href="#form-group">Form Group/Packet</a></a>
+                    <a href="#deleting-destroying-a-form-group-packet" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form Group/Packet">Deleting/Destroying a Form Group/Packet</a>
                   </li>
                   <li>
-                    <a href="#deleting-destroying-a-form" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form">Deleting/Destroying a <a href="#form">Form</a></a>
+                    <a href="#deleting-destroying-a-form" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form">Deleting/Destroying a Form</a>
                   </li>
               </ul>
           </li>
@@ -2640,8 +2640,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <aside class="warning">
   The following endpoints are DESTRUCTIVE. Lobbie will ***NOT*** be able to recover data for you if you choose to invoke them.
 </aside>
-<h2 id='deleting-destroying-a-patient'>Deleting/Destroying a <a href="#patients">Patient</a></h2>
-<p>This endpoint will delete Patient for the given <code>id</code>. An optional <code>force</code> argument can be provided to force Lobbie to destroy all records associated with the Patient.</p>
+<h2 id='deleting-destroying-a-patient'>Deleting/Destroying a Patient</h2>
+<p>This endpoint will delete <a href="#patients">Patient</a> for the given <code>id</code>. An optional <code>force</code> argument can be provided to force Lobbie to destroy all records associated with the Patient.</p>
 
 <p>If you choose to not pass the <code>force</code> argument, or set <code>force</code> as <code>false</code>, Lobbie will return an error if any associations are detected. Default false.</p>
 
@@ -2806,8 +2806,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <li><p><code>force</code> - Optional. Default false. If true will destroy all other entities related to the Patient, with the exception of child and parent Patients.</p></li>
 <li><p><code>isDestroyRelationships</code> - Optional. Default false. If true, when paired with <code>force=true</code>, will destroy all child and parent Patients related to the Patient being destroyed.</p></li>
 </ul>
-<h2 id='deleting-destroying-a-form-group-packet'>Deleting/Destroying a <a href="#form-group">Form Group/Packet</a></h2>
-<p>Like the patient-delete endpoint, you can also pass an optional <code>force</code> argument with the request. When true, <code>force</code> will instruct Lobbie to destroy all Forms associated with this Form Group/Packet.</p>
+<h2 id='deleting-destroying-a-form-group-packet'>Deleting/Destroying a Form Group/Packet</h2>
+<p>Like the patient-delete endpoint, you can also pass an optional <code>force</code> argument with the request to. When true, <code>force</code> will instruct Lobbie to destroy all Forms associated with this <a href="#form-group">Form Group/Packet</a>.</p>
 
 <p>If false (default), Lobbie will return an error and prevent destruction of the Form Group/Packet if any Forms are associated with the Form Group/Packet.</p>
 
@@ -2908,7 +2908,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <li><p><code>id</code> - Required. The id of the <a href="#form-group">Form Group/Packet</a> to destroy.</p></li>
 <li><p><code>force</code> - Optional. Default false. If true will destroy all Forms related to the Form Group/Packet.</p></li>
 </ul>
-<h2 id='deleting-destroying-a-form'>Deleting/Destroying a <a href="#form">Form</a></h2>
+<h2 id='deleting-destroying-a-form'>Deleting/Destroying a Form</h2>
 <p>There is no <code>force</code> argument available for this endpoint.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
     https://localhost:8443/lobbie/api/developer/v1/destroy/form <span class="se">\</span>
