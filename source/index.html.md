@@ -2411,6 +2411,338 @@ curl -X POST \
 
 `POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve`
 
+# Deleting/Destroying Data in Lobbie 
+
+<aside class="warning">
+  The following endpoints are DESTRUCTIVE. Lobbie will ***NOT*** be able to recover data for you if you choose to invoke them.
+</aside>
+
+## Deleting/Destroying a [Patient](#patients)
+
+This endpoint will delete Patient for the given `id`. An optional `force` argument can be provided to force Lobbie to destroy all records associated with the Patient.
+
+If you choose to not pass the `force` argument, or set `force` as `false`, Lobbie will return an error if any associations are detected. Default false.
+
+You may also pass a boolean `isDestroyRelationships` argument which, if true, will instruct Lobbie to destroy any parent and child patients. Default false.
+
+The response data will include a json structure of the just-deleted record, calculated before the data was destroyed.
+
+```shell
+curl -X DELETE \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+        id: 1, force: true
+    }"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "message": "Patient and associated appointments, forms, addresses, nps reviews and notifications deleted.",
+  "data": {
+    "active": true,
+    "email": "seed-614559@lobbie.com",
+    "firstName": "Taco",
+    "lastName": "Lobbie",
+    "mobilePhone": "1238675309",
+    "dateOfBirth": "2/6/1987",
+    "id": 42,
+    "createdOn": "2024-02-06T18:01:45.000Z",
+    "lastUpdatedOn": "2024-02-07T19:29:38.000Z",
+    "isEmailConfirmed": true,
+    "isPhoneConfirmed": false,
+    "receiveEmail": true,
+    "receiveSms": true,
+    "name": "Taco Lobbie",
+    "isMinimumAgeConfirmedAccount": true,
+    "sexAssignedAtBirth": 1,
+    "legalSex": 0,
+    "intakeMethod": "UNKNOWN",
+    "gender": "non-binary",
+    "patientPrimaryAddress": {
+      "address1": "1 E Baltimore St.",
+      "city": "Baltimore",
+      "postalCode": "21202",
+      "latitude": 38.86293745172355,
+      "longitude": -77.05874058689015,
+      "addressNote": "Tacos are delicious.",
+      "id": 45,
+      "createdOn": "2024-02-06T18:01:45.000Z",
+      "lastUpdatedOn": "2024-02-06T18:01:45.000Z",
+      "stateProvince": {
+        "shortName": "MD",
+        "name": "Maryland",
+        "id": 33,
+        "createdOn": "2024-02-06T18:01:23.000Z",
+        "lastUpdatedOn": "2024-02-06T18:01:23.000Z"
+      },
+      "fullAddress": "1 E Baltimore St., Baltimore, MD 21202",
+      "active": true,
+      "isPrimary": true
+    },
+    "parents": [
+      {
+        "active": true,
+        "lobbieIntegrationUuid": "98cbc0c8-76ce-48b8-8556-e3d0ec47d44a",
+        "email": "seed-614559@lobbie.com",
+        "firstName": "Test",
+        "lastName": "Lobbie",
+        "mobilePhone": "1238675309",
+        "dateOfBirth": "10/8/1977",
+        "isPatient": true,
+        "id": 43,
+        "createdOn": "2024-02-06T18:01:45.000Z",
+        "lastUpdatedOn": "2024-02-06T18:01:45.000Z",
+        "patientId": null,
+        "patient": true,
+        "accountPatientId": 43,
+        "isEmailConfirmed": true,
+        "isPhoneConfirmed": false,
+        "receiveEmail": true,
+        "receiveSms": true,
+        "name": "Test Lobbie",
+        "isMinimumAgeConfirmedAccount": true,
+        "sexAssignedAtBirth": 2,
+        "legalSex": 0,
+        "intakeMethod": "UNKNOWN",
+        "gender": "non-binary",
+        "patientPrimaryAddress": {
+          "address1": "1 E Baltimore St.",
+          "city": "Baltimore",
+          "postalCode": "21202",
+          "latitude": 38.86293745172355,
+          "longitude": -77.05874058689015,
+          "addressNote": "Tacos are delicious.",
+          "updateGeo": false,
+          "id": 46,
+          "createdOn": "2024-02-06T18:01:45.000Z",
+          "lastUpdatedOn": "2024-02-06T18:01:45.000Z",
+          "stateProvince": {
+            "shortName": "MD",
+            "name": "Maryland",
+            "id": 33,
+            "createdOn": "2024-02-06T18:01:23.000Z",
+            "lastUpdatedOn": "2024-02-06T18:01:23.000Z"
+          },
+          "fullAddress": "1 E Baltimore St., Baltimore, MD 21202",
+          "active": true,
+          "isPrimary": true
+        },
+        "parents": [],
+        "children": [
+          {
+            "id": 42
+          }
+        ],
+        "childRelationshipName": null,
+        "parentRelationshipName": "Parent",
+        "isPrimary": true
+      }
+    ],
+    "children": [],
+    "practitioners": [
+      {
+        "canSelfSchedule": true,
+        "receiveEmail": true,
+        "receiveSms": true,
+        "isNotifyOnFormsComplete": true,
+        "isCanUnlockForms": false,
+        "lobbieIntegrationUuid": "54377536-d6ed-48d7-b582-067480517f37",
+        "activated": true,
+        "lastLogin": "2/7/2024 3:17PM UTC",
+        "lastLoginIpAddress": "192.168.65.1",
+        "active": true,
+        "email": "admin_user_practitioner_developer@lobbie.com",
+        "firstName": "Devon",
+        "lastName": "DeveloperAdminUserPractitioner",
+        "mobilePhone": "1238675309",
+        "isPatient": false,
+        "id": 11,
+        "createdOn": "2024-02-06T18:01:28.000Z",
+        "lastUpdatedOn": "2024-02-07T15:17:22.000Z",
+        "isTOTP2FAVerified": false,
+        "name": "Adm. Devon DeveloperAdminUserPractitioner",
+        "title": "Adm.",
+        "position": "Front Desk Associate",
+        "locationIds": "1,2,3",
+        "roleGroupIds": "3,1,2,5",
+        "telehealthUrl": "https://short-dev.lobbie.com/MEf7dFmWE_YjzQQQ",
+        "accountPatientIds": [
+          42
+        ]
+      }
+    ]
+  }
+}
+```
+
+### HTTP Request
+
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient`
+
+Body:
+
+* `id` - Required. The id of the [Patient](#patients) to destroy.
+
+* `force` - Optional. Default false. If true will destroy all other entities related to the Patient, with the exception of child and parent Patients.
+
+* `isDestroyRelationships` - Optional. Default false. If true, when paired with `force=true`, will destroy all child and parent Patients related to the Patient being destroyed.
+
+
+## Deleting/Destroying a [Form Group/Packet](#form-group)
+
+Like the patient-delete endpoint, you can also pass an optional `force` argument with the request. When true, `force` will instruct Lobbie to destroy all Forms associated with this Form Group/Packet.
+
+If false (default), Lobbie will return an error and prevent destruction of the Form Group/Packet if any Forms are associated with the Form Group/Packet.
+
+The response data will include a json structure of the just-deleted record, calculated before the data was destroyed.
+
+You may use either of the below endpoints, they are aliases of each other.
+
+```shell
+curl -X DELETE \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/group \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+        id: 1, force: true
+    }"
+```
+
+OR
+
+```shell
+curl -X DELETE \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/packet \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+        id: 1, force: true
+    }"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "message": "Form group/packet deleted.",
+  "data": {
+    "id": 4,
+    "locationId": 1,
+    "patientId": 6,
+    "createdOnUnixUtc": 1707242492000,
+    "dueDateUnix": 1709711999000,
+    "isComplete": false,
+    "completedOnUnix": null,
+    "patient": {
+      "active": true,
+      "email": "seed-96262@lobbie.com",
+      "firstName": "Lobbie",
+      "lastName": "Test",
+      "mobilePhone": "1238675309",
+      "dateOfBirth": "5/7/2008",
+      "id": 6,
+      "createdOn": "2024-02-06T18:01:32.000Z",
+      "lastUpdatedOn": "2024-02-06T18:01:33.000Z",
+      "isEmailConfirmed": true,
+      "isPhoneConfirmed": false,
+      "receiveEmail": true,
+      "receiveSms": true,
+      "name": "Lobbie Test",
+      "isMinimumAgeConfirmedAccount": true,
+      "sexAssignedAtBirth": 1,
+      "legalSex": 0,
+      "intakeMethod": "UNKNOWN",
+      "gender": "female",
+      "patientPrimaryAddress": {
+        "address1": "1 E Baltimore St.",
+        "city": "Baltimore",
+        "postalCode": "21202",
+        "latitude": 38.86293745172355,
+        "longitude": -77.05874058689015,
+        "addressNote": "Tacos are delicious.",
+        "id": 9,
+        "createdOn": "2024-02-06T18:01:32.000Z",
+        "lastUpdatedOn": "2024-02-06T18:01:33.000Z",
+        "stateProvince": {
+          "shortName": "MD",
+          "name": "Maryland",
+          "id": 33,
+          "createdOn": "2024-02-06T18:01:23.000Z",
+          "lastUpdatedOn": "2024-02-06T18:01:23.000Z"
+        },
+        "fullAddress": "1 E Baltimore St., Baltimore, MD 21202",
+        "active": true,
+        "isPrimary": true
+      },
+      "parents": [],
+      "children": [],
+      "practitioners": []
+    },
+    "forms": [
+      {
+        "id": 4,
+        "isActive": true,
+        "createdOnUnix": 1706637690000
+      }
+    ]
+  }
+}
+```
+
+### HTTP Request
+
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/group`
+
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/packet`
+
+Body:
+
+* `id` - Required. The id of the [Form Group/Packet](#form-group) to destroy.
+
+* `force` - Optional. Default false. If true will destroy all Forms related to the Form Group/Packet.
+
+
+## Deleting/Destroying a [Form](#form)
+
+There is no `force` argument available for this endpoint.
+
+```shell
+curl -X DELETE \
+    https://localhost:8443/lobbie/api/developer/v1/destroy/form \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data '{ "id": 20, "force": true }' | jq .
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "message": "Form deleted.",
+  "data": {
+    "id": 20,
+    "isActive": true,
+    "createdOnUnix": 1705168890000,
+    "formTemplateId": 4,
+    "version": 1,
+    "answers": {
+      "mapped": {}
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form`
+
+Body:
+
+* `id` - Required. The id of the [Form](#form) to destroy.
+
 # Enums
 
 ## FormStatusEnum
