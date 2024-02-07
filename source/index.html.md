@@ -2417,9 +2417,9 @@ curl -X POST \
   The following endpoints are DESTRUCTIVE. Lobbie will ***NOT*** be able to recover data for you if you choose to invoke them.
 </aside>
 
-## Deleting/Destroying a [Patient](#patients)
+## Deleting/Destroying a Patient
 
-This endpoint will delete Patient for the given `id`. An optional `force` argument can be provided to force Lobbie to destroy all records associated with the Patient.
+This endpoint will delete [Patient](#patients) for the given `id`. An optional `force` argument can be provided to force Lobbie to destroy all records associated with the Patient.
 
 If you choose to not pass the `force` argument, or set `force` as `false`, Lobbie will return an error if any associations are detected. Default false.
 
@@ -2592,9 +2592,9 @@ Body:
 * `isDestroyRelationships` - Optional. Default false. If true, when paired with `force=true`, will destroy all child and parent Patients related to the Patient being destroyed.
 
 
-## Deleting/Destroying a [Form Group/Packet](#form-group)
+## Deleting/Destroying a Form Group/Packet
 
-Like the patient-delete endpoint, you can also pass an optional `force` argument with the request. When true, `force` will instruct Lobbie to destroy all Forms associated with this Form Group/Packet.
+Like the patient-delete endpoint, you can also pass an optional `force` argument with the request to. When true, `force` will instruct Lobbie to destroy all Forms associated with this [Form Group/Packet](#form-group).
 
 If false (default), Lobbie will return an error and prevent destruction of the Form Group/Packet if any Forms are associated with the Form Group/Packet.
 
@@ -2705,7 +2705,7 @@ Body:
 * `force` - Optional. Default false. If true will destroy all Forms related to the Form Group/Packet.
 
 
-## Deleting/Destroying a [Form](#form)
+## Deleting/Destroying a Form
 
 There is no `force` argument available for this endpoint.
 
