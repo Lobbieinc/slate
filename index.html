@@ -288,7 +288,7 @@
     </style>
     <link href="stylesheets/screen-9c19b03a.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-b12a2749.js"></script>
+      <script src="javascripts/all-024da600.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
@@ -490,6 +490,20 @@
                   </li>
                   <li>
                     <a href="#retrieving-a-pdf" class="toc-h2 toc-link" data-title="Retrieving a PDF">Retrieving a PDF</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#deleting-destroying-data-in-lobbie" class="toc-h1 toc-link" data-title="Deleting/Destroying Data in Lobbie">Deleting/Destroying Data in Lobbie</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#deleting-destroying-a-patient" class="toc-h2 toc-link" data-title="Deleting/Destroying a Patient">Deleting/Destroying a <a href="#patients">Patient</a></a>
+                  </li>
+                  <li>
+                    <a href="#deleting-destroying-a-form-group-packet" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form Group/Packet">Deleting/Destroying a <a href="#form-group">Form Group/Packet</a></a>
+                  </li>
+                  <li>
+                    <a href="#deleting-destroying-a-form" class="toc-h2 toc-link" data-title="Deleting/Destroying a Form">Deleting/Destroying a <a href="#form">Form</a></a>
                   </li>
               </ul>
           </li>
@@ -2622,6 +2636,310 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
+<h1 id='deleting-destroying-data-in-lobbie'>Deleting/Destroying Data in Lobbie</h1>
+<aside class="warning">
+  The following endpoints are DESTRUCTIVE. Lobbie will ***NOT*** be able to recover data for you if you choose to invoke them.
+</aside>
+<h2 id='deleting-destroying-a-patient'>Deleting/Destroying a <a href="#patients">Patient</a></h2>
+<p>This endpoint will delete Patient for the given <code>id</code>. An optional <code>force</code> argument can be provided to force Lobbie to destroy all records associated with the Patient.</p>
+
+<p>If you choose to not pass the <code>force</code> argument, or set <code>force</code> as <code>false</code>, Lobbie will return an error if any associations are detected. Default false.</p>
+
+<p>You may also pass a boolean <code>isDestroyRelationships</code> argument which, if true, will instruct Lobbie to destroy any parent and child patients. Default false.</p>
+
+<p>The response data will include a json structure of the just-deleted record, calculated before the data was destroyed.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+        id: 1, force: true
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient and associated appointments, forms, addresses, nps reviews and notifications deleted."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seed-614559@lobbie.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mobilePhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1238675309"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2/6/1987"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-07T19:29:38.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isEmailConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPhoneConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"receiveEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"receiveSms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taco Lobbie"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isMinimumAgeConfirmedAccount"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sexAssignedAtBirth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"legalSex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"intakeMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non-binary"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"patientPrimaryAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baltimore"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21202"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">38.86293745172355</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-77.05874058689015</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"addressNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos are delicious."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St., Baltimore, MD 21202"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isPrimary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"parents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lobbieIntegrationUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98cbc0c8-76ce-48b8-8556-e3d0ec47d44a"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seed-614559@lobbie.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mobilePhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1238675309"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10/8/1977"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isPatient"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patient"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountPatientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isEmailConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isPhoneConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"receiveEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"receiveSms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Lobbie"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isMinimumAgeConfirmedAccount"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sexAssignedAtBirth"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"legalSex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"intakeMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non-binary"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientPrimaryAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St."</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baltimore"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21202"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">38.86293745172355</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-77.05874058689015</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"addressNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos are delicious."</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"updateGeo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:45.000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St., Baltimore, MD 21202"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"isPrimary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"parents"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"childRelationshipName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"parentRelationshipName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parent"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isPrimary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"practitioners"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"canSelfSchedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"receiveEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"receiveSms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isNotifyOnFormsComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isCanUnlockForms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lobbieIntegrationUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54377536-d6ed-48d7-b582-067480517f37"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"activated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2/7/2024 3:17PM UTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastLoginIpAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.65.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin_user_practitioner_developer@lobbie.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Devon"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeveloperAdminUserPractitioner"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mobilePhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1238675309"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isPatient"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:28.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-07T15:17:22.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isTOTP2FAVerified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adm. Devon DeveloperAdminUserPractitioner"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adm."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Front Desk Associate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,2,3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"roleGroupIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3,1,2,5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"telehealthUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://short-dev.lobbie.com/MEf7dFmWE_YjzQQQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountPatientIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">42</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-28'>HTTP Request</h3>
+<p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient</code></p>
+
+<p>Body:</p>
+
+<ul>
+<li><p><code>id</code> - Required. The id of the <a href="#patients">Patient</a> to destroy.</p></li>
+<li><p><code>force</code> - Optional. Default false. If true will destroy all other entities related to the Patient, with the exception of child and parent Patients.</p></li>
+<li><p><code>isDestroyRelationships</code> - Optional. Default false. If true, when paired with <code>force=true</code>, will destroy all child and parent Patients related to the Patient being destroyed.</p></li>
+</ul>
+<h2 id='deleting-destroying-a-form-group-packet'>Deleting/Destroying a <a href="#form-group">Form Group/Packet</a></h2>
+<p>Like the patient-delete endpoint, you can also pass an optional <code>force</code> argument with the request. When true, <code>force</code> will instruct Lobbie to destroy all Forms associated with this Form Group/Packet.</p>
+
+<p>If false (default), Lobbie will return an error and prevent destruction of the Form Group/Packet if any Forms are associated with the Form Group/Packet.</p>
+
+<p>The response data will include a json structure of the just-deleted record, calculated before the data was destroyed.</p>
+
+<p>You may use either of the below endpoints, they are aliases of each other.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/group <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+        id: 1, force: true
+    }"</span>
+</code></pre></div>
+<p>OR</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/packet <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+        id: 1, force: true
+    }"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form group/packet deleted."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1707242492000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709711999000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"patient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seed-96262@lobbie.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mobilePhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1238675309"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/7/2008"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:32.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:33.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isEmailConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isPhoneConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receiveEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receiveSms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lobbie Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isMinimumAgeConfirmedAccount"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sexAssignedAtBirth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"legalSex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"intakeMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"patientPrimaryAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baltimore"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21202"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">38.86293745172355</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-77.05874058689015</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"addressNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos are delicious."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:32.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:33.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stateProvince"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"shortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maryland"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-06T18:01:23.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"fullAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 E Baltimore St., Baltimore, MD 21202"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isPrimary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"parents"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"practitioners"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706637690000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-29'>HTTP Request</h3>
+<p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/group</code></p>
+
+<p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/packet</code></p>
+
+<p>Body:</p>
+
+<ul>
+<li><p><code>id</code> - Required. The id of the <a href="#form-group">Form Group/Packet</a> to destroy.</p></li>
+<li><p><code>force</code> - Optional. Default false. If true will destroy all Forms related to the Form Group/Packet.</p></li>
+</ul>
+<h2 id='deleting-destroying-a-form'>Deleting/Destroying a <a href="#form">Form</a></h2>
+<p>There is no <code>force</code> argument available for this endpoint.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+    https://localhost:8443/lobbie/api/developer/v1/destroy/form <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s1">'{ "id": 20, "force": true }'</span> | jq <span class="nb">.</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Form deleted."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1705168890000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"formTemplateId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mapped"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
+<p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form</code></p>
+
+<p>Body:</p>
+
+<ul>
+<li><code>id</code> - Required. The id of the <a href="#form">Form</a> to destroy.</li>
+</ul>
 <h1 id='enums'>Enums</h1><h2 id='formstatusenum'>FormStatusEnum</h2>
 <p>Used in:</p>
 
