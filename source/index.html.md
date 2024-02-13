@@ -2694,9 +2694,9 @@ curl -X DELETE \
 
 ### HTTP Request
 
-`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/group`
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/group`
 
-`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form/packet`
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/packet`
 
 Body:
 
@@ -2737,7 +2737,7 @@ curl -X DELETE \
 
 ### HTTP Request
 
-`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/form`
+`DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form`
 
 Body:
 
