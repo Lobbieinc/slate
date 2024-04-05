@@ -60,8 +60,6 @@ If `success` is `false`, the `message` key will provide an explanation and the `
 
 If `success` is `true`, the `data` key will be filled with information relevant to the request that was sent.
 
-. However, if the request was **_not_** successful,
-
 # Terminology / Vocabulary
 
 ### Form Template
