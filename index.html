@@ -472,6 +472,9 @@
                   <li>
                     <a href="#update-a-form-group-packet" class="toc-h2 toc-link" data-title="Update a Form Group/Packet">Update a Form Group/Packet</a>
                   </li>
+                  <li>
+                    <a href="#archive-or-un-archive-a-form-group-packet" class="toc-h2 toc-link" data-title="Archive or Un-archive a Form Group/Packet">Archive or Un-archive a Form Group/Packet</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -575,6 +578,8 @@ api.lobbie.com - for create/read/update/delete operations within Lobbie.</p>
 <p>If <code>success</code> is <code>false</code>, the <code>message</code> key will provide an explanation and the <code>data</code> key will be empty.</p>
 
 <p>If <code>success</code> is <code>true</code>, the <code>data</code> key will be filled with information relevant to the request that was sent.</p>
+
+<p>. However, if the request was <strong><em>not</em></strong> successful,</p>
 <h1 id='terminology-vocabulary'>Terminology / Vocabulary</h1><h3 id='form-template'>Form Template</h3>
 <p>What Lobbie uses to create a Form for a Patient.</p>
 
@@ -1914,6 +1919,8 @@ When Lobbie updates a Form Template for your organization, the <code>version</co
         </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=&lt;key&gt;%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -2093,10 +2100,11 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690815877454</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1692028292189</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
@@ -2139,6 +2147,7 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
         </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
@@ -2160,6 +2169,123 @@ Sending the same request again will result in a duplicate Form Group/Packet bein
 </aside>
 <h3 id='http-request-24'>HTTP Request</h3>
 <p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups</code></p>
+<h2 id='archive-or-un-archive-a-form-group-packet'>Archive or Un-archive a Form Group/Packet</h2>
+<p>Archive a <a href="#form-group">Form Group/Packet</a> by passing one or more ids of a Form Group/Packet. Archived Form Group/Packets are moved to a separate view on the Forms Dashboard on the Lobbie UI.</p>
+
+<blockquote>
+<p>This command will archive the Form Group/Packet with <code>id</code> of 1.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/archive <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      id: 1,
+    }"</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archived: 1 - Un-archived: none"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>This command will archive the Form Groups/Packets with <code>ids</code> of 2, 3 and 4.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/archive <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      ids: [2, 3, 4],
+    }"</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archived: 2, 3 - Un-archived: 4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>You can combine both the <code>id</code> and <code>ids</code> keys, Lobbie will only perform one archive/un-archive action per passed id.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/archive <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data</span> <span class="s2">"{
+      id: 2,
+      ids: [2, 3, 4],
+    }"</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archived: 2, 3 - Un-archived: 4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"patientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558706000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
+<p><code>PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/archive</code></p>
 <h1 id='forms'>Forms</h1>
 <p>The structure of a <a href="#form">Form</a> returned from Lobbie includes <a href="#form-answer">Form Answers</a>.</p>
 
@@ -2487,7 +2613,7 @@ Check the query params section below for more information about retrieving mappe
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-25'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/&lt;form_id&gt;</code></p>
 <h3 id='request-query-string-parameters'>Request Query String Parameters</h3>
 <ul>
@@ -2581,7 +2707,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-26'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
@@ -2630,7 +2756,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
@@ -2794,7 +2920,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-28'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-29'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient</code></p>
 
 <p>Body:</p>
@@ -2841,6 +2967,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709711999000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"patient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seed-96262@lobbie.com"</span><span class="p">,</span><span class="w">
@@ -2895,7 +3022,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-29'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/group</code></p>
 
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/packet</code></p>
@@ -2930,7 +3057,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-31'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form</code></p>
 
 <p>Body:</p>
@@ -3000,6 +3127,8 @@ Form Answers that belong to Staff-only Form Elements are <b>not</b> included in 
         </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=&lt;key&gt;%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -3057,6 +3186,8 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
         </span><span class="nl">"dueDateUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691823599000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"completedOnUnix"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690563654000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdOnUnixUtc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690558709000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isComplete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20230728T170056Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=86399&amp;X-Amz-Credential=&lt;key&gt;%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
