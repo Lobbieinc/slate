@@ -60,6 +60,8 @@ If `success` is `false`, the `message` key will provide an explanation and the `
 
 If `success` is `true`, the `data` key will be filled with information relevant to the request that was sent.
 
+. However, if the request was **_not_** successful,
+
 # Terminology / Vocabulary
 
 ### Form Template
@@ -1629,6 +1631,8 @@ curl -X GET \
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
+        "isComplete": true,
+        "isArchived": false,
         "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
@@ -1830,10 +1834,11 @@ curl -X PUT \
         "id": 1,
         "locationId": 1,
         "patientId": 3,
-        "isComplete": true,
         "dueDateUnix": 1690815877454,
         "completedOnUnix": 1692028292189,
         "createdOnUnixUtc": 1690558706000,
+        "isComplete": false,
+        "isArchived": false,
         "forms": [
             {
                 "id": 53,
@@ -1878,6 +1883,7 @@ curl -X PUT \
         "dueDateUnix": 1690558706000,
         "completedOnUnix": null,
         "createdOnUnixUtc": 1690558706000,
+        "isArchived": false,
         "forms": [
             {
                 "id": 53,
@@ -1902,6 +1908,139 @@ curl -X PUT \
 ### HTTP Request
 
 `PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups`
+
+## Archive or Un-archive a Form Group/Packet
+
+Archive a [Form Group/Packet](#form-group) by passing one or more ids of a Form Group/Packet. Archived Form Group/Packets are moved to a separate view on the Forms Dashboard on the Lobbie UI.
+
+> This command will archive the Form Group/Packet with `id` of 1.
+
+```shell
+curl -X PUT \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/archive \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+      id: 1,
+    }"
+```
+
+```json
+{
+    "success": true,
+    "message": "Archived: 1 - Un-archived: none",
+    "data": [{
+        "id": 1,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": true
+    }]
+}
+```
+
+> This command will archive the Form Groups/Packets with `ids` of 2, 3 and 4.
+
+```shell
+curl -X PUT \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/archive \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+      ids: [2, 3, 4],
+    }"
+```
+
+```json
+{
+    "success": true,
+    "message": "Archived: 2, 3 - Un-archived: 4",
+    "data": [{
+        "id": 2,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": true
+    }, 
+    {
+        "id": 3,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": true
+    },
+    {
+        "id": 4,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": false
+    }]
+}
+```
+
+> You can combine both the `id` and `ids` keys, Lobbie will only perform one archive/un-archive action per passed id.
+
+```shell
+curl -X PUT \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/packets/archive \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data "{
+      id: 2,
+      ids: [2, 3, 4],
+    }"
+```
+
+```json
+{
+    "success": true,
+    "message": "Archived: 2, 3 - Un-archived: 4",
+    "data": [{
+        "id": 2,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": true
+    }, 
+    {
+        "id": 3,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": true
+    },
+    {
+        "id": 4,
+        "locationId": 1,
+        "patientId": 3,
+        "createdOnUnixUtc": 1690558706000,
+        "dueDateUnix": 1690558706000,
+        "isComplete": false,
+        "completedOnUnix": null,
+        "isArchived": false
+    }]
+}
+```
+
+### HTTP Request
+
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/groups/archive`
 
 # Forms
 
@@ -2634,6 +2773,7 @@ curl -X DELETE \
     "dueDateUnix": 1709711999000,
     "isComplete": false,
     "completedOnUnix": null,
+    "isArchived": false,
     "patient": {
       "active": true,
       "email": "seed-96262@lobbie.com",
@@ -2820,6 +2960,8 @@ Form Answers that belong to Staff-only Form Elements are <b>not</b> included in 
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
+        "isComplete": true,
+        "isArchived": false,
         "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
@@ -2882,6 +3024,8 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
         "dueDateUnix": 1691823599000,
         "completedOnUnix": 1690563654000,
         "createdOnUnixUtc": 1690558709000,
+        "isComplete": true,
+        "isArchived": false,
         "signedURL": "https://s3.us-east-2.amazonaws.com/lobbie-dev/fb924039-ed0f-4214-9196-a7fc33cd3619/49730717-2c3f-4e31-8686-02a08b08b853?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230728T170056Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=<key>%2F20230728%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=41e820e8404ac796a758eccca15cf660251310d281dd546bce2d35d4a7fa8a09",
         "forms": [
             {
