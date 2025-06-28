@@ -615,6 +615,41 @@ curl -G GET \
 
 -   `dateOfBirth` - The birth date of the Patient in MM/DD/YYYY format.
 
+# Patient Tags
+
+## Get All Patient Tags
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/tags?patientId=? \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "All tags for <patient>.",
+    "data": [
+	  {
+	    "id": 5,
+	    "note": "Here is a new tag",
+	    "color": "#FFF5C4",
+	    "active": true
+	  },
+	  {
+	    "id": 6,
+	    "note": "Here is another new tag",
+	    "color": "#F7D8D8",
+	    "active": true
+	  }
+	]
+}
+```
+
+This endpoint retrieves all patient tags associated with the patient.
+
 # Form Templates
 
 [Form Templates](#form-template) are what Lobbie uses to create Forms for
