@@ -961,26 +961,19 @@ You must replace <code>access_token</code> with the token returned from calling 
     <span class="dl">"</span><span class="s2">legalSex</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>            <span class="c1">// See Enums.LegalSexEnum for values.</span>
     <span class="dl">"</span><span class="s2">intakeMethod</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">STAFF_SENT_FORMS</span><span class="dl">"</span><span class="p">,</span>
     <span class="dl">"</span><span class="s2">gender</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">male</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">patientPrimaryAddress</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">homeAddress</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
       <span class="dl">"</span><span class="s2">address1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 E Baltimore St.</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Baltimore</span><span class="dl">"</span><span class="p">,</span>
       <span class="dl">"</span><span class="s2">postalCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">21202</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">latitude</span><span class="dl">"</span><span class="p">:</span> <span class="mf">38.86293745172355</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">longitude</span><span class="dl">"</span><span class="p">:</span> <span class="o">-</span><span class="mf">77.05874058689015</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">addressNote</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tacos are delicious here.</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:49.000Z</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">stateProvince</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">shortName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MD</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Maryland</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">createdOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:37.000Z</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">lastUpdatedOn</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2023-07-26T16:48:37.000Z</span><span class="dl">"</span>
-      <span class="p">},</span>
-      <span class="dl">"</span><span class="s2">fullAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 E Baltimore St., Baltimore, MD 21202</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">isPrimary</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="dl">"</span><span class="s2">stateProvince</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MD</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fullAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1 E Baltimore St., Baltimore, MD 21202</span><span class="dl">"</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">mailingAddress</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">address1</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">123 W Something St.</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Baltimore</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">postalCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">21202</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">stateProvince</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MD</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">fullAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">123 W Something St., Baltimore, MD 21202</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="dl">"</span><span class="s2">parents</span><span class="dl">"</span><span class="p">:</span> <span class="p">[],</span>      <span class="c1">// A list of Patient objects that are parents of this Patient</span>
     <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">:</span> <span class="p">[],</span>     <span class="c1">// A list of Patient objects that are children of this Patient</span>
