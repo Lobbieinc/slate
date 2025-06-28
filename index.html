@@ -399,6 +399,14 @@
               </ul>
           </li>
           <li>
+            <a href="#patient-tags" class="toc-h1 toc-link" data-title="Patient Tags">Patient Tags</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-patient-tags" class="toc-h2 toc-link" data-title="Get All Patient Tags">Get All Patient Tags</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#form-templates" class="toc-h1 toc-link" data-title="Form Templates">Form Templates</a>
               <ul class="toc-list-h2">
                   <li>
@@ -1051,6 +1059,33 @@ You must replace <code>access_token</code> with the token returned from calling 
 <li><p><code>mobilePhone</code> - The phone number of the Patient to search for.</p></li>
 <li><p><code>dateOfBirth</code> - The birth date of the Patient in MM/DD/YYYY format.</p></li>
 </ul>
+<h1 id='patient-tags'>Patient Tags</h1><h2 id='get-all-patient-tags'>Get All Patient Tags</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/tags?patientId<span class="o">=</span>? <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All tags for &lt;patient&gt;."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Here is a new tag"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#FFF5C4"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Here is another new tag"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#F7D8D8"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all patient tags associated with the patient.</p>
 <h1 id='form-templates'>Form Templates</h1>
 <p><a href="#form-template">Form Templates</a> are what Lobbie uses to create Forms for</p>
 <h2 id='get-all-form-templates'>Get All Form Templates</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
