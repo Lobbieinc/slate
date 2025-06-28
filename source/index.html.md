@@ -514,26 +514,19 @@ curl -X GET \
     "legalSex": 0,            // See Enums.LegalSexEnum for values.
     "intakeMethod": "STAFF_SENT_FORMS",
     "gender": "male",
-    "patientPrimaryAddress": {
+    "homeAddress": {
       "address1": "1 E Baltimore St.",
       "city": "Baltimore",
       "postalCode": "21202",
-      "latitude": 38.86293745172355,
-      "longitude": -77.05874058689015,
-      "addressNote": "Tacos are delicious here.",
-      "id": 4,
-      "createdOn": "2023-07-26T16:48:49.000Z",
-      "lastUpdatedOn": "2023-07-26T16:48:49.000Z",
-      "stateProvince": {
-        "shortName": "MD",
-        "name": "Maryland",
-        "id": 33,
-        "createdOn": "2023-07-26T16:48:37.000Z",
-        "lastUpdatedOn": "2023-07-26T16:48:37.000Z"
-      },
-      "fullAddress": "1 E Baltimore St., Baltimore, MD 21202",
-      "active": true,
-      "isPrimary": true
+      "stateProvince": "MD",
+      "fullAddress": "1 E Baltimore St., Baltimore, MD 21202"
+    },
+    "mailingAddress": {
+      "address1": "123 W Something St.",
+      "city": "Baltimore",
+      "postalCode": "21202",
+      "stateProvince": "MD",
+      "fullAddress": "123 W Something St., Baltimore, MD 21202"
     },
     "parents": [],      // A list of Patient objects that are parents of this Patient
     "children": [],     // A list of Patient objects that are children of this Patient
