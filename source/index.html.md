@@ -2466,8 +2466,6 @@ curl -X GET \
 
 `GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
 
-`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
-
 ## Get a Specific Staff
 
 ```shell
