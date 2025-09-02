@@ -494,6 +494,23 @@
               </ul>
           </li>
           <li>
+            <a href="#staff" class="toc-h1 toc-link" data-title="Staff">Staff</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-staff" class="toc-h2 toc-link" data-title="Get All Staff">Get All Staff</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-staff" class="toc-h2 toc-link" data-title="Get a Specific Staff">Get a Specific Staff</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-staff" class="toc-h2 toc-link" data-title="Create a Staff">Create a Staff</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-staff" class="toc-h2 toc-link" data-title="Update a Staff">Update a Staff</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#printing-pdf-generation" class="toc-h1 toc-link" data-title="Printing / PDF Generation">Printing / PDF Generation</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2652,6 +2669,142 @@ Check the query params section below for more information about retrieving mappe
 <aside class="warning">
 Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
 </aside>
+<h1 id='staff'>Staff</h1><h2 id='get-all-staff'>Get All Staff</h2>
+<p>When retrieving a <a href="#staff">Staff</a> you can use the /staff endpoint.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"firstName"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"firstName"</span><span class="p">:</span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"janedoe@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
+
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
+<h2 id='get-a-specific-staff'>Get a Specific Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/&lt;staff_id&gt; <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"firstName"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific <a href="#staff">Staff</a>.</p>
+<h3 id='http-request-28'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/&lt;staff_id&gt;</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the <a href="#staff">Staff</a> to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-staff'>Create a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+            "active": 1
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"firstName"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates a Staff in Lobbie.</p>
+<h3 id='http-request-29'>HTTP Request</h3>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create</code></p>
+<h2 id='update-a-staff'>Update a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "id": 8,                   # The ID of the Staff to update.
+    ""firstName":"John",
+    "lastName":"Doe",
+    "email":"johndoe@lobbie.com",
+    "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+    "active": 1
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"firstName"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint updates a Location in Lobbie.</p>
+<h3 id='http-request-30'>HTTP Request</h3>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update</code></p>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
 
@@ -2735,7 +2888,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         </span><span class="nl">"s3ObjectPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb924039-ed0f-4214-9196-a7fc33cd3619/0b313bb1-c18c-4e6a-a084-432b6f14ee5a"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/create</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/create</code></p>
@@ -2784,7 +2937,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         </span><span class="nl">"signedURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://signed_url_from_aws"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-28'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/print/retrieve</code></p>
 
 <p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/forms/pdf/retrieve</code></p>
@@ -2948,7 +3101,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-29'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-33'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/patient</code></p>
 
 <p>Body:</p>
@@ -3050,7 +3203,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-34'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/group</code></p>
 
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form/packet</code></p>
@@ -3085,7 +3238,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-31'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-35'>HTTP Request</h3>
 <p><code>DELETE https://api-sandbox.lobbie.com/lobbie/api/developer/v1/destroy/form</code></p>
 
 <p>Body:</p>
