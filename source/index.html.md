@@ -2448,6 +2448,7 @@ curl -X GET \
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2],
+            "roleIds":[1,2],
             "active": 1
         },
         {
@@ -2456,6 +2457,7 @@ curl -X GET \
             "lastName":"Doe",
             "email":"janedoe@lobbie.com",
             "locationIds": [1,2],
+            "roleIds":[1,2],
             "active": 1
         },
     ]
@@ -2486,6 +2488,7 @@ curl -X GET \
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2],
+            "roleIds":[1,2],
             "active": 1
         }
 }
@@ -2516,6 +2519,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+            "roleIds":[1,2],
             "active": 1
   }'
 ```
@@ -2532,6 +2536,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2],
+            "roleIds":[1,2],
             "active": 1
         }
 }
@@ -2556,6 +2561,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
     "lastName":"Doe",
     "email":"johndoe@lobbie.com",
     "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+    "roleIds":[1,2],
     "active": 1
   }'
 ```
@@ -2572,6 +2578,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2],
+            "roleIds":[1,2],
             "active": 1
         }
 }
@@ -3101,6 +3108,24 @@ Used in:
 UNKNOWN = 0
 MALE    = 1
 FEMALE  = 2
+```
+
+## RoleEnum
+
+Used in:
+
+-   [Get All Staff](#staff)
+-   [Get a Specific Staff](#staff)
+-   [Create staff](#staff)
+-   [Update staff](#staff)
+
+```shell
+USER_ROLE =          1;
+PRACTITIONER_ROLE =  2;
+ADMINISTRATOR_ROLE = 3;
+DEVELOPER_ROLE =     5;
+REPORTING_ROLE =     6;
+SUPERVISING_ROLE =   7;
 ```
 
 ## SexAssignedAtBirthEnum
