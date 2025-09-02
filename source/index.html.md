@@ -2417,6 +2417,173 @@ curl -X GET \
 Be careful writing code that relies on the keys/labels returned from setting <code>isIncludeLabeledFormAnswers=true</code>. These labels may change as a Form Template is updated to fit the changing requirements of your clients.
 </aside>
 
+# Staff
+
+## Get All Staff
+
+When retrieving a [Staff](#staff) you can use the /staff endpoint.
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": [
+        {
+            "id": 8,
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2],
+            "active": 1
+        },
+        {
+            "id": 8,
+            "firstName":"Jane",
+            "lastName":"Doe",
+            "email":"janedoe@lobbie.com",
+            "locationIds": [1,2],
+            "active": 1
+        },
+    ]
+}
+```
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
+
+## Get a Specific Staff
+
+```shell
+curl -X GET \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/<staff_id> \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": {
+            "id": 8,
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2],
+            "active": 1
+        }
+}
+```
+
+This endpoint retrieves a specific [Staff](#staff).
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/<staff_id>`
+
+### URL Parameters
+
+| Parameter | Description                                                           |
+| --------- | --------------------------------------------------------------------- |
+| ID        | The ID of the [Staff](#staff) to retrieve |
+
+
+## Create a Staff
+
+```shell
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
+  -X POST \
+  -H "Authorization: $LOBBIE_ACCESS_TOKEN"
+  -H "Content-Type: application/json"
+  --data '{
+    "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+            "active": 1
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": {
+            "id": 8,
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2],
+            "active": 1
+        }
+}
+```
+
+This endpoint creates a Staff in Lobbie.
+
+### HTTP Request
+
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create`
+
+## Update a Staff
+
+```shell
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
+  -X POST \
+  -H "Authorization: $LOBBIE_ACCESS_TOKEN"
+  -H "Content-Type: application/json"
+  --data '{
+    "id": 8,                   # The ID of the Staff to update.
+    ""firstName":"John",
+    "lastName":"Doe",
+    "email":"johndoe@lobbie.com",
+    "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+    "active": 1
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": {
+            "id": 8,
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":"johndoe@lobbie.com",
+            "locationIds": [1,2],
+            "active": 1
+        }
+}
+```
+
+This endpoint updates a Location in Lobbie.
+
+### HTTP Request
+
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update`
 
 # Printing / PDF Generation
 
