@@ -545,6 +545,9 @@
                     <a href="#legalsexenum" class="toc-h2 toc-link" data-title="LegalSexEnum">LegalSexEnum</a>
                   </li>
                   <li>
+                    <a href="#roleenum" class="toc-h2 toc-link" data-title="RoleEnum">RoleEnum</a>
+                  </li>
+                  <li>
                     <a href="#sexassignedatbirthenum" class="toc-h2 toc-link" data-title="SexAssignedAtBirthEnum">SexAssignedAtBirthEnum</a>
                   </li>
               </ul>
@@ -2691,6 +2694,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"roleIds"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
             </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -2699,13 +2703,12 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"janedoe@lobbie.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"roleIds"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
             </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-27'>HTTP Request</h3>
-<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
-
 <p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
 <h2 id='get-a-specific-staff'>Get a Specific Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
     https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/&lt;staff_id&gt; <span class="se">\</span>
@@ -2723,6 +2726,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"roleIds"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
             </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2751,6 +2755,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
             "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+            "roleIds":[1,2],
             "active": 1
   }'</span>
 </code></pre></div>
@@ -2766,6 +2771,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"roleIds"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
             </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2783,6 +2789,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
     "lastName":"Doe",
     "email":"johndoe@lobbie.com",
     "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+    "roleIds":[1,2],
     "active": 1
   }'</span>
 </code></pre></div>
@@ -2798,6 +2805,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
             </span><span class="nl">"lastName"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="s2">"johndoe@lobbie.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locationIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"roleIds"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
             </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3266,6 +3274,21 @@ STATUS_EXPIRED <span class="o">=</span>               3
 <div class="highlight"><pre class="highlight shell tab-shell"><code>UNKNOWN <span class="o">=</span> 0
 MALE    <span class="o">=</span> 1
 FEMALE  <span class="o">=</span> 2
+</code></pre></div><h2 id='roleenum'>RoleEnum</h2>
+<p>Used in:</p>
+
+<ul>
+<li>  <a href="#staff">Get All Staff</a></li>
+<li>  <a href="#staff">Get a Specific Staff</a></li>
+<li>  <a href="#staff">Create staff</a></li>
+<li>  <a href="#staff">Update staff</a></li>
+</ul>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>USER_ROLE <span class="o">=</span>          1<span class="p">;</span>
+PRACTITIONER_ROLE <span class="o">=</span>  2<span class="p">;</span>
+ADMINISTRATOR_ROLE <span class="o">=</span> 3<span class="p">;</span>
+DEVELOPER_ROLE <span class="o">=</span>     5<span class="p">;</span>
+REPORTING_ROLE <span class="o">=</span>     6<span class="p">;</span>
+SUPERVISING_ROLE <span class="o">=</span>   7<span class="p">;</span>
 </code></pre></div><h2 id='sexassignedatbirthenum'>SexAssignedAtBirthEnum</h2>
 <p>Used in:</p>
 
