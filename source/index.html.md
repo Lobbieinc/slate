@@ -2429,12 +2429,6 @@ curl -X GET \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
 ```
 
-```shell
-curl -X GET \
-    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff \
-    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
-```
-
 > The above command returns JSON structured like this:
 
 ```json
@@ -2447,18 +2441,18 @@ curl -X GET \
             "firstName":"John",
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
-            "locationIds": [1,2],
-            "roleIds":[1,2],
-            "active": 1
+            "locationIds": "1,2",
+            "roleGroupIds":"1,2",
+            "active": true
         },
         {
             "id": 8,
             "firstName":"Jane",
             "lastName":"Doe",
             "email":"janedoe@lobbie.com",
-            "locationIds": [1,2],
-            "roleIds":[1,2],
-            "active": 1
+            "locationIds": "1,2",
+            "roleGroupIds":"1,2",
+            "active": true
         },
     ]
 }
@@ -2487,9 +2481,9 @@ curl -X GET \
             "firstName":"John",
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
-            "locationIds": [1,2],
-            "roleIds":[1,2],
-            "active": 1
+            "locationIds": "1,2",
+            "roleGroupIds":"1,2",
+            "active": true
         }
 }
 ```
@@ -2518,9 +2512,9 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
     "firstName":"John",
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
-            "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
-            "roleIds":[1,2],
-            "active": 1
+            "locationIds": "1,2", # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+            "roleGroupIds":"1,2",
+            "active": true
   }'
 ```
 
@@ -2535,9 +2529,9 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
             "firstName":"John",
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
-            "locationIds": [1,2],
-            "roleIds":[1,2],
-            "active": 1
+            "locationIds": "1,2",
+            "roleGroupIds":"1,2",
+            "active": true
         }
 }
 ```
@@ -2560,8 +2554,8 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
     ""firstName":"John",
     "lastName":"Doe",
     "email":"johndoe@lobbie.com",
-    "locationIds": [1,2], # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
-    "roleIds":[1,2],
+    "locationIds": "1,2", # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
+    "roleIds":"1,2",
     "active": 1
   }'
 ```
@@ -2577,18 +2571,18 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
             "firstName":"John",
             "lastName":"Doe",
             "email":"johndoe@lobbie.com",
-            "locationIds": [1,2],
-            "roleIds":[1,2],
+            "locationIds": "1,2",
+            "roleIds":"1,2",
             "active": 1
         }
 }
 ```
 
-This endpoint updates a Location in Lobbie.
+This endpoint updates a Staff in Lobbie.
 
 ### HTTP Request
 
-`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/locations/update`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update`
 
 # Printing / PDF Generation
 
@@ -3110,7 +3104,7 @@ MALE    = 1
 FEMALE  = 2
 ```
 
-## RoleEnum
+## RoleGroupEnum
 
 Used in:
 
