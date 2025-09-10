@@ -2504,7 +2504,7 @@ This endpoint retrieves a specific [Staff](#staff).
 ## Create a Staff
 
 ```shell
-curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create" \
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff" \
   -X POST \
   -H "Authorization: $LOBBIE_ACCESS_TOKEN"
   -H "Content-Type: application/json"
@@ -2540,12 +2540,12 @@ This endpoint creates a Staff in Lobbie.
 
 ### HTTP Request
 
-`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
 
 ## Update a Staff
 
 ```shell
-curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update" \
+curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff" \
   -X POST \
   -H "Authorization: $LOBBIE_ACCESS_TOKEN"
   -H "Content-Type: application/json"
@@ -2582,7 +2582,7 @@ This endpoint updates a Staff in Lobbie.
 
 ### HTTP Request
 
-`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update`
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
 
 # Printing / PDF Generation
 
