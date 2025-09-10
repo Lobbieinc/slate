@@ -2743,7 +2743,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
 <td>The ID of the <a href="#staff">Staff</a> to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-staff'>Create a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create"</span> <span class="se">\</span>
+<h2 id='create-a-staff'>Create a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
@@ -2775,8 +2775,8 @@ Be careful writing code that relies on the keys/labels returned from setting <co
 </span></code></pre></div>
 <p>This endpoint creates a Staff in Lobbie.</p>
 <h3 id='http-request-29'>HTTP Request</h3>
-<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/create</code></p>
-<h2 id='update-a-staff'>Update a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update"</span> <span class="se">\</span>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
+<h2 id='update-a-staff'>Update a Staff</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
@@ -2809,7 +2809,7 @@ Be careful writing code that relies on the keys/labels returned from setting <co
 </span></code></pre></div>
 <p>This endpoint updates a Staff in Lobbie.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
-<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff/update</code></p>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff</code></p>
 <h1 id='printing-pdf-generation'>Printing / PDF Generation</h1><h2 id='creating-a-pdf'>Creating a PDF</h2>
 <p>When creating a PDF of a <a href="#form">Form</a>, <a href="#form-group">Form Group/Packet</a>, <a href="#form-template">Form Template</a> or <a href="#form-template-group">Form Template Group</a> you can choose to call either the /print or /pdf endpoint. Both return the same response.</p>
 
