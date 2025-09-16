@@ -2546,7 +2546,7 @@ This endpoint creates a Staff in Lobbie.
 
 ```shell
 curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff" \
-  -X POST \
+  -X PUT \
   -H "Authorization: $LOBBIE_ACCESS_TOKEN"
   -H "Content-Type: application/json"
   --data '{
@@ -2582,7 +2582,7 @@ This endpoint updates a Staff in Lobbie.
 
 ### HTTP Request
 
-`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
+`PUT https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff`
 
 # Printing / PDF Generation
 
