@@ -2556,7 +2556,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff" \
     "email":"johndoe@lobbie.com",
     "locationIds": "1,2", # IDs of Locations created in Lobbie who are assigned to this Staff Member. Staff members only have UI access to Locations to which they are assigned.
     "roleIds":"1,2",
-    "active": 1
+    "active": true
   }'
 ```
 
@@ -2573,7 +2573,7 @@ curl "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/staff" \
             "email":"johndoe@lobbie.com",
             "locationIds": "1,2",
             "roleIds":"1,2",
-            "active": 1
+            "active": true
         }
 }
 ```
