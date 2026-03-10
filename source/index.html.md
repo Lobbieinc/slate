@@ -615,6 +615,176 @@ curl -G GET \
 
 -   `dateOfBirth` - The birth date of the Patient in MM/DD/YYYY format.
 
+## Batch Create Patients
+
+Create multiple patients at once. Up to 500 at a time.
+
+```shell
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/batch \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "patients": [
+        {
+          "firstName": "Jane",
+          "lastName": "Doe",
+          "email": "jane.doe@example.com",
+          "mobilePhone": "4105551234",
+          "dateOfBirth": "1990-05-15",
+          "gender": "female"
+        },
+        {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john.doe@example.com",
+          "mobilePhone": "4105555678",
+          "dateOfBirth": "1988-11-20",
+          "gender": "male"
+        }
+      ]
+    }'
+```
+
+> The above command returns JSON structured like this:
+
+```javascript
+[
+  {
+    "id": 10,
+    "createdOnUnix": "1773417540123",
+    "lastUpdatedOnUnix": "1773417540123",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "jane.doe@example.com",
+    "dateOfBirth": "1990-05-15",
+    "gender": "female",
+    "status": "created",
+    "error": null
+  },
+  {
+    "id": 11,
+    "createdOnUnix": "1773417540123",
+    "lastUpdatedOnUnix": "1773417540123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "dateOfBirth": "1988-11-20",
+    "gender": "male",
+    "status": "created",
+    "error": null
+  }
+]
+```
+
+If any individual patient fails to be created, the response for that patient will have a `status` of `"error"` and the `error` field will contain the reason:
+
+```javascript
+{
+  "id": null,
+  "createdOn": null,
+  "lastUpdatedOn": null,
+  "firstName": "Bad",
+  "lastName": "Data",
+  "email": null,
+  "dateOfBirth": null,
+  "gender": null,
+  "status": "error",
+  "error": "A description of what went wrong"
+}
+```
+
+### HTTP Request
+
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/batch`
+
+### Request Body
+
+The request body is a JSON object with a `patients` key containing an array of patient objects (max 500). Each patient object accepts the following fields:
+
+| Parameter   | Required | Description                                        |
+| ----------- | -------- | -------------------------------------------------- |
+| firstName   | yes      | The first/given name of the Patient.               |
+| lastName    | yes      | The last/family name of the Patient.               |
+| email       | no       | The email address of the Patient.                  |
+| mobilePhone | no       | The phone number of the Patient.                   |
+| dateOfBirth | no       | The birth date of the Patient in YYYY-MM-DD format.|
+| gender      | no       | The gender of the Patient (e.g. "male", "female") Reference https://www.hl7.org/fhir/R4/codesystem-gender-identity.html for possible values. |
+
+## Create Patient Relationships
+
+Create relationships between patients (e.g. parent/child). Multiple relationships can be created in a single request, up to 500.
+
+```shell
+curl -X POST \
+    https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/relationships \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "relationships": [
+        {
+          "parentId": 10,
+          "childId": 11,
+          "parentRelationshipName": "Guardian",
+          "childRelationshipName": "Guardee",
+          "primary": true
+        }
+      ]
+    }'
+```
+
+> The above command returns JSON structured like this:
+
+```javascript
+[
+  {
+    "id": 1,
+    "createdOn": "2026-03-09T12:00:00.000Z",
+    "lastUpdatedOn": "2026-03-09T12:00:00.000Z",
+    "parentId": 10,
+    "childId": 11,
+    "parentRelationshipName": "Parent",
+    "childRelationshipName": "Child",
+    "isPrimary": true,
+    "status": "created",
+    "error": null
+  }
+]
+```
+
+If a relationship fails to be created, the response for that entry will have a `status` of `"error"` and the `error` field will contain the reason:
+
+```javascript
+{
+  "id": null,
+  "createdOn": null,
+  "lastUpdatedOn": null,
+  "parentId": 999,
+  "childId": 1000,
+  "parentRelationshipName": "Parent",
+  "childRelationshipName": "Child",
+  "isPrimary": false,
+  "status": "error",
+  "error": "One or both patients do not exist"
+}
+```
+
+### HTTP Request
+
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/patients/relationships`
+
+### Request Body
+
+The request body is a JSON object with a `relationships` key containing an array of relationship objects (max 500). Each relationship object accepts the following fields:
+
+| Parameter              | Required | Description                                                                 |
+| ---------------------- | -------- | --------------------------------------------------------------------------- |
+| parentId               | yes      | The ID of the parent Patient.                                               |
+| childId                | yes      | The ID of the child Patient.                                                |
+| parentRelationshipName | no       | Label for the parent's side of the relationship (defaults to "Parent").     |
+| childRelationshipName  | no       | Label for the child's side of the relationship (defaults to "Child").       |
+| isPrimary              | no       | Whether this is the primary relationship for the child. Defaults to false.  |
+
 # Patient Tags
 
 ## Get All Patient Tags
