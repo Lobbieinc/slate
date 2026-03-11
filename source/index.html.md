@@ -745,7 +745,7 @@ curl -X POST \
     "childId": 11,
     "parentRelationshipName": "Parent",
     "childRelationshipName": "Child",
-    "isPrimary": true,
+    "primary": true,
     "status": "created",
     "error": null
   }
@@ -783,7 +783,7 @@ The request body is a JSON object with a `relationships` key containing an array
 | childId                | yes      | The ID of the child Patient.                                                |
 | parentRelationshipName | no       | Label for the parent's side of the relationship (defaults to "Parent").     |
 | childRelationshipName  | no       | Label for the child's side of the relationship (defaults to "Child").       |
-| isPrimary              | no       | Whether this is the primary relationship for the child. Defaults to false.  |
+| primary                | no       | Whether this is the primary relationship for the child. Defaults to false.  |
 
 # Patient Tags
 
