@@ -567,6 +567,12 @@
                   <li>
                     <a href="#a-staff-member-completes-form-group-packet" class="toc-h2 toc-link" data-title="A Staff member completes Form Group/Packet">A Staff member completes Form Group/Packet</a>
                   </li>
+                  <li>
+                    <a href="#listing-webhook-attempts" class="toc-h2 toc-link" data-title="Listing Webhook Attempts">Listing Webhook Attempts</a>
+                  </li>
+                  <li>
+                    <a href="#replaying-a-webhook-attempt" class="toc-h2 toc-link" data-title="Replaying a Webhook Attempt">Replaying a Webhook Attempt</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -3635,7 +3641,117 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='listing-webhook-attempts'>Listing Webhook Attempts</h2>
+<p>Lobbie keeps a log of every webhook attempt it makes on your behalf. You can use this endpoint to inspect those attempts (for example, to find a delivery that failed and needs to be re-sent).</p>
+
+<p>The endpoint is scoped to your account&#39;s webhook configuration — you will only see attempts that Lobbie made for your own account.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> GET <span class="se">\</span>
+    <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--data-urlencode</span> <span class="s2">"startUnix=1690000000000"</span> <span class="se">\</span>
+    <span class="nt">--data-urlencode</span> <span class="s2">"endUnix=1700000000000"</span> <span class="se">\</span>
+    <span class="nt">--data-urlencode</span> <span class="s2">"limit=25"</span> <span class="se">\</span>
+    <span class="nt">--data-urlencode</span> <span class="s2">"page=0"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORMS_COMPLETE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/hooks/forms-complete"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestHeaders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Authorization: Bearer ****, Content-Type: application/json]"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"responseStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"responseStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal Server Error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isUsingAPIKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-14T18:22:11.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-14T18:22:11.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORMS_COMPLETE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/hooks/forms-complete"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestHeaders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Authorization: Bearer ****, Content-Type: application/json]"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"responseStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"responseStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isUsingAPIKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-14T18:21:03.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-14T18:21:03.000Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Attempts are returned newest first. The <code>success</code> field is derived from <code>responseStatusCode</code> — it is <code>true</code> when the destination responded with a 2xx status, <code>false</code> otherwise.</p>
+
+<aside class="notice">
+The raw request body Lobbie sent is intentionally omitted from this listing. The attempt id is all you need to <a href="#replaying-a-webhook-attempt">replay</a> an attempt.
+</aside>
+<h3 id='http-request-38'>HTTP Request</h3>
+<p><code>GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests</code></p>
+<h3 id='query-parameters-12'>Query Parameters</h3>
+<ul>
+<li><p><code>startUnix</code> - Optional. Lower bound (inclusive) on the attempt&#39;s <code>createdOn</code> timestamp, in epoch milliseconds.</p></li>
+<li><p><code>endUnix</code> - Optional. Upper bound (inclusive) on the attempt&#39;s <code>createdOn</code> timestamp, in epoch milliseconds.</p></li>
+<li><p><code>limit</code> - Optional. Page size. Defaults to <code>10</code>. Maximum <code>100</code>.</p></li>
+<li><p><code>page</code> - Optional. 0-based page index. Defaults to <code>0</code>.</p></li>
+</ul>
+<h2 id='replaying-a-webhook-attempt'>Replaying a Webhook Attempt</h2>
+<p>If a previous webhook attempt failed (or you simply want Lobbie to re-send it), you can replay it. Lobbie will send the exact same payload to the URL stored on the original attempt, using the same authentication (API Key or OAuth2 bearer token) configured for your webhook.</p>
+
+<p>A new attempt row is created for the replay and returned in the response — the original attempt is left untouched.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+    <span class="s2">"https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests/42/replay"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webhook request replayed."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORMS_COMPLETE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requestUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/hooks/forms-complete"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requestMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requestHeaders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Authorization: Bearer ****, Content-Type: application/json]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"responseStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"responseStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isUsingAPIKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-15T14:02:55.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-09-15T14:02:55.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>If the destination times out, Lobbie records the attempt with a <code>responseStatusCode</code> of <code>504</code> and a <code>responseStatus</code> of <code>&quot;Connection timeout&quot;</code>. Other transport-level errors are recorded with a <code>responseStatusCode</code> of <code>500</code> and the underlying error message in <code>responseStatus</code>. In both cases the <code>success</code> field on the returned attempt tells you whether the destination ultimately accepted the replay.</p>
+
+<aside class="notice">
+A replay only succeeds when the attempt belongs to your account's webhook configuration. Attempting to replay an attempt that does not exist — or that belongs to another developer — returns <code>success: false</code> with a "Failed to find webhook request" message.
+</aside>
+<h3 id='http-request-39'>HTTP Request</h3>
+<p><code>POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests/&lt;id&gt;/replay</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the webhook attempt to re-send.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
