@@ -3449,3 +3449,126 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
         ]
     }
 ```
+
+## Listing Webhook Attempts
+
+Lobbie keeps a log of every webhook attempt it makes on your behalf. You can use this endpoint to inspect those attempts (for example, to find a delivery that failed and needs to be re-sent).
+
+The endpoint is scoped to your account's webhook configuration — you will only see attempts that Lobbie made for your own account.
+
+```shell
+curl -G GET \
+    "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests" \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
+    --data-urlencode "startUnix=1690000000000" \
+    --data-urlencode "endUnix=1700000000000" \
+    --data-urlencode "limit=25" \
+    --data-urlencode "page=0"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": [
+        {
+            "id": 42,
+            "type": "FORMS_COMPLETE",
+            "requestUrl": "https://example.com/hooks/forms-complete",
+            "requestMethod": "POST",
+            "requestHeaders": "[Authorization: Bearer ****, Content-Type: application/json]",
+            "responseStatusCode": 500,
+            "responseStatus": "Internal Server Error",
+            "isUsingAPIKey": true,
+            "success": false,
+            "createdOn": "2023-09-14T18:22:11.000Z",
+            "lastUpdatedOn": "2023-09-14T18:22:11.000Z"
+        },
+        {
+            "id": 41,
+            "type": "FORMS_COMPLETE",
+            "requestUrl": "https://example.com/hooks/forms-complete",
+            "requestMethod": "POST",
+            "requestHeaders": "[Authorization: Bearer ****, Content-Type: application/json]",
+            "responseStatusCode": 200,
+            "responseStatus": "OK",
+            "isUsingAPIKey": true,
+            "success": true,
+            "createdOn": "2023-09-14T18:21:03.000Z",
+            "lastUpdatedOn": "2023-09-14T18:21:03.000Z"
+        }
+    ]
+}
+```
+
+Attempts are returned newest first. The `success` field is derived from `responseStatusCode` — it is `true` when the destination responded with a 2xx status, `false` otherwise.
+
+<aside class="notice">
+The raw request body Lobbie sent is intentionally omitted from this listing. The attempt id is all you need to <a href="#replaying-a-webhook-attempt">replay</a> an attempt.
+</aside>
+
+### HTTP Request
+
+`GET https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests`
+
+### Query Parameters
+
+-   `startUnix` - Optional. Lower bound (inclusive) on the attempt's `createdOn` timestamp, in epoch milliseconds.
+
+-   `endUnix` - Optional. Upper bound (inclusive) on the attempt's `createdOn` timestamp, in epoch milliseconds.
+
+-   `limit` - Optional. Page size. Defaults to `10`. Maximum `100`.
+
+-   `page` - Optional. 0-based page index. Defaults to `0`.
+
+## Replaying a Webhook Attempt
+
+If a previous webhook attempt failed (or you simply want Lobbie to re-send it), you can replay it. Lobbie will send the exact same payload to the URL stored on the original attempt, using the same authentication (API Key or OAuth2 bearer token) configured for your webhook.
+
+A new attempt row is created for the replay and returned in the response — the original attempt is left untouched.
+
+```shell
+curl -X POST \
+    "https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests/42/replay" \
+    -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "message": "Webhook request replayed.",
+    "data": {
+        "id": 57,
+        "type": "FORMS_COMPLETE",
+        "requestUrl": "https://example.com/hooks/forms-complete",
+        "requestMethod": "POST",
+        "requestHeaders": "[Authorization: Bearer ****, Content-Type: application/json]",
+        "responseStatusCode": 200,
+        "responseStatus": "OK",
+        "isUsingAPIKey": true,
+        "success": true,
+        "createdOn": "2023-09-15T14:02:55.000Z",
+        "lastUpdatedOn": "2023-09-15T14:02:55.000Z"
+    }
+}
+```
+
+If the destination times out, Lobbie records the attempt with a `responseStatusCode` of `504` and a `responseStatus` of `"Connection timeout"`. Other transport-level errors are recorded with a `responseStatusCode` of `500` and the underlying error message in `responseStatus`. In both cases the `success` field on the returned attempt tells you whether the destination ultimately accepted the replay.
+
+<aside class="notice">
+A replay only succeeds when the attempt belongs to your account's webhook configuration. Attempting to replay an attempt that does not exist — or that belongs to another developer — returns <code>success: false</code> with a "Failed to find webhook request" message.
+</aside>
+
+### HTTP Request
+
+`POST https://api-sandbox.lobbie.com/lobbie/api/developer/v1/webhook-requests/<id>/replay`
+
+### URL Parameters
+
+| Parameter | Description                                |
+| --------- | ------------------------------------------ |
+| ID        | The ID of the webhook attempt to re-send.  |
