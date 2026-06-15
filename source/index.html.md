@@ -3462,6 +3462,7 @@ curl -G GET \
     -H "Authorization: Bearer $LOBBIE_ACCESS_TOKEN" \
     --data-urlencode "startUnix=1690000000000" \
     --data-urlencode "endUnix=1700000000000" \
+    --data-urlencode "success=false" \
     --data-urlencode "limit=25" \
     --data-urlencode "page=0"
 ```
@@ -3518,6 +3519,8 @@ The raw request body Lobbie sent is intentionally omitted from this listing. The
 -   `startUnix` - Optional. Lower bound (inclusive) on the attempt's `createdOn` timestamp, in epoch milliseconds.
 
 -   `endUnix` - Optional. Upper bound (inclusive) on the attempt's `createdOn` timestamp, in epoch milliseconds.
+
+-   `success` - Optional. Filter by outcome. `true` returns only attempts whose destination responded with a 2xx status; `false` returns every non-2xx attempt (4xx, 5xx, and connection failures). Omit the parameter to return both.
 
 -   `limit` - Optional. Page size. Defaults to `10`. Maximum `100`.
 
