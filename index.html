@@ -3650,6 +3650,7 @@ Form Answers that belong to Staff-only Form Elements will be included in this re
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$LOBBIE_ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--data-urlencode</span> <span class="s2">"startUnix=1690000000000"</span> <span class="se">\</span>
     <span class="nt">--data-urlencode</span> <span class="s2">"endUnix=1700000000000"</span> <span class="se">\</span>
+    <span class="nt">--data-urlencode</span> <span class="s2">"success=false"</span> <span class="se">\</span>
     <span class="nt">--data-urlencode</span> <span class="s2">"limit=25"</span> <span class="se">\</span>
     <span class="nt">--data-urlencode</span> <span class="s2">"page=0"</span>
 </code></pre></div>
@@ -3700,6 +3701,7 @@ The raw request body Lobbie sent is intentionally omitted from this listing. The
 <ul>
 <li><p><code>startUnix</code> - Optional. Lower bound (inclusive) on the attempt&#39;s <code>createdOn</code> timestamp, in epoch milliseconds.</p></li>
 <li><p><code>endUnix</code> - Optional. Upper bound (inclusive) on the attempt&#39;s <code>createdOn</code> timestamp, in epoch milliseconds.</p></li>
+<li><p><code>success</code> - Optional. Filter by outcome. <code>true</code> returns only attempts whose destination responded with a 2xx status; <code>false</code> returns every non-2xx attempt (4xx, 5xx, and connection failures). Omit the parameter to return both.</p></li>
 <li><p><code>limit</code> - Optional. Page size. Defaults to <code>10</code>. Maximum <code>100</code>.</p></li>
 <li><p><code>page</code> - Optional. 0-based page index. Defaults to <code>0</code>.</p></li>
 </ul>
